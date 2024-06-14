@@ -1,0 +1,268 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="HelpDosboxAllowWriteProtectedFiles" xml:space="preserve">
+    <value />
+  </data>
+  <data name="HelpDosboxAutoexecSection" xml:space="preserve">
+    <value />
+  </data>
+  <data name="HelpDosboxAutomount" xml:space="preserve">
+    <value />
+  </data>
+  <data name="HelpDosboxDosRate" xml:space="preserve">
+    <value />
+  </data>
+  <data name="HelpDosboxLanguage" xml:space="preserve">
+    <value>Select a language to use: 'br', 'de', 'en', 'es', 'fr', 'it', 'nl', 'pl' or 'ru' (unset by default; this defaults to English).
+Notes:
+- This setting will override the 'LANG' environment variable, if set.
+- The bundled 'resources/translations' directory with the executable holds these files. Please keep it along-side
+the executable to support this feature.</value>
+  </data>
+  <data name="HelpDosboxMachine" xml:space="preserve">
+    <value />
+  </data>
+  <data name="HelpDosboxMcbFaultStrategy" xml:space="preserve">
+    <value />
+  </data>
+  <data name="HelpDosboxMemsize" xml:space="preserve">
+    <value />
+  </data>
+  <data name="HelpDosboxShellConfigShortcuts" xml:space="preserve">
+    <value />
+  </data>
+  <data name="HelpDosboxSpeedMods" xml:space="preserve">
+    <value />
+  </data>
+  <data name="HelpDosboxStartupVerbosity" xml:space="preserve">
+    <value />
+  </data>
+  <data name="HelpDosboxVesaModes" xml:space="preserve">
+    <value />
+  </data>
+  <data name="HelpDosboxVga8dotFont" xml:space="preserve">
+    <value />
+  </data>
+  <data name="HelpDosboxVgaRenderPerScanline" xml:space="preserve">
+    <value />
+  </data>
+  <data name="HelpDosboxVmemDelay" xml:space="preserve">
+    <value />
+  </data>
+  <data name="HelpDosboxVmemsize" xml:space="preserve">
+    <value />
+  </data>
+  <data name="HelpRenderAspect" xml:space="preserve">
+    <value>English Aspect</value>
+  </data>
+  <data name="HelpRenderIntegerScaling" xml:space="preserve">
+    <value>English IntegerScaling</value>
+  </data>
+  <data name="HelpSdlDisplay" xml:space="preserve">
+    <value>Number of display to use; values depend on OS and user settings (0 by default).</value>
+  </data>
+  <data name="HelpSdlFullresolution" xml:space="preserve">
+    <value>What resolution to use for fullscreen: 'original', 'desktop' or a fixed size, e.g. 1024x768 ('desktop' by default).</value>
+  </data>
+  <data name="HelpSdlFullscreen" xml:space="preserve">
+    <value>Start directly in fullscreen (disabled by default).
+Run INTRO and see Special Keys for window control hotkeys.</value>
+  </data>
+  <data name="HelpSdlHostRate" xml:space="preserve">
+    <value>Set the host's refresh rate:
+ - auto: Use SDI rates, or VRR rates when in fullscreen on a high-refresh rate display (default).
+ - sdi: Use serial device interface (SDI) rates, without further adjustment.
+ - vrr: Deduct 3 Hz from the reported rate (best practice for VRR displays).
+ - N: Specify custom refresh rate in Hz (decimal values are allowed; 23.000 is the allowed minimum).</value>
+  </data>
+  <data name="HelpSdlMapperfile" xml:space="preserve">
+    <value>Path to the mapper file ('mapper-sdl2-XYZ.map' by default, where XYZ is the current version).
+Pre-configured maps are bundled in 'resources/mapperfiles'.
+These can be loaded by name, e.g., with 'mapperfile = xbox/xenon2.map'.
+Note: The '--resetmapper' command line option only deletes the default mapper file.</value>
+  </data>
+  <data name="HelpSdlMuteWhenInactive" xml:space="preserve">
+    <value>Mute the sound when the window is inactive (disabled by default).</value>
+  </data>
+  <data name="HelpSdlOutput" xml:space="preserve">
+    <value>Video system to use for output ('opengl' by default).
+'texture' and 'opengl' use bilinear interpolation, 'texturenb' and 'openglnb' use nearest-neighbour (no-bilinear).
+Some shaders require bilinear interpolation, making that the safest choice.
+Deprecated values: openglpp, surface, texturepp.</value>
+  </data>
+  <data name="HelpSdlPauseWhenInactive" xml:space="preserve">
+    <value>Pause emulation when the window is inactive (disabled by default).</value>
+  </data>
+  <data name="HelpSdlPresentationMode" xml:space="preserve">
+    <value>Select the frame presentation mode:
+ - auto: Intelligently time and drop frames to prevent emulation stalls, based on host and DOS frame rates (default).
+ - cfr: Always present DOS frames at a constant frame rate.
+ - vfr: Always present changed DOS frames at a variable frame rate.</value>
+  </data>
+  <data name="HelpSdlPriority" xml:space="preserve">
+    <value>Priority levels to apply when active and inactive, respectively. ('auto auto' by default)
+'auto' lets the host operating system manage the priority.</value>
+  </data>
+  <data name="HelpSdlScreensaver" xml:space="preserve">
+    <value>Use 'allow' or 'block' to override the SDL_VIDEO_ALLOW_SCREENSAVER environment variable which usually
+blocks the OS screensaver while the emulator is running ('auto' by default).</value>
+  </data>
+  <data name="HelpSdlTextureRenderer" xml:space="preserve">
+    <value>Render driver to use in 'texture' output mode ('auto' by default).
+Use 'texture_renderer = auto' for an automatic choice.</value>
+  </data>
+  <data name="HelpSdlTransparency" xml:space="preserve">
+    <value>Set the transparency of the DOSBox Staging screen (0 by default).
+From 0 (no transparency) to 90 (high transparency).</value>
+  </data>
+  <data name="HelpSdlVsync" xml:space="preserve">
+    <value>Set the host video driver's vertical synchronization (vsync) mode:
+ - auto: Limit vsync to beneficial cases, such as when using an interpolating VRR display in fullscreen (default).
+ - on: Enable vsync. This can prevent tearing in some games but will impact performance or drop frames when
+    the DOS rate exceeds the host rate (e.g. 70 Hz DOS rate vs 60 Hz host rate).
+ - adaptive: Enables vsync when the frame rate is higher than the host rate, but disables it when the frame rate
+    drops below the host rate. This is a reasonable alternative on macOS instead of 'on'. Note: only valid in OpenGL
+    output modes; otherwise treated as 'on'.
+ - off: Attempt to disable vsync to allow quicker frame presentation at the risk of tearing in some games.
+ - yield: Let the host's video driver control video synchronization.</value>
+  </data>
+  <data name="HelpSdlVsyncSkip" xml:space="preserve">
+    <value>Number of microseconds to allow rendering to block before skipping the next frame.
+For example, a value of 7000 is roughly half the frame time at 70 Hz.
+0 disables this and will always render (default).</value>
+  </data>
+  <data name="HelpSdlWaitonerror" xml:space="preserve">
+    <value>Keep the console open if an error has occurred (enabled by default).</value>
+  </data>
+  <data name="HelpSdlWindowDecorations" xml:space="preserve">
+    <value>Enable window decorations in windowed mode (enabled by default).</value>
+  </data>
+  <data name="HelpSdlWindowPosition" xml:space="preserve">
+    <value>Set initial window position for windowed mode:
+ - auto: Let the window manager decide the position (default).
+ - X,Y: Set window position in X,Y format (e.g., 250,100). 0,0 is the top-left corner of the screen.</value>
+  </data>
+  <data name="HelpSdlWindowresolution" xml:space="preserve">
+    <value>Set intial window size for windowed mode. You can still resize the window after startup.
+- default: Select the best option based on your environment and other settings (such as whether aspect ratio correction is enabled).
+ - small, medium, large (s, m, l): Size the window relative to the desktop.
+ - WxH:  Specify window size in WxH format in logical units (e.g., 1024x768).</value>
+  </data>
+</root>

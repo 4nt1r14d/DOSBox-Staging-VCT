@@ -1,0 +1,2580 @@
+{
+  "ComboBoxCaptureDefaultImageCaptureFormats": [
+    {
+      "Text": "upscaled",
+      "Value": "upscaled"
+    },
+    {
+      "Text": "rendered",
+      "Value": "rendered"
+    },
+    {
+      "Text": "raw",
+      "Value": "raw"
+    }
+  ],
+  "ComboBoxCompositeComposite": [
+    {
+      "Text": "auto",
+      "Value": "auto"
+    },
+    {
+      "Text": "on",
+      "Value": "on"
+    },
+    {
+      "Text": "off",
+      "Value": "off"
+    }
+  ],
+  "ComboBoxCompositeEra": [
+    {
+      "Text": "auto",
+      "Value": "auto"
+    },
+    {
+      "Text": "old",
+      "Value": "old"
+    },
+    {
+      "Text": "new",
+      "Value": "new"
+    }
+  ],
+  "ComboBoxCpuCore": [
+    {
+      "Text": "auto",
+      "Value": "auto"
+    },
+    {
+      "Text": "dynamic",
+      "Value": "dynamic"
+    },
+    {
+      "Text": "normal",
+      "Value": "normal"
+    },
+    {
+      "Text": "simple",
+      "Value": "simple"
+    }
+  ],
+  "ComboBoxCpuCputype": [
+    {
+      "Text": "auto",
+      "Value": "auto"
+    },
+    {
+      "Text": "386",
+      "Value": "386"
+    },
+    {
+      "Text": "386_slow",
+      "Value": "386_slow"
+    },
+    {
+      "Text": "386_prefetch",
+      "Value": "386_prefetch"
+    },
+    {
+      "Text": "486_slow",
+      "Value": "486_slow"
+    },
+    {
+      "Text": "pentium_slow",
+      "Value": "pentium_slow"
+    }
+  ],
+  "ComboBoxCpuCycles": [
+    {
+      "Text": "auto",
+      "Value": "auto"
+    },
+    {
+      "Text": "fixed <N>",
+      "Value": "fixed "
+    },
+    {
+      "Text": "max",
+      "Value": "max"
+    }
+  ],
+  "ComboBoxDosboxAllowWriteProtectedFiles": [
+    {
+      "Text": "true",
+      "Value": "true"
+    },
+    {
+      "Text": "false",
+      "Value": "false"
+    }
+  ],
+  "ComboBoxDosboxAutoexecSection": [
+    {
+      "Text": "join",
+      "Value": "join"
+    },
+    {
+      "Text": "overwrite",
+      "Value": "overwrite"
+    }
+  ],
+  "ComboBoxDosboxAutomount": [
+    {
+      "Text": "true",
+      "Value": "true"
+    },
+    {
+      "Text": "false",
+      "Value": "false"
+    }
+  ],
+  "ComboBoxDosboxDosRate": [
+    {
+      "Text": "default",
+      "Value": "default"
+    },
+    {
+      "Text": "host",
+      "Value": "host"
+    },
+    {
+      "Text": "<value>",
+      "Value": ""
+    }
+  ],
+  "ComboBoxDosboxLanguage": [
+    {
+      "Text": "german",
+      "Value": "de"
+    },
+    {
+      "Text": "english",
+      "Value": "en"
+    },
+    {
+      "Text": "spanish",
+      "Value": "es"
+    },
+    {
+      "Text": "french",
+      "Value": "fr"
+    },
+    {
+      "Text": "italian",
+      "Value": "it"
+    },
+    {
+      "Text": "dutch",
+      "Value": "nl"
+    },
+    {
+      "Text": "polish",
+      "Value": "pl"
+    },
+    {
+      "Text": "russian",
+      "Value": "ru"
+    }
+  ],
+  "ComboBoxDosboxMachine": [
+    {
+      "Text": "hercules",
+      "Value": "hercules"
+    },
+    {
+      "Text": "cga_mono",
+      "Value": "cga_mono"
+    },
+    {
+      "Text": "cga",
+      "Value": "cga"
+    },
+    {
+      "Text": "pcjr",
+      "Value": "pcjr"
+    },
+    {
+      "Text": "tandy",
+      "Value": "tandy"
+    },
+    {
+      "Text": "ega",
+      "Value": "ega"
+    },
+    {
+      "Text": "svga_paradise",
+      "Value": "svga_paradise"
+    },
+    {
+      "Text": "svga_et3000",
+      "Value": "svga_et3000"
+    },
+    {
+      "Text": "svga_et4000",
+      "Value": "svga_et4000"
+    },
+    {
+      "Text": "svga_s3",
+      "Value": "svga_s3"
+    },
+    {
+      "Text": "vesa_oldvbe",
+      "Value": "vesa_oldvbe"
+    },
+    {
+      "Text": "vesa_nolfb",
+      "Value": "vesa_nolfb"
+    }
+  ],
+  "ComboBoxDosboxMcbFaultStrategy": [
+    {
+      "Text": "repair",
+      "Value": "repair"
+    },
+    {
+      "Text": "report",
+      "Value": "report"
+    },
+    {
+      "Text": "allow",
+      "Value": "allow"
+    },
+    {
+      "Text": "deny",
+      "Value": "deny"
+    }
+  ],
+  "ComboBoxDosboxMemsize": [
+    {
+      "Text": "2 MB",
+      "Value": "2"
+    },
+    {
+      "Text": "4 MB",
+      "Value": "4"
+    },
+    {
+      "Text": "8 MB",
+      "Value": "8"
+    },
+    {
+      "Text": "16 MB",
+      "Value": "16"
+    },
+    {
+      "Text": "32 MB",
+      "Value": "32"
+    },
+    {
+      "Text": "64 MB",
+      "Value": "64"
+    }
+  ],
+  "ComboBoxDosboxShellConfigShortcuts": [
+    {
+      "Text": "true",
+      "Value": "true"
+    },
+    {
+      "Text": "false",
+      "Value": "false"
+    }
+  ],
+  "ComboBoxDosboxSpeedMods": [
+    {
+      "Text": "true",
+      "Value": "true"
+    },
+    {
+      "Text": "false",
+      "Value": "false"
+    }
+  ],
+  "ComboBoxDosboxStartupVerbosity": [
+    {
+      "Text": "auto",
+      "Value": "auto"
+    },
+    {
+      "Text": "high",
+      "Value": "high"
+    },
+    {
+      "Text": "low",
+      "Value": "low"
+    },
+    {
+      "Text": "quiet",
+      "Value": "quiet"
+    }
+  ],
+  "ComboBoxDosboxVesaModes": [
+    {
+      "Text": "compatible",
+      "Value": "compatible"
+    },
+    {
+      "Text": "halfline",
+      "Value": "halfline"
+    },
+    {
+      "Text": "all",
+      "Value": "all"
+    }
+  ],
+  "ComboBoxDosboxVga8dotFont": [
+    {
+      "Text": "true",
+      "Value": "true"
+    },
+    {
+      "Text": "false",
+      "Value": "false"
+    }
+  ],
+  "ComboBoxDosboxVmemsize": [
+    {
+      "Text": "auto",
+      "Value": "auto"
+    },
+    {
+      "Text": "256 KB",
+      "Value": "256"
+    },
+    {
+      "Text": "512 KB",
+      "Value": "512"
+    },
+    {
+      "Text": "1 MB",
+      "Value": "1"
+    },
+    {
+      "Text": "2 MB",
+      "Value": "2"
+    },
+    {
+      "Text": "4 MB",
+      "Value": "4"
+    },
+    {
+      "Text": "8 MB",
+      "Value": "8"
+    }
+  ],
+  "ComboBoxDosboxVmemDelay": [
+    {
+      "Text": "on",
+      "Value": "on"
+    },
+    {
+      "Text": "off",
+      "Value": "off"
+    },
+    {
+      "Text": "<value>",
+      "Value": ""
+    }
+  ],
+  "ComboBoxDosboxVgaRenderPerScanline": [
+    {
+      "Text": "true",
+      "Value": "true"
+    },
+    {
+      "Text": "false",
+      "Value": "false"
+    }
+  ],
+  "ComboBoxDosCountry": [
+    {
+      "Text": "auto",
+      "Value": "auto"
+    },
+    {
+      "Text": "<custom>",
+      "Value": ""
+    }
+  ],
+  "ComboBoxDosEms": [
+    {
+      "Text": "true",
+      "Value": "true"
+    },
+    {
+      "Text": "emsboard",
+      "Value": "emsboard"
+    },
+    {
+      "Text": "emm386",
+      "Value": "emm386"
+    },
+    {
+      "Text": "false",
+      "Value": "false"
+    }
+  ],
+  "ComboBoxDosExpandShellVariable": [
+    {
+      "Text": "auto",
+      "Value": "auto"
+    },
+    {
+      "Text": "true",
+      "Value": "true"
+    },
+    {
+      "Text": "false",
+      "Value": "false"
+    }
+  ],
+  "ComboBoxDosKeyboardlayout": [
+    {
+      "Text": "auto",
+      "Value": "auto"
+    },
+    {
+      "Text": "<custom>",
+      "Value": ""
+    }
+  ],
+  "ComboBoxDosLocalePeriod": [
+    {
+      "Text": "historic",
+      "Value": "historic"
+    },
+    {
+      "Text": "modern",
+      "Value": "modern"
+    }
+  ],
+  "ComboBoxDosUmb": [
+    {
+      "Text": "true",
+      "Value": "true"
+    },
+    {
+      "Text": "false",
+      "Value": "false"
+    }
+  ],
+  "ComboBoxDosVer": [
+    {
+      "Text": "3.3",
+      "Value": "3.3"
+    },
+    {
+      "Text": "5.0",
+      "Value": "5.0"
+    },
+    {
+      "Text": "6.22",
+      "Value": "6.22"
+    },
+    {
+      "Text": "7.1",
+      "Value": "7.1"
+    },
+    {
+      "Text": "<custom>",
+      "Value": ""
+    }
+  ],
+  "ComboBoxDosXms": [
+    {
+      "Text": "true",
+      "Value": "true"
+    },
+    {
+      "Text": "false",
+      "Value": "false"
+    }
+  ],
+  "ComboBoxDosPcjrMemoryConfig": [
+    {
+      "Text": "expanded",
+      "Value": "expanded"
+    },
+    {
+      "Text": "standard",
+      "Value": "standard"
+    }
+  ],
+  "ComboBoxEthernetNe2000": [
+    {
+      "Text": "true",
+      "Value": "true"
+    },
+    {
+      "Text": "false",
+      "Value": "false"
+    }
+  ],
+  "ComboBoxEthernetNicbase": [
+    {
+      "Text": "200",
+      "Value": "200"
+    },
+    {
+      "Text": "220",
+      "Value": "220"
+    },
+    {
+      "Text": "240",
+      "Value": "240"
+    },
+    {
+      "Text": "260",
+      "Value": "260"
+    },
+    {
+      "Text": "280",
+      "Value": "280"
+    },
+    {
+      "Text": "2c0",
+      "Value": "2c0"
+    },
+    {
+      "Text": "300",
+      "Value": "300"
+    },
+    {
+      "Text": "320",
+      "Value": "320"
+    },
+    {
+      "Text": "340",
+      "Value": "340"
+    }
+  ],
+  "ComboBoxEthernetNicirq": [
+    {
+      "Text": "3",
+      "Value": "3"
+    },
+    {
+      "Text": "4",
+      "Value": "4"
+    },
+    {
+      "Text": "5",
+      "Value": "5"
+    },
+    {
+      "Text": "9",
+      "Value": "9"
+    },
+    {
+      "Text": "10",
+      "Value": "10"
+    },
+    {
+      "Text": "11",
+      "Value": "11"
+    },
+    {
+      "Text": "12",
+      "Value": "12"
+    },
+    {
+      "Text": "14",
+      "Value": "14"
+    },
+    {
+      "Text": "15",
+      "Value": "15"
+    }
+  ],         
+  "ComboBoxFluidsynthFsynthChorus": [
+    {
+      "Text": "auto",
+      "Value": "auto"
+    },
+    {
+      "Text": "on",
+      "Value": "on"
+    },
+    {
+      "Text": "off",
+      "Value": "off"
+    },
+    {
+      "Text": "<custom>",
+      "Value": ""
+    }
+  ],
+  "ComboBoxFluidsynthFsynthFilter": [
+    {
+      "Text": "off",
+      "Value": "off"
+    },
+    {
+      "Text": "<custom>",
+      "Value": ""
+    }
+  ],
+  "ComboBoxFluidsynthFsynthReverb": [
+    {
+      "Text": "auto",
+      "Value": "auto"
+    },
+    {
+      "Text": "on",
+      "Value": "on"
+    },
+    {
+      "Text": "off",
+      "Value": "off"
+    },
+    {
+      "Text": "<custom>",
+      "Value": ""
+    }
+  ],          
+  "ComboBoxGusGus": [
+    {
+      "Text": "true",
+      "Value": "true"
+    },
+    {
+      "Text": "false",
+      "Value": "false"
+    }
+  ],
+  "ComboBoxGusGusbase": [
+    {
+      "Text": "240",
+      "Value": "240"
+    },
+    {
+      "Text": "220",
+      "Value": "220"
+    },
+    {
+      "Text": "260",
+      "Value": "260"
+    },
+    {
+      "Text": "280",
+      "Value": "280"
+    },
+    {
+      "Text": "2a0",
+      "Value": "2a0"
+    },
+    {
+      "Text": "2c0",
+      "Value": "2c0"
+    },
+    {
+      "Text": "2e0",
+      "Value": "2e0"
+    },
+    {
+      "Text": "300",
+      "Value": "300"
+    }
+  ],
+  "ComboBoxGusGusdma": [
+    {
+      "Text": "0",
+      "Value": "0"
+    },
+    {
+      "Text": "1",
+      "Value": "1"
+    },
+    {
+      "Text": "3",
+      "Value": "3"
+    },
+    {
+      "Text": "5",
+      "Value": "5"
+    },
+    {
+      "Text": "6",
+      "Value": "6"
+    },
+    {
+      "Text": "7",
+      "Value": "7"
+    }
+  ],
+  "ComboBoxGusGusFilter": [
+    {
+      "Text": "off",
+      "Value": "off"
+    },
+    {
+      "Text": "<custom>",
+      "Value": ""
+    }
+  ],
+  "ComboBoxGusGusirq": [
+    {
+      "Text": "3",
+      "Value": "3"
+    },
+    {
+      "Text": "5",
+      "Value": "5"
+    },
+    {
+      "Text": "7",
+      "Value": "7"
+    },
+    {
+      "Text": "9",
+      "Value": "9"
+    },
+    {
+      "Text": "10",
+      "Value": "10"
+    },
+    {
+      "Text": "11",
+      "Value": "11"
+    },
+    {
+      "Text": "12",
+      "Value": "12"
+    }
+  ],         
+  "ComboBoxImfcImfc": [
+    {
+      "Text": "true",
+      "Value": "true"
+    },
+    {
+      "Text": "false",
+      "Value": "false"
+    }
+  ],
+  "ComboBoxImfcImfcBase": [
+    {
+      "Text": "2a20",
+      "Value": "2a20"
+    },
+    {
+      "Text": "2a30",
+      "Value": "2a30"
+    }
+  ],
+  "ComboBoxImfcImfcFilter": [
+    {
+      "Text": "on",
+      "Value": "on"
+    },
+    {
+      "Text": "off",
+      "Value": "off"
+    },
+    {
+      "Text": "<custom>",
+      "Value": ""
+    }
+  ],
+  "ComboBoxImfcImfcIrq": [
+    {
+      "Text": "2",
+      "Value": "2"
+    },
+    {
+      "Text": "3",
+      "Value": "3"
+    },
+    {
+      "Text": "4",
+      "Value": "4"
+    },
+    {
+      "Text": "5",
+      "Value": "5"
+    },
+    {
+      "Text": "6",
+      "Value": "6"
+    },
+    {
+      "Text": "7",
+      "Value": "7"
+    }
+  ],
+  "ComboBoxInnovationInnovationFilter": [
+    {
+      "Text": "off",
+      "Value": "off"
+    },
+    {
+      "Text": "<custom>",
+      "Value": ""
+    }
+  ],
+  "ComboBoxInnovationSidclock": [
+    {
+      "Text": "default",
+      "Value": "default"
+    },
+    {
+      "Text": "c64 ntsc",
+      "Value": "c64ntsc"
+    },
+    {
+      "Text": "c64 pal",
+      "Value": "c64pal"
+    },
+    {
+      "Text": "hard sid",
+      "Value": "hardsid"
+    }
+  ],
+  "ComboBoxInnovationSidmodel": [
+    {
+      "Text": "auto",
+      "Value": "auto"
+    },
+    {
+      "Text": "6581",
+      "Value": "6581"
+    },
+    {
+      "Text": "8580",
+      "Value": "8580"
+    },
+    {
+      "Text": "none",
+      "Value": "none"
+    }
+  ],
+  "ComboBoxInnovationSidport": [
+    {
+      "Text": "240",
+      "Value": "240"
+    },
+    {
+      "Text": "260",
+      "Value": "260"
+    },
+    {
+      "Text": "280",
+      "Value": "280"
+    },
+    {
+      "Text": "2a0",
+      "Value": "2a0"
+    },
+    {
+      "Text": "2c0",
+      "Value": "2c0"
+    }
+  ],
+  "ComboBoxIpxIpx": [
+    {
+      "Text": "true",
+      "Value": "true"
+    },
+    {
+      "Text": "false",
+      "Value": "false"
+    }
+  ],
+  "ComboBoxJoystickAutofire": [
+    {
+      "Text": "true",
+      "Value": "true"
+    },
+    {
+      "Text": "false",
+      "Value": "false"
+    }
+  ],
+  "ComboBoxJoystickButtonwrap": [
+    {
+      "Text": "true",
+      "Value": "true"
+    },
+    {
+      "Text": "false",
+      "Value": "false"
+    }
+  ],
+  "ComboBoxJoystickCircularinput": [
+    {
+      "Text": "true",
+      "Value": "true"
+    },
+    {
+      "Text": "false",
+      "Value": "false"
+    }
+  ],
+  "ComboBoxJoystickJoysticktype": [
+    {
+      "Text": "auto",
+      "Value": "auto"
+    },
+    {
+      "Text": "2 axis",
+      "Value": "2axis"
+    },
+    {
+      "Text": "4 axis",
+      "Value": "4axis"
+    },
+    {
+      "Text": "4 axis_2",
+      "Value": "4axis_2"
+    },
+    {
+      "Text": "fcs",
+      "Value": "fcs"
+    },
+    {
+      "Text": "ch",
+      "Value": "ch"
+    },
+    {
+      "Text": "hidden",
+      "Value": "hidden"
+    },
+    {
+      "Text": "disabled",
+      "Value": "disabled"
+    }
+  ],
+  "ComboBoxJoystickJoyXCalibration": [
+    {
+      "Text": "auto",
+      "Value": "auto"
+    },
+    {
+      "Text": "<custom>",
+      "Value": ""
+    }
+  ],
+  "ComboBoxJoystickJoyYCalibration": [
+    {
+      "Text": "auto",
+      "Value": "auto"
+    },
+    {
+      "Text": "<custom>",
+      "Value": ""
+    }
+  ],
+  "ComboBoxJoystickSwap34": [
+    {
+      "Text": "true",
+      "Value": "true"
+    },
+    {
+      "Text": "false",
+      "Value": "false"
+    }
+  ],
+  "ComboBoxJoystickTimed": [
+    {
+      "Text": "true",
+      "Value": "true"
+    },
+    {
+      "Text": "false",
+      "Value": "false"
+    }
+  ],
+  "ComboBoxJoystickUseJoyCalibrationHotkeys": [
+    {
+      "Text": "true",
+      "Value": "true"
+    },
+    {
+      "Text": "false",
+      "Value": "false"
+    }
+  ],          
+  "ComboBoxMidiMididevice": [
+    {
+      "Text": "auto",
+      "Value": "auto"
+    },
+    {
+      "Text": "win32",
+      "Value": "win32"
+    },
+    {
+      "Text": "fluidsynth",
+      "Value": "fluidsynth"
+    },
+    {
+      "Text": "mt32",
+      "Value": "mt32"
+    },
+    {
+      "Text": "none",
+      "Value": "none"
+    }
+  ],
+  "ComboBoxMidiMpu401": [
+    {
+      "Text": "intelligent",
+      "Value": "intelligent"
+    },
+    {
+      "Text": "uart",
+      "Value": "uart"
+    },
+    {
+      "Text": "none",
+      "Value": "none"
+    }
+  ],
+  "ComboBoxMidiRawMidiOutput": [
+    {
+      "Text": "on",
+      "Value": "true"
+    },
+    {
+      "Text": "off",
+      "Value": "false"
+    }
+  ],
+  "ComboBoxMixerBlocksize": [
+    {
+      "Text": "128",
+      "Value": "128"
+    },
+    {
+      "Text": "256",
+      "Value": "256"
+    },
+    {
+      "Text": "512",
+      "Value": "512"
+    },
+    {
+      "Text": "1024",
+      "Value": "1024"
+    },
+    {
+      "Text": "2048",
+      "Value": "2048"
+    },
+    {
+      "Text": "4096",
+      "Value": "4096"
+    },
+    {
+      "Text": "8192",
+      "Value": "8192"
+    }
+  ],
+  "ComboBoxMixerChorus": [
+    {
+      "Text": "off",
+      "Value": "off"
+    },
+    {
+      "Text": "on",
+      "Value": "on"
+    },
+    {
+      "Text": "light",
+      "Value": "light"
+    },
+    {
+      "Text": "normal",
+      "Value": "normal"
+    },
+    {
+      "Text": "strong",
+      "Value": "strong"
+    }
+  ],
+  "ComboBoxMixerCompressor": [
+    {
+      "Text": "on",
+      "Value": "true"
+    },
+    {
+      "Text": "off",
+      "Value": "false"
+    }
+  ],
+  "ComboBoxMixerCrossfeed": [
+    {
+      "Text": "off",
+      "Value": "off"
+    },
+    {
+      "Text": "on",
+      "Value": "on"
+    },
+    {
+      "Text": "light",
+      "Value": "light"
+    },
+    {
+      "Text": "normal",
+      "Value": "normal"
+    },
+    {
+      "Text": "strong",
+      "Value": "strong"
+    }
+  ],
+  "ComboBoxMixerNegotiate": [
+    {
+      "Text": "true",
+      "Value": "true"
+    },
+    {
+      "Text": "false",
+      "Value": "false"
+    }
+  ],         
+  "ComboBoxMixerNosound": [
+    {
+      "Text": "true",
+      "Value": "true"
+    },
+    {
+      "Text": "false",
+      "Value": "false"
+    }
+  ],
+  "ComboBoxMixerRate": [
+    {
+      "Text": "8000 Hz",
+      "Value": "8000"
+    },
+    {
+      "Text": "11025 Hz",
+      "Value": "11025"
+    },
+    {
+      "Text": "16000 Hz",
+      "Value": "16000"
+    },
+    {
+      "Text": "22050 Hz",
+      "Value": "22050"
+    },
+    {
+      "Text": "32000 Hz",
+      "Value": "32000"
+    },
+    {
+      "Text": "44100 Hz",
+      "Value": "44100"
+    },
+    {
+      "Text": "48000 Hz",
+      "Value": "48000"
+    }
+  ],
+  "ComboBoxMixerReverb": [
+    {
+      "Text": "off",
+      "Value": "off"
+    },
+    {
+      "Text": "on",
+      "Value": "on"
+    },
+    {
+      "Text": "tiny",
+      "Value": "tiny"
+    },
+    {
+      "Text": "small",
+      "Value": "small"
+    },
+    {
+      "Text": "medium",
+      "Value": "medium"
+    },
+    {
+      "Text": "large",
+      "Value": "large"
+    },
+    {
+      "Text": "huge",
+      "Value": "huge"
+    }
+  ],
+  "ComboBoxMouseComMouseModel": [
+    {
+      "Text": "2 button",
+      "Value": "2button"
+    },
+    {
+      "Text": "3 button",
+      "Value": "3button"
+    },
+    {
+      "Text": "wheel",
+      "Value": "wheel"
+    },
+    {
+      "Text": "msm",
+      "Value": "msm"
+    },
+    {
+      "Text": "2 button + msm",
+      "Value": "2button+msm"
+    },
+    {
+      "Text": "3 button + msm",
+      "Value": "3button+msm"
+    },
+    {
+      "Text": "wheel + msm",
+      "Value": "wheel+msm"
+    }
+  ],
+  "ComboBoxMouseDosMouseDriver": [
+    {
+      "Text": "true",
+      "Value": "true"
+    },
+    {
+      "Text": "false",
+      "Value": "false"
+    }
+  ],
+  "ComboBoxMouseDosMouseImmediate": [
+    {
+      "Text": "true",
+      "Value": "true"
+    },
+    {
+      "Text": "false",
+      "Value": "false"
+    }
+  ],
+  "ComboBoxMouseMouseCapture": [
+    {
+      "Text": "seamless",
+      "Value": "seamless"
+    },
+    {
+      "Text": "onclick",
+      "Value": "onclick"
+    },
+    {
+      "Text": "onstart",
+      "Value": "onstart"
+    },
+    {
+      "Text": "nomouse",
+      "Value": "nomouse"
+    }
+  ],
+  "ComboBoxMouseMouseMiddleRelease": [
+    {
+      "Text": "true",
+      "Value": "true"
+    },
+    {
+      "Text": "false",
+      "Value": "false"
+    }
+  ],
+  "ComboBoxMouseMouseMultiDisplayAware": [
+    {
+      "Text": "true",
+      "Value": "true"
+    },
+    {
+      "Text": "false",
+      "Value": "false"
+    }
+  ],
+  "ComboBoxMouseMouseRawInput": [
+    {
+      "Text": "true",
+      "Value": "true"
+    },
+    {
+      "Text": "false",
+      "Value": "false"
+    }
+  ],
+  "ComboBoxMousePs2MouseModel": [
+    {
+      "Text": "standard",
+      "Value": "standard"
+    },
+    {
+      "Text": "intellimouse",
+      "Value": "intellimouse"
+    },
+    {
+      "Text": "explorer",
+      "Value": "explorer"
+    },
+    {
+      "Text": "none",
+      "Value": "none"
+    }
+  ],
+  "ComboBoxMouseVirtualboxMouse": [
+    {
+      "Text": "true",
+      "Value": "true"
+    },
+    {
+      "Text": "false",
+      "Value": "false"
+    }
+  ],
+  "ComboBoxMouseVmwareMouse": [
+    {
+      "Text": "true",
+      "Value": "true"
+    },
+    {
+      "Text": "false",
+      "Value": "false"
+    }
+  ],      
+  "ComboBoxMt32Model": [
+    {
+      "Text": "auto",
+      "Value": "auto"
+    },
+    {
+      "Text": "cm32l",
+      "Value": "cm32l"
+    },
+    {
+      "Text": "cm32l v102",
+      "Value": "cm32l_102"
+    },
+    {
+      "Text": "cm32l v100",
+      "Value": "cm32l_100"
+    },
+    {
+      "Text": "cm32ln v100",
+      "Value": "cm32ln_100"
+    },
+    {
+      "Text": "mt32",
+      "Value": "mt32"
+    },
+    {
+      "Text": "mt32 old",
+      "Value": "mt32_old"
+    },
+    {
+      "Text": "mt32 v107",
+      "Value": "mt32_107"
+    },
+    {
+      "Text": "mt32 v106",
+      "Value": "mt32_106"
+    },
+    {
+      "Text": "mt32 v105",
+      "Value": "mt32_105"
+    },
+    {
+      "Text": "mt32 v104",
+      "Value": "mt32_104"
+    },
+    {
+      "Text": "mt32 bluer",
+      "Value": "mt32_bluer"
+    },
+    {
+      "Text": "mt32 new",
+      "Value": "mt32_new"
+    },
+    {
+      "Text": "mt32 v207",
+      "Value": "mt32_207"
+    },
+    {
+      "Text": "mt32 v206",
+      "Value": "mt32_206"
+    },
+    {
+      "Text": "mt32 v204",
+      "Value": "mt32_204"
+    },
+    {
+      "Text": "mt32 v203",
+      "Value": "mt32_203"
+    }
+  ],
+  "ComboBoxMt32Mt32Filter": [
+    {
+      "Text": "off",
+      "Value": "off"
+    },
+    {
+      "Text": "<custom>",
+      "Value": ""
+    }
+  ],
+  "ComboBoxReelmagicReelmagic": [
+    {
+      "Text": "on",
+      "Value": "on"
+    },
+    {
+      "Text": "off",
+      "Value": "off"
+    },
+    {
+      "Text": "card only",
+      "Value": "cardonly"
+    }
+  ],
+  "ComboBoxReelmagicReelmagicFcode": [
+    {
+      "Text": "No override",
+      "Value": "0"
+    },
+    {
+      "Text": "23.976 fps",
+      "Value": "1"
+    },
+    {
+      "Text": "24.000 fps",
+      "Value": "2"
+    },
+    {
+      "Text": "25.000 fps",
+      "Value": "3"
+    },
+    {
+      "Text": "29,970 fps",
+      "Value": "4"
+    },
+    {
+      "Text": "30.000 fps",
+      "Value": "5"
+    },
+    {
+      "Text": "50.000 fps",
+      "Value": "6"
+    },
+    {
+      "Text": "59.940 fps",
+      "Value": "7"
+    }
+  ],
+  "ComboBoxReelmagicReelmagicKey": [
+    {
+      "Text": "auto",
+      "Value": "auto"
+    },
+    {
+      "Text": "common",
+      "Value": "common"
+    },
+    {
+      "Text": "thehorde",
+      "Value": "thehorde"
+    },
+    {
+      "Text": "<custom>",
+      "Value": ""
+    }
+  ],
+  "ComboBoxRenderAspect": [
+    {
+      "Text": "auto",
+      "Value": "auto"
+    },
+    {
+      "Text": "on",
+      "Value": "on"
+    },
+    {
+      "Text": "square-pixels",
+      "Value": "square-pixels"
+    },
+    {
+      "Text": "off",
+      "Value": "off"
+    },
+    {
+      "Text": "stretch",
+      "Value": "stretch"
+    }
+  ],
+  "ComboBoxRenderCgaColors": [
+    {
+      "Text": "default",
+      "Value": "default"
+    },
+    {
+      "Text": "tandy <bl>",
+      "Value": "tandy "
+    },
+    {
+      "Text": "tandy-warm",
+      "Value": "tandy-warm"
+    },
+    {
+      "Text": "ibm5153 <c>",
+      "Value": "ibm5153 "
+    },
+    {
+      "Text": "agi-amiga-v1",
+      "Value": "agi-amiga-v1"
+    },
+    {
+      "Text": "agi-amigaish",
+      "Value": "agi-amigaish"
+    },
+    {
+      "Text": "scumm-amiga",
+      "Value": "scumm-amiga"
+    },
+    {
+      "Text": "colodore",
+      "Value": "colodore"
+    },
+    {
+      "Text": "colodore-sat",
+      "Value": "colodore-sat"
+    },
+    {
+      "Text": "dga16",
+      "Value": "dga16"
+    },
+    {
+      "Text": "<custom>",
+      "Value": ""
+    }
+  ],
+  "ComboBoxRenderGlshader": [
+    {
+      "Text": "crt-auto",
+      "Value": "crt-auto"
+    },
+    {
+      "Text": "crt-auto-machine",
+      "Value": "crt-auto-machine"
+    },
+    {
+      "Text": "crt-auto-arcade",
+      "Value": "crt-auto-arcade"
+    },
+    {
+      "Text": "crt-auto-arcade-sharp",
+      "Value": "crt-auto-arcade-sharp"
+    },
+    {
+      "Text": "sharp",
+      "Value": "sharp"
+    },
+    {
+      "Text": "none",
+      "Value": "none"
+    },
+    {
+      "Text": "<custom>",
+      "Value": ""
+    }
+  ],
+  "ComboBoxRenderIntegerScaling": [
+    {
+      "Text": "auto",
+      "Value": "auto"
+    },
+    {
+      "Text": "vertical",
+      "Value": "vertical"
+    },
+    {
+      "Text": "horizontal",
+      "Value": "horizontal"
+    },
+    {
+      "Text": "off",
+      "Value": "off"
+    }
+  ],
+  "ComboBoxRenderMonochromePalette": [
+    {
+      "Text": "amber",
+      "Value": "amber"
+    },
+    {
+      "Text": "green",
+      "Value": "green"
+    },
+    {
+      "Text": "white",
+      "Value": "white"
+    },
+    {
+      "Text": "paperwhite",
+      "Value": "paperwhite"
+    }
+  ],
+  "ComboBoxRenderViewport": [
+    {
+      "Text": "fit",
+      "Value": "fit"
+    },
+    {
+      "Text": "<WxH>",
+      "Value": ""
+    },
+    {
+      "Text": "<N%>",
+      "Value": ""
+    },
+    {
+      "Text": "<relative H% V%>",
+      "Value": ""
+    }
+  ],
+  "ComboBoxSblasterCmsFilter": [
+    {
+      "Text": "on",
+      "Value": "on"
+    },
+    {
+      "Text": "off",
+      "Value": "off"
+    },
+    {
+      "Text": "<custom>",
+      "Value": ""
+    }
+  ],
+  "ComboBoxSblasterDma": [
+    {
+      "Text": "0",
+      "Value": "0"
+    },
+    {
+      "Text": "1",
+      "Value": "1"
+    },
+    {
+      "Text": "3",
+      "Value": "3"
+    },
+    {
+      "Text": "5",
+      "Value": "5"
+    },
+    {
+      "Text": "6",
+      "Value": "6"
+    },
+    {
+      "Text": "7",
+      "Value": "7"
+    }
+  ],
+  "ComboBoxSblasterHdma": [
+    {
+      "Text": "0",
+      "Value": "0"
+    },
+    {
+      "Text": "1",
+      "Value": "1"
+    },
+    {
+      "Text": "3",
+      "Value": "3"
+    },
+    {
+      "Text": "5",
+      "Value": "5"
+    },
+    {
+      "Text": "6",
+      "Value": "6"
+    },
+    {
+      "Text": "7",
+      "Value": "7"
+    }
+  ],
+  "ComboBoxSblasterIrq": [
+    {
+      "Text": "3",
+      "Value": "3"
+    },
+    {
+      "Text": "5",
+      "Value": "5"
+    },
+    {
+      "Text": "7",
+      "Value": "7"
+    },
+    {
+      "Text": "9",
+      "Value": "9"
+    },
+    {
+      "Text": "10",
+      "Value": "10"
+    },
+    {
+      "Text": "11",
+      "Value": "11"
+    },
+    {
+      "Text": "12",
+      "Value": "12"
+    }
+  ],
+  "ComboBoxSblasterOplFadeout": [
+    {
+      "Text": "off",
+      "Value": "off"
+    },
+    {
+      "Text": "on",
+      "Value": "on"
+    },
+    {
+      "Text": "<custom>",
+      "Value": ""
+    }
+  ],
+  "ComboBoxSblasterOplFilter": [
+    {
+      "Text": "auto",
+      "Value": "auto"
+    },
+    {
+      "Text": "sound blaster 1",
+      "Value": "sb1"
+    },
+    {
+      "Text": "sound blaster 2",
+      "Value": "sb2"
+    },
+    {
+      "Text": "sound blaster pro 1",
+      "Value": "sbpro1"
+    },
+    {
+      "Text": "sound blaster pro 2",
+      "Value": "sbpro2"
+    },
+    {
+      "Text": "sound blaster 16",
+      "Value": "sb16"
+    },
+    {
+      "Text": "off",
+      "Value": "off"
+    },
+    {
+      "Text": "<custom>",
+      "Value": ""
+    }
+  ],
+  "ComboBoxSblasterOplmode": [
+    {
+      "Text": "auto",
+      "Value": "auto"
+    },
+    {
+      "Text": "cms",
+      "Value": "cms"
+    },
+    {
+      "Text": "opl2",
+      "Value": "opl2"
+    },
+    {
+      "Text": "dualopl2",
+      "Value": "dualopl2"
+    },
+    {
+      "Text": "opl3",
+      "Value": "opl3"
+    },
+    {
+      "Text": "opl3gold",
+      "Value": "opl3gold"
+    },
+    {
+      "Text": "none",
+      "Value": "none"
+    }
+  ],
+  "ComboBoxSblasterSbbase": [
+    {
+      "Text": "220",
+      "Value": "220"
+    },
+    {
+      "Text": "240",
+      "Value": "240"
+    },
+    {
+      "Text": "260",
+      "Value": "260"
+    },
+    {
+      "Text": "280",
+      "Value": "280"
+    },
+    {
+      "Text": "2a0",
+      "Value": "2a0"
+    },
+    {
+      "Text": "2c0",
+      "Value": "2c0"
+    },
+    {
+      "Text": "2e0",
+      "Value": "2e0"
+    },
+    {
+      "Text": "300",
+      "Value": "300"
+    }
+  ],
+  "ComboBoxSblasterSbFilter": [
+    {
+      "Text": "auto",
+      "Value": "auto"
+    },
+    {
+      "Text": "sound blaster 1",
+      "Value": "sb1"
+    },
+    {
+      "Text": "sound blaster 2",
+      "Value": "sb2"
+    },
+    {
+      "Text": "sound blaster pro 1",
+      "Value": "sbpro1"
+    },
+    {
+      "Text": "sound blaster pro 2",
+      "Value": "sbpro2"
+    },
+    {
+      "Text": "sound blaster 16",
+      "Value": "sb16"
+    },
+    {
+      "Text": "modern",
+      "Value": "modern"
+    },
+    {
+      "Text": "off",
+      "Value": "off"
+    },
+    {
+      "Text": "<custom>",
+      "Value": ""
+    }
+  ],
+  "ComboBoxSblasterSbFilterAlwaysOn": [
+    {
+      "Text": "true",
+      "Value": "true"
+    },
+    {
+      "Text": "false",
+      "Value": "false"
+    }
+  ],
+  "ComboBoxSblasterSbmixer": [
+    {
+      "Text": "true",
+      "Value": "true"
+    },
+    {
+      "Text": "false",
+      "Value": "false"
+    }
+  ],         
+  "ComboBoxSblasterSbtype": [
+    {
+      "Text": "sound blaster 1",
+      "Value": "sb1"
+    },
+    {
+      "Text": "sound blaster 2",
+      "Value": "sb2"
+    },
+    {
+      "Text": "sound blaster pro 1",
+      "Value": "sbpro1"
+    },
+    {
+      "Text": "sound blaster pro 2",
+      "Value": "sbpro2"
+    },
+    {
+      "Text": "sound blaster 16",
+      "Value": "sb16"
+    },
+    {
+      "Text": "game blaster",
+      "Value": "gb"
+    },
+    {
+      "Text": "none",
+      "Value": "none"
+    }
+  ],
+  "ComboBoxSdlDisplay": [
+    {
+      "Text": "0",
+      "Value": "0"
+    },
+    {
+      "Text": "1",
+      "Value": "1"
+    },
+    {
+      "Text": "2",
+      "Value": "2"
+    },
+    {
+      "Text": "3",
+      "Value": "3"
+    },
+    {
+      "Text": "4",
+      "Value": "4"
+    }
+  ],
+  "ComboBoxSdlFullresolution": [
+    {
+      "Text": "original",
+      "Value": "original"
+    },
+    {
+      "Text": "desktop",
+      "Value": "desktop"
+    },
+    {
+      "Text": "<fixed>",
+      "Value": ""
+    }
+  ],
+  "ComboBoxSdlFullscreen": [
+    {
+      "Text": "true",
+      "Value": "true"
+    },
+    {
+      "Text": "false",
+      "Value": "false"
+    }
+  ],
+  "ComboBoxSdlHostRate": [
+    {
+      "Text": "auto",
+      "Value": "auto"
+    },
+    {
+      "Text": "sdi",
+      "Value": "sdi"
+    },
+    {
+      "Text": "vrr",
+      "Value": "vrr"
+    },
+    {
+      "Text": "<N>",
+      "Value": ""
+    }
+  ],
+  "ComboBoxSdlMuteWhenInactive": [
+    {
+      "Text": "true",
+      "Value": "true"
+    },
+    {
+      "Text": "false",
+      "Value": "false"
+    }
+  ],
+  "ComboBoxSdlOutput": [
+    {
+      "Text": "texture",
+      "Value": "texture"
+    },
+    {
+      "Text": "texturenb",
+      "Value": "texturenb"
+    },
+    {
+      "Text": "opengl",
+      "Value": "opengl"
+    },
+    {
+      "Text": "openglnb",
+      "Value": "openglnb"
+    }
+  ],
+  "ComboBoxSdlPauseWhenInactive": [
+    {
+      "Text": "true",
+      "Value": "true"
+    },
+    {
+      "Text": "false",
+      "Value": "false"
+    }
+  ],
+  "ComboBoxSdlPresentationMode": [
+    {
+      "Text": "auto",
+      "Value": "auto"
+    },
+    {
+      "Text": "cfr",
+      "Value": "cfr"
+    },
+    {
+      "Text": "vfr",
+      "Value": "vfr"
+    }
+  ],
+  "ComboBoxSdlPriorityActive": [
+    {
+      "Text": "auto",
+      "Value": "auto"
+    },
+    {
+      "Text": "lowest",
+      "Value": "lowest"
+    },
+    {
+      "Text": "lower",
+      "Value": "lower"
+    },
+    {
+      "Text": "normal",
+      "Value": "normal"
+    },
+    {
+      "Text": "higher",
+      "Value": "higher"
+    },
+    {
+      "Text": "highest",
+      "Value": "highest"
+    }
+  ],
+  "ComboBoxSdlPriorityInactive": [
+    {
+      "Text": "auto",
+      "Value": "auto"
+    },
+    {
+      "Text": "lowest",
+      "Value": "lowest"
+    },
+    {
+      "Text": "lower",
+      "Value": "lower"
+    },
+    {
+      "Text": "normal",
+      "Value": "normal"
+    },
+    {
+      "Text": "higher",
+      "Value": "higher"
+    },
+    {
+      "Text": "highest",
+      "Value": "highest"
+    }
+  ],
+  "ComboBoxSdlScreensaver": [
+    {
+      "Text": "auto",
+      "Value": "auto"
+    },
+    {
+      "Text": "allow",
+      "Value": "allow"
+    },
+    {
+      "Text": "block",
+      "Value": "block"
+    }
+  ],
+  "ComboBoxSdlTextureRenderer": [
+    {
+      "Text": "auto",
+      "Value": "auto"
+    },
+    {
+      "Text": "direct3d",
+      "Value": "direct3d"
+    },
+    {
+      "Text": "direct3d11",
+      "Value": "direct3d11"
+    },
+    {
+      "Text": "direct3d12",
+      "Value": "direct3d12"
+    },
+    {
+      "Text": "opengl",
+      "Value": "opengl"
+    },
+    {
+      "Text": "opengles2",
+      "Value": "opengles2"
+    },
+    {
+      "Text": "software",
+      "Value": "software"
+    }
+  ],
+  "ComboBoxSdlTransparency": [
+    {
+      "Text": "0",
+      "Value": "0"
+    },
+    {
+      "Text": "10",
+      "Value": "10"
+    },
+    {
+      "Text": "20",
+      "Value": "20"
+    },
+    {
+      "Text": "30",
+      "Value": "30"
+    },
+    {
+      "Text": "40",
+      "Value": "40"
+    },
+    {
+      "Text": "50",
+      "Value": "50"
+    },
+    {
+      "Text": "60",
+      "Value": "60"
+    },
+    {
+      "Text": "70",
+      "Value": "70"
+    },
+    {
+      "Text": "80",
+      "Value": "80"
+    },
+    {
+      "Text": "90",
+      "Value": "90"
+    }
+  ],
+  "ComboBoxSdlVsync": [
+    {
+      "Text": "auto",
+      "Value": "auto"
+    },
+    {
+      "Text": "on",
+      "Value": "on"
+    },
+    {
+      "Text": "adaptive",
+      "Value": "adaptive"
+    },
+    {
+      "Text": "off",
+      "Value": "off"
+    },
+    {
+      "Text": "yield",
+      "Value": "yield"
+    }
+  ],
+  "ComboBoxSdlWaitonerror": [
+    {
+      "Text": "true",
+      "Value": "true"
+    },
+    {
+      "Text": "false",
+      "Value": "false"
+    }
+  ],
+  "ComboBoxSdlWindowDecorations": [
+    {
+      "Text": "true",
+      "Value": "true"
+    },
+    {
+      "Text": "false",
+      "Value": "false"
+    }
+  ],
+  "ComboBoxSdlWindowPosition": [
+    {
+      "Text": "auto",
+      "Value": "auto"
+    },
+    {
+      "Text": "<X,Y>",
+      "Value": ""
+    }
+  ],
+  "ComboBoxSdlWindowresolution": [
+    {
+      "Text": "default",
+      "Value": "default"
+    },
+    {
+      "Text": "small",
+      "Value": "s"
+    },
+    {
+      "Text": "medium",
+      "Value": "m"
+    },
+    {
+      "Text": "large",
+      "Value": "l"
+    },
+    {
+      "Text": "<WxH>",
+      "Value": ""
+    }
+  ],
+  "ComboBoxSerialSerial1": [
+    {
+      "Text": "dummy",
+      "Value": "dummy"
+    },
+    {
+      "Text": "disabled",
+      "Value": "disabled"
+    },
+    {
+      "Text": "mouse <optional>",
+      "Value": "mouse"
+    },
+    {
+      "Text": "modem <optional>",
+      "Value": "modem"
+    },
+    {
+      "Text": "nullmodem <optional>",
+      "Value": "nullmodem"
+    },
+    {
+      "Text": "direct <optional>",
+      "Value": "direct"
+    }
+  ],
+  "ComboBoxSerialSerial2": [
+    {
+      "Text": "dummy",
+      "Value": "dummy"
+    },
+    {
+      "Text": "disabled",
+      "Value": "disabled"
+    },
+    {
+      "Text": "mouse <optional>",
+      "Value": "mouse"
+    },
+    {
+      "Text": "modem <optional>",
+      "Value": "modem"
+    },
+    {
+      "Text": "nullmodem <optional>",
+      "Value": "nullmodem"
+    },
+    {
+      "Text": "direct <optional>",
+      "Value": "direct"
+    }
+  ],
+  "ComboBoxSerialSerial3": [
+    {
+      "Text": "dummy",
+      "Value": "dummy"
+    },
+    {
+      "Text": "disabled",
+      "Value": "disabled"
+    },
+    {
+      "Text": "mouse <optional>",
+      "Value": "mouse"
+    },
+    {
+      "Text": "modem <optional>",
+      "Value": "modem"
+    },
+    {
+      "Text": "nullmodem <optional>",
+      "Value": "nullmodem"
+    },
+    {
+      "Text": "direct <optional>",
+      "Value": "direct"
+    }
+  ],
+  "ComboBoxSerialSerial4": [
+    {
+      "Text": "dummy",
+      "Value": "dummy"
+    },
+    {
+      "Text": "disabled",
+      "Value": "disabled"
+    },
+    {
+      "Text": "mouse <optional>",
+      "Value": "mouse"
+    },
+    {
+      "Text": "modem <optional>",
+      "Value": "modem"
+    },
+    {
+      "Text": "nullmodem <optional>",
+      "Value": "nullmodem"
+    },
+    {
+      "Text": "direct <optional>",
+      "Value": "direct"
+    }
+  ],
+  "ComboBoxSpeakerLptDac": [
+    {
+      "Text": "none",
+      "Value": "none"
+    },
+    {
+      "Text": "disney",
+      "Value": "disney"
+    },
+    {
+      "Text": "covox",
+      "Value": "covox"
+    },
+    {
+      "Text": "ston1",
+      "Value": "ston1"
+    },
+    {
+      "Text": "off",
+      "Value": "off"
+    }
+  ],
+  "ComboBoxSpeakerLptDacFilter": [
+    {
+      "Text": "on",
+      "Value": "on"
+    },
+    {
+      "Text": "off",
+      "Value": "off"
+    },
+    {
+      "Text": "<custom>",
+      "Value": ""
+    }
+  ],
+  "ComboBoxSpeakerPcspeaker": [
+    {
+      "Text": "discrete",
+      "Value": "discrete"
+    },
+    {
+      "Text": "impulse",
+      "Value": "impulse"
+    },
+    {
+      "Text": "none",
+      "Value": "none"
+    },
+    {
+      "Text": "off",
+      "Value": "off"
+    }
+  ],
+  "ComboBoxSpeakerPcspeakerFilter": [
+    {
+      "Text": "auto",
+      "Value": "auto"
+    },
+    {
+      "Text": "on",
+      "Value": "on"
+    },
+    {
+      "Text": "off",
+      "Value": "off"
+    },
+    {
+      "Text": "<custom>",
+      "Value": ""
+    }
+  ],
+  "ComboBoxSpeakerPs1audio": [
+    {
+      "Text": "true",
+      "Value": "true"
+    },
+    {
+      "Text": "false",
+      "Value": "false"
+    }
+  ],
+  "ComboBoxSpeakerPs1audioDacFilter": [
+    {
+      "Text": "on",
+      "Value": "on"
+    },
+    {
+      "Text": "off",
+      "Value": "off"
+    },
+    {
+      "Text": "<custom>",
+      "Value": ""
+    }
+  ],
+  "ComboBoxSpeakerPs1audioFilter": [
+    {
+      "Text": "on",
+      "Value": "on"
+    },
+    {
+      "Text": "off",
+      "Value": "off"
+    },
+    {
+      "Text": "<custom>",
+      "Value": ""
+    }
+  ],
+  "ComboBoxSpeakerTandy": [
+    {
+      "Text": "auto",
+      "Value": "auto"
+    },
+    {
+      "Text": "on",
+      "Value": "on"
+    },
+    {
+      "Text": "off",
+      "Value": "off"
+    },
+    {
+      "Text": "psg",
+      "Value": "psg"
+    }
+  ],
+  "ComboBoxSpeakerTandyDacFilter": [
+    {
+      "Text": "on",
+      "Value": "on"
+    },
+    {
+      "Text": "off",
+      "Value": "off"
+    },
+    {
+      "Text": "<custom>",
+      "Value": ""
+    }
+  ],
+  "ComboBoxSpeakerTandyFadeout": [
+    {
+      "Text": "on",
+      "Value": "on"
+    },
+    {
+      "Text": "off",
+      "Value": "off"
+    },
+    {
+      "Text": "<custom>",
+      "Value": ""
+    }
+  ],
+  "ComboBoxSpeakerTandyFilter": [
+    {
+      "Text": "on",
+      "Value": "on"
+    },
+    {
+      "Text": "off",
+      "Value": "off"
+    },
+    {
+      "Text": "<custom>",
+      "Value": ""
+    }
+  ],
+  "ComboBoxVoodooVoodoo": [
+    {
+      "Text": "true",
+      "Value": "true"
+    },
+    {
+      "Text": "false",
+      "Value": "false"
+    }
+  ],
+  "ComboBoxVoodooVoodooBilinearFiltering": [
+    {
+      "Text": "true",
+      "Value": "true"
+    },
+    {
+      "Text": "false",
+      "Value": "false"
+    }
+  ],
+  "ComboBoxVoodooVoodooMemsize": [
+    {
+      "Text": "4 MB",
+      "Value": "4"
+    },
+    {
+      "Text": "12 MB",
+      "Value": "12"
+    }
+  ],
+  "ComboBoxVoodooVoodooMultithreading": [
+    {
+      "Text": "true",
+      "Value": "true"
+    },
+    {
+      "Text": "false",
+      "Value": "false"
+    }
+  ]
+}

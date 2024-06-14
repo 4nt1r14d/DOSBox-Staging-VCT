@@ -1,0 +1,33 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ini_parser.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="UserConfFolderPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="DosBoxStagingExeFilePath" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="GlobalConfFilePath" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="JsonComboBoxOptionsFileName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">cboptions.json</Value>
+    </Setting>
+    <Setting Name="ShowSaveConfWaring" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="GlobalConfFileName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">dosbox-staging.conf</Value>
+    </Setting>
+    <Setting Name="NonPortableFolderPathStart" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\users\</Value>
+    </Setting>
+    <Setting Name="NonPortableFolderPathEnd" Type="System.String" Scope="User">
+      <Value Profile="(Default)">\AppData\Local\DOSBox\</Value>
+    </Setting>
+    <Setting Name="LaunchParameters" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+  </Settings>
+</SettingsFile>
