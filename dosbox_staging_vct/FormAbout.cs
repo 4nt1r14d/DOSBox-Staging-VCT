@@ -19,10 +19,12 @@ namespace dosbox_staging_vct
 
         private void FormAbout_Load(object sender, EventArgs e)
         {
+            string version = Application.ProductVersion.ToString().Split('+')[0];
+            
             // Set the color of the LabelVersion
             LabelVersion.ForeColor = GlobalSettings.ColorHighlight;
             // Set the version number in the LabelVersion
-            LabelVersion.Text = "v." + Application.ProductVersion;
+            LabelVersion.Text = "v." + version;
 
             // Set the color of the link labels
             LinkLabelDosboxStaging.LinkColor = GlobalSettings.ColorHighlight;
