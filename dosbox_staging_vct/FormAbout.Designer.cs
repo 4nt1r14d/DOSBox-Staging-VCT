@@ -36,6 +36,7 @@
             LabelInfo = new Label();
             LinkLabelDosboxStaging = new LinkLabel();
             label1 = new Label();
+            LinkLabelGitHubPage = new LinkLabel();
             ((System.ComponentModel.ISupportInitialize)PictureBoxLogo).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -83,7 +84,7 @@
             // 
             LabelInfo.Location = new Point(283, 12);
             LabelInfo.Name = "LabelInfo";
-            LabelInfo.Size = new Size(434, 220);
+            LabelInfo.Size = new Size(434, 205);
             LabelInfo.TabIndex = 3;
             LabelInfo.Text = resources.GetString("LabelInfo.Text");
             // 
@@ -91,7 +92,7 @@
             // 
             LinkLabelDosboxStaging.ActiveLinkColor = SystemColors.ControlDarkDark;
             LinkLabelDosboxStaging.AutoSize = true;
-            LinkLabelDosboxStaging.Location = new Point(367, 308);
+            LinkLabelDosboxStaging.Location = new Point(394, 308);
             LinkLabelDosboxStaging.Name = "LinkLabelDosboxStaging";
             LinkLabelDosboxStaging.Size = new Size(186, 15);
             LinkLabelDosboxStaging.TabIndex = 1;
@@ -107,11 +108,24 @@
             label1.TabIndex = 2;
             label1.Text = "In order to use this application, it is necessary to previously install DOSBox Staging. Please visit the official website to learn more about this fantastic project and download the latest version.";
             // 
+            // LinkLabelGitHubPage
+            // 
+            LinkLabelGitHubPage.ActiveLinkColor = SystemColors.ControlDarkDark;
+            LinkLabelGitHubPage.AutoSize = true;
+            LinkLabelGitHubPage.Location = new Point(351, 217);
+            LinkLabelGitHubPage.Name = "LinkLabelGitHubPage";
+            LinkLabelGitHubPage.Size = new Size(284, 15);
+            LinkLabelGitHubPage.TabIndex = 5;
+            LinkLabelGitHubPage.TabStop = true;
+            LinkLabelGitHubPage.Text = "https://github.com/4nt1r14d/DOSBox-Staging-VCT/";
+            LinkLabelGitHubPage.LinkClicked += LinkLabelGitHubPage_LinkClicked;
+            // 
             // FormAbout
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(729, 350);
+            Controls.Add(LinkLabelGitHubPage);
             Controls.Add(label1);
             Controls.Add(LinkLabelDosboxStaging);
             Controls.Add(pictureBox1);
@@ -142,5 +156,6 @@
         private Label LabelInfo;
         private LinkLabel LinkLabelDosboxStaging;
         private Label label1;
+        private LinkLabel LinkLabelGitHubPage;
     }
 }

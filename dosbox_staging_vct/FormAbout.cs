@@ -28,6 +28,10 @@ namespace dosbox_staging_vct
             LinkLabelDosboxStaging.LinkColor = GlobalSettings.ColorHighlight;
             LinkLabelDosboxStaging.ActiveLinkColor = GlobalSettings.ColorHighlight;
             LinkLabelDosboxStaging.VisitedLinkColor = GlobalSettings.ColorHighlight;
+
+            LinkLabelGitHubPage.LinkColor = GlobalSettings.ColorHighlight;
+            LinkLabelGitHubPage.ActiveLinkColor = GlobalSettings.ColorHighlight;
+            LinkLabelGitHubPage.VisitedLinkColor = GlobalSettings.ColorHighlight;
         }
 
         private void LinkLabelDosboxStaging_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -36,6 +40,24 @@ namespace dosbox_staging_vct
             {
                 // Open the URL in the default browser
                 System.Diagnostics.Process.Start(new ProcessStartInfo("https://dosbox-staging.github.io/") { UseShellExecute = true });
+            }
+            catch (System.ComponentModel.Win32Exception noBrowser)
+            {
+                if (noBrowser.ErrorCode == -2147467259)
+                    MessageBox.Show(noBrowser.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (System.Exception other)
+            {
+                MessageBox.Show(other.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void LinkLabelGitHubPage_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+                // Open the URL in the default browser
+                System.Diagnostics.Process.Start(new ProcessStartInfo("https://github.com/4nt1r14d/DOSBox-Staging-VCT/") { UseShellExecute = true });
             }
             catch (System.ComponentModel.Win32Exception noBrowser)
             {
