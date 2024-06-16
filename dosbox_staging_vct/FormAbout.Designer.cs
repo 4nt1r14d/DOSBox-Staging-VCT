@@ -44,16 +44,17 @@
             // LabelVersion
             // 
             LabelVersion.AutoSize = true;
-            LabelVersion.Location = new Point(672, 12);
+            LabelVersion.Location = new Point(768, 16);
             LabelVersion.Name = "LabelVersion";
-            LabelVersion.Size = new Size(45, 15);
+            LabelVersion.Size = new Size(57, 20);
             LabelVersion.TabIndex = 4;
             LabelVersion.Text = "Version";
             // 
             // PictureBoxLogo
             // 
             PictureBoxLogo.Image = Resources.Icons.logo;
-            PictureBoxLogo.Location = new Point(12, 12);
+            PictureBoxLogo.Location = new Point(14, 16);
+            PictureBoxLogo.Margin = new Padding(3, 4, 3, 4);
             PictureBoxLogo.Name = "PictureBoxLogo";
             PictureBoxLogo.Size = new Size(254, 311);
             PictureBoxLogo.SizeMode = PictureBoxSizeMode.AutoSize;
@@ -62,9 +63,10 @@
             // 
             // ButtonClose
             // 
-            ButtonClose.Location = new Point(642, 315);
+            ButtonClose.Location = new Point(734, 420);
+            ButtonClose.Margin = new Padding(3, 4, 3, 4);
             ButtonClose.Name = "ButtonClose";
-            ButtonClose.Size = new Size(75, 23);
+            ButtonClose.Size = new Size(86, 31);
             ButtonClose.TabIndex = 0;
             ButtonClose.Text = "Close";
             ButtonClose.UseVisualStyleBackColor = true;
@@ -73,7 +75,8 @@
             // pictureBox1
             // 
             pictureBox1.Image = Resources.Icons.dosbox_logor;
-            pictureBox1.Location = new Point(283, 248);
+            pictureBox1.Location = new Point(323, 331);
+            pictureBox1.Margin = new Padding(3, 4, 3, 4);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(66, 75);
             pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
@@ -82,9 +85,9 @@
             // 
             // LabelInfo
             // 
-            LabelInfo.Location = new Point(283, 12);
+            LabelInfo.Location = new Point(323, 16);
             LabelInfo.Name = "LabelInfo";
-            LabelInfo.Size = new Size(434, 205);
+            LabelInfo.Size = new Size(496, 273);
             LabelInfo.TabIndex = 3;
             LabelInfo.Text = resources.GetString("LabelInfo.Text");
             // 
@@ -92,9 +95,9 @@
             // 
             LinkLabelDosboxStaging.ActiveLinkColor = SystemColors.ControlDarkDark;
             LinkLabelDosboxStaging.AutoSize = true;
-            LinkLabelDosboxStaging.Location = new Point(394, 308);
+            LinkLabelDosboxStaging.Location = new Point(450, 411);
             LinkLabelDosboxStaging.Name = "LinkLabelDosboxStaging";
-            LinkLabelDosboxStaging.Size = new Size(186, 15);
+            LinkLabelDosboxStaging.Size = new Size(229, 20);
             LinkLabelDosboxStaging.TabIndex = 1;
             LinkLabelDosboxStaging.TabStop = true;
             LinkLabelDosboxStaging.Text = "https://www.dosbox-staging.org/";
@@ -102,9 +105,9 @@
             // 
             // label1
             // 
-            label1.Location = new Point(367, 248);
+            label1.Location = new Point(419, 331);
             label1.Name = "label1";
-            label1.Size = new Size(350, 52);
+            label1.Size = new Size(400, 69);
             label1.TabIndex = 2;
             label1.Text = "In order to use this application, it is necessary to previously install DOSBox Staging. Please visit the official website to learn more about this fantastic project and download the latest version.";
             // 
@@ -112,9 +115,9 @@
             // 
             LinkLabelGitHubPage.ActiveLinkColor = SystemColors.ControlDarkDark;
             LinkLabelGitHubPage.AutoSize = true;
-            LinkLabelGitHubPage.Location = new Point(351, 217);
+            LinkLabelGitHubPage.Location = new Point(401, 289);
             LinkLabelGitHubPage.Name = "LinkLabelGitHubPage";
-            LinkLabelGitHubPage.Size = new Size(284, 15);
+            LinkLabelGitHubPage.Size = new Size(353, 20);
             LinkLabelGitHubPage.TabIndex = 5;
             LinkLabelGitHubPage.TabStop = true;
             LinkLabelGitHubPage.Text = "https://github.com/4nt1r14d/DOSBox-Staging-VCT/";
@@ -122,9 +125,9 @@
             // 
             // FormAbout
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(729, 350);
+            ClientSize = new Size(833, 467);
             Controls.Add(LinkLabelGitHubPage);
             Controls.Add(label1);
             Controls.Add(LinkLabelDosboxStaging);
@@ -135,6 +138,7 @@
             Controls.Add(LabelInfo);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(3, 4, 3, 4);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "FormAbout";

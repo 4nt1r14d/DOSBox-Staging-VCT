@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="LabelInfo.Text" xml:space="preserve">
-    <value>DOSBox Staging Configuration Tool | Created by @nt1riad
+    <value>DOSBox Staging Visual Config Tool | Created by 4nt1r14d
 
 This application has been programmed in C# enthusiastically and completely independently. In no case is the DOSBox Staging team involved in the project.
 

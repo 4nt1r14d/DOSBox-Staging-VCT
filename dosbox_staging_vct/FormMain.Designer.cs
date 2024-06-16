@@ -4286,7 +4286,6 @@
         private ToolStripMenuItem ToolStripMenuItemInsertCLS;
         private ToolStripMenuItem ToolStripMenuItemInsertDOSKEY;
         private ToolStripMenuItem ToolStripMenuItemInsertECHO;
-        private ToolStripMenuItem eDITToolStripMenuItem;
         private ToolStripMenuItem ToolStripMenuItemInsertEXIT;
         private ToolStripSeparator ToolStripSeparator4;
         private ContextMenuStrip ContextMenuStripUserConfs;
