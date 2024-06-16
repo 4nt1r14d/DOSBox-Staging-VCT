@@ -1,1 +1,2 @@
-# dosbox_staging_vct
+# DOSBox Staging VCT | Visual Config Tool
+
