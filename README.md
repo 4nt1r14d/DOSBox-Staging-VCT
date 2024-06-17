@@ -6,7 +6,9 @@ Developed in .NET (C#), currently only available for Windows, it allows you to c
 
 The DOSBox Staging VCT project is designed to simplify the creation and modification of configuration files (.conf) for DOSBox Staging in a user-friendly, visual manner. Here are the key details:
 
-- Prerequisite: Before using it, make sure you have [DOSBox Staging](https://www.dosbox-staging.org/) installed.
+- Prerequisite:
+   - Before using it, make sure you have [DOSBox Staging](https://www.dosbox-staging.org/) installed.
+   - [.NET Core 8 Runtime](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
  
 - Features:
   - Although it is in an initial state, it is fully functional.
@@ -20,4 +22,4 @@ The DOSBox Staging VCT project is designed to simplify the creation and modifica
    - [ini-parser-netstandard](https://github.com/rickyah/ini-parser)
    - [Newtonsoft.Json](https://github.com/JamesNK/Newtonsoft.Json)
 
-Note that DOSBox Staging is a modern continuation of DOSBox with advanced features and current development practices.
+[DOSBox Staging](https://www.dosbox-staging.org/) is a modern continuation of DOSBox with advanced features and current development practices.
