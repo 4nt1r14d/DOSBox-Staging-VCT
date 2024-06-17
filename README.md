@@ -22,4 +22,5 @@ The DOSBox Staging VCT project is designed to simplify the creation and modifica
    - [ini-parser-netstandard](https://github.com/rickyah/ini-parser)
    - [Newtonsoft.Json](https://github.com/JamesNK/Newtonsoft.Json)
 
+---
 [DOSBox Staging](https://www.dosbox-staging.org/) is a modern continuation of DOSBox with advanced features and current development practices.
