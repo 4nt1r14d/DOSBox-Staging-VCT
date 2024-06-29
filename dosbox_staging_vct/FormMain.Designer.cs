@@ -538,13 +538,14 @@
             // 
             // GroupBoxOptions
             // 
-            GroupBoxOptions.Controls.Add(TabControlOptions);
             resources.ApplyResources(GroupBoxOptions, "GroupBoxOptions");
+            GroupBoxOptions.Controls.Add(TabControlOptions);
             GroupBoxOptions.Name = "GroupBoxOptions";
             GroupBoxOptions.TabStop = false;
             // 
             // TabControlOptions
             // 
+            resources.ApplyResources(TabControlOptions, "TabControlOptions");
             TabControlOptions.Controls.Add(TapPageSdl);
             TabControlOptions.Controls.Add(TabPageDosbox);
             TabControlOptions.Controls.Add(TabPageRender);
@@ -569,7 +570,6 @@
             TabControlOptions.Controls.Add(TabPageIpx);
             TabControlOptions.Controls.Add(TabPageEthernet);
             TabControlOptions.Controls.Add(TabPageAutoexec);
-            resources.ApplyResources(TabControlOptions, "TabControlOptions");
             TabControlOptions.Multiline = true;
             TabControlOptions.Name = "TabControlOptions";
             TabControlOptions.SelectedIndex = 0;
@@ -3500,9 +3500,9 @@
             // 
             // GroupBoxGames
             // 
+            resources.ApplyResources(GroupBoxGames, "GroupBoxGames");
             GroupBoxGames.Controls.Add(TextBoxFilter);
             GroupBoxGames.Controls.Add(ListBoxUserConfs);
-            resources.ApplyResources(GroupBoxGames, "GroupBoxGames");
             GroupBoxGames.Name = "GroupBoxGames";
             GroupBoxGames.TabStop = false;
             // 
@@ -3516,11 +3516,11 @@
             // 
             // ListBoxUserConfs
             // 
+            resources.ApplyResources(ListBoxUserConfs, "ListBoxUserConfs");
             ListBoxUserConfs.BackColor = Color.FromArgb(249, 249, 249);
             ListBoxUserConfs.ContextMenuStrip = ContextMenuStripUserConfs;
             ListBoxUserConfs.DrawMode = DrawMode.OwnerDrawFixed;
             ListBoxUserConfs.FormattingEnabled = true;
-            resources.ApplyResources(ListBoxUserConfs, "ListBoxUserConfs");
             ListBoxUserConfs.Name = "ListBoxUserConfs";
             ListBoxUserConfs.Sorted = true;
             ListBoxUserConfs.DrawItem += ListBoxUserConfs_DrawItem;
@@ -3794,7 +3794,6 @@
             Controls.Add(GroupBoxGames);
             Controls.Add(GroupBoxOptions);
             Controls.Add(MenuStrip);
-            FormBorderStyle = FormBorderStyle.FixedSingle;
             MainMenuStrip = MenuStrip;
             Name = "FormMain";
             Load += FormMain_Load;

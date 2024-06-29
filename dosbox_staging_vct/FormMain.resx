@@ -117,47 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="&gt;&gt;TabControlOptions.Name" xml:space="preserve">
-    <value>TabControlOptions</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="GroupBoxOptions.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Right</value>
   </data>
-  <data name="&gt;&gt;TabControlOptions.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;TabControlOptions.Parent" xml:space="preserve">
-    <value>GroupBoxOptions</value>
-  </data>
-  <data name="&gt;&gt;TabControlOptions.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="GroupBoxOptions.Location" type="System.Drawing.Point, System.Drawing">
-    <value>361, 51</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="GroupBoxOptions.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 2, 3, 2</value>
-  </data>
-  <data name="GroupBoxOptions.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 2, 3, 2</value>
-  </data>
-  <data name="GroupBoxOptions.Size" type="System.Drawing.Size, System.Drawing">
-    <value>660, 563</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="GroupBoxOptions.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;GroupBoxOptions.Name" xml:space="preserve">
-    <value>GroupBoxOptions</value>
-  </data>
-  <data name="&gt;&gt;GroupBoxOptions.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;GroupBoxOptions.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;GroupBoxOptions.ZOrder" xml:space="preserve">
-    <value>4</value>
+  <data name="TabControlOptions.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Right</value>
   </data>
   <data name="&gt;&gt;TapPageSdl.Name" xml:space="preserve">
     <value>TapPageSdl</value>
@@ -447,15 +412,18 @@
   <data name="&gt;&gt;TabPageAutoexec.ZOrder" xml:space="preserve">
     <value>23</value>
   </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="TabControlOptions.Location" type="System.Drawing.Point, System.Drawing">
     <value>11, 29</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="TabControlOptions.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>8, 8, 8, 8</value>
   </data>
   <data name="TabControlOptions.Size" type="System.Drawing.Size, System.Drawing">
     <value>637, 521</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="TabControlOptions.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
@@ -470,6 +438,33 @@
   </data>
   <data name="&gt;&gt;TabControlOptions.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="GroupBoxOptions.Location" type="System.Drawing.Point, System.Drawing">
+    <value>361, 51</value>
+  </data>
+  <data name="GroupBoxOptions.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 2, 3, 2</value>
+  </data>
+  <data name="GroupBoxOptions.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 2, 3, 2</value>
+  </data>
+  <data name="GroupBoxOptions.Size" type="System.Drawing.Size, System.Drawing">
+    <value>660, 563</value>
+  </data>
+  <data name="GroupBoxOptions.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;GroupBoxOptions.Name" xml:space="preserve">
+    <value>GroupBoxOptions</value>
+  </data>
+  <data name="&gt;&gt;GroupBoxOptions.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;GroupBoxOptions.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;GroupBoxOptions.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
   <data name="&gt;&gt;ButtonSdlMapperfileReset.Name" xml:space="preserve">
     <value>ButtonSdlMapperfileReset</value>
@@ -1053,7 +1048,6 @@
   <data name="&gt;&gt;TapPageSdl.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="ButtonSdlMapperfileReset.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -16207,6 +16201,9 @@
   <data name="ToolStripMenuItemInsertImgmountAsHDD.Text" xml:space="preserve">
     <value>as HDD</value>
   </data>
+  <data name="GroupBoxGames.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
   <data name="&gt;&gt;TextBoxFilter.Name" xml:space="preserve">
     <value>TextBoxFilter</value>
   </data>
@@ -16258,6 +16255,9 @@
   <data name="&gt;&gt;GroupBoxGames.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="TextBoxFilter.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
   <data name="TextBoxFilter.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 23</value>
   </data>
@@ -16279,6 +16279,9 @@
   <data name="&gt;&gt;TextBoxFilter.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="ListBoxUserConfs.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
   <metadata name="ContextMenuStripUserConfs.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>471, 17</value>
   </metadata>
@@ -16290,6 +16293,9 @@
   </data>
   <data name="&gt;&gt;ContextMenuStripUserConfs.Type" xml:space="preserve">
     <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ListBoxUserConfs.HorizontalScrollbar" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="ListBoxUserConfs.ItemHeight" type="System.Int32, mscorlib">
     <value>15</value>
@@ -20284,6 +20290,9 @@
   </data>
   <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 2, 3, 2</value>
+  </data>
+  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>1048, 665</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>DOSBox Staging Configuration Tool</value>

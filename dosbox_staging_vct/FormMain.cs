@@ -52,6 +52,9 @@ namespace dosbox_staging_vct
 
                 // Load the User confs in the listbox present in the user conf folder
                 LoadAllUserConfs();
+
+                // Update the items for filtering
+                UpdateItemsForFiltering();
             }
             catch (Exception ex)
             {
@@ -722,6 +725,9 @@ namespace dosbox_staging_vct
                 // Add the new user conf to the listbox
                 ListBoxUserConfs.Items.Add(Path.GetFileName(userConfFilePath));
                 ListBoxUserConfs.SelectedItem = Path.GetFileName(userConfFilePath);
+
+                // Update the items for filtering
+                UpdateItemsForFiltering();
             }
         }
 
@@ -822,6 +828,9 @@ namespace dosbox_staging_vct
             // Add the new user conf to the listbox
             ListBoxUserConfs.Items.Add(newFileName);
             ListBoxUserConfs.SelectedItem = newFileName;
+
+            // Update the items for filtering
+            UpdateItemsForFiltering();
         }
 
         private void Delete()
@@ -855,6 +864,9 @@ namespace dosbox_staging_vct
 
                 // Remove the user conf from the listbox
                 ListBoxUserConfs.Items.Remove(userConfFileName);
+
+                // Update the items for filtering
+                UpdateItemsForFiltering();
             }
         }
 
@@ -1841,9 +1853,6 @@ namespace dosbox_staging_vct
                     string fileName = Path.GetFileName(userConf);
                     ListBoxUserConfs.Items.Add(fileName);
                 }
-
-                // Update the original items in the ListBox
-                listBoxItems = ListBoxUserConfs.Items.Cast<string>().ToList();
             }
         }
 
@@ -2087,6 +2096,12 @@ namespace dosbox_staging_vct
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void UpdateItemsForFiltering()
+        {
+            // Update the items used for filtering
+            listBoxItems = ListBoxUserConfs.Items.Cast<string>().ToList();
         }
 
         private static string SelectFolderRelativeToDosBox() // Returns the path relative to the dosbox folder
