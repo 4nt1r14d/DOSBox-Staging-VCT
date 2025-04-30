@@ -69,34 +69,106 @@
       "Value": "386"
     },
     {
-      "Text": "386_slow",
-      "Value": "386_slow"
+      "Text": "386_fast",
+      "Value": "386_fast"
     },
     {
       "Text": "386_prefetch",
       "Value": "386_prefetch"
     },
     {
-      "Text": "486_slow",
-      "Value": "486_slow"
+      "Text": "486",
+      "Value": "486"
     },
     {
-      "Text": "pentium_slow",
-      "Value": "pentium_slow"
+      "Text": "pentium",
+      "Value": "pentium"
+    },
+    {
+      "Text": "pentium_mmx",
+      "Value": "pentium_mmx"
     }
   ],
-  "ComboBoxCpuCycles": [
+  "ComboBoxCpuCpuCycles": [
     {
       "Text": "auto",
       "Value": "auto"
     },
     {
-      "Text": "fixed <N>",
-      "Value": "fixed "
+      "Text": "300       | 8088 @4",
+      "Value": "300"
+    },
+    {
+      "Text": "700       | 286 @8",
+      "Value": "700"
+    },
+    {
+      "Text": "1500     | 286 @12",
+      "Value": "1500"
+    },
+    {
+      "Text": "3000     | 386SX @20",
+      "Value": "3000"
+    },
+    {
+      "Text": "6000     | 386DX @33",
+      "Value": "6000"
+    },
+    {
+      "Text": "8000     | 386DX @40",
+      "Value": "8000"
+    },
+    {
+      "Text": "12000   | 486DX @33",
+      "Value": "12000"
+    },
+    {
+      "Text": "25000   | 486DX/2 @66",
+      "Value": "25000"
+    },
+    {
+      "Text": "50000   | Pentium @90",
+      "Value": "50000"
+    },
+    {
+      "Text": "100000 | Pentium MMX @166",
+      "Value": "100000"
+    },
+    {
+      "Text": "200000 | Pentium II @300",
+      "Value": "200000"
+    },
+    {
+      "Text": "<N>",
+      "Value": ""
     },
     {
       "Text": "max",
       "Value": "max"
+    }
+  ],
+  "ComboBoxCpuCpuCyclesProtected": [
+    {
+      "Text": "auto",
+      "Value": "auto"
+    },
+    {
+      "Text": "<N>",
+      "Value": ""
+    },
+    {
+      "Text": "max",
+      "Value": "max"
+    }
+  ],
+  "ComboBoxCpuCpuThrottle": [
+    {
+      "Text": "true",
+      "Value": "true"
+    },
+    {
+      "Text": "false",
+      "Value": "false"
     }
   ],
   "ComboBoxDosboxAllowWriteProtectedFiles": [
@@ -586,7 +658,7 @@
       "Text": "15",
       "Value": "15"
     }
-  ],         
+  ],
   "ComboBoxFluidsynthFsynthChorus": [
     {
       "Text": "auto",
@@ -632,7 +704,7 @@
       "Text": "<custom>",
       "Value": ""
     }
-  ],          
+  ],
   "ComboBoxGusGus": [
     {
       "Text": "true",
@@ -705,6 +777,10 @@
   ],
   "ComboBoxGusGusFilter": [
     {
+      "Text": "on",
+      "Value": "on"
+    },
+    {
       "Text": "off",
       "Value": "off"
     },
@@ -742,7 +818,7 @@
       "Text": "12",
       "Value": "12"
     }
-  ],         
+  ],
   "ComboBoxImfcImfc": [
     {
       "Text": "true",
@@ -994,7 +1070,7 @@
       "Text": "false",
       "Value": "false"
     }
-  ],          
+  ],
   "ComboBoxMidiMididevice": [
     {
       "Text": "auto",
@@ -1134,7 +1210,7 @@
       "Text": "false",
       "Value": "false"
     }
-  ],         
+  ],
   "ComboBoxMixerNosound": [
     {
       "Text": "true",
@@ -1340,7 +1416,7 @@
       "Text": "false",
       "Value": "false"
     }
-  ],      
+  ],
   "ComboBoxMt32Model": [
     {
       "Text": "auto",
@@ -1904,7 +1980,7 @@
       "Text": "false",
       "Value": "false"
     }
-  ],         
+  ],
   "ComboBoxSblasterSbtype": [
     {
       "Text": "sound blaster 1",
@@ -2563,14 +2639,14 @@
       "Value": "12"
     }
   ],
-  "ComboBoxVoodooVoodooMultithreading": [
+  "ComboBoxVoodooVoodooThreads": [
     {
-      "Text": "true",
-      "Value": "true"
+      "Text": "auto",
+      "Value": "auto"
     },
     {
-      "Text": "false",
-      "Value": "false"
+      "Text": "<custom>",
+      "Value": ""
     }
   ]
 }

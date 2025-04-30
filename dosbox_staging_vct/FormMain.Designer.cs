@@ -146,24 +146,30 @@
             LabelCompositeEra = new Label();
             LabelCompositeComposite = new Label();
             TabPageCpu = new TabPage();
+            ComboBoxCpuCpuThrottle = new ComboBox();
+            LabelCpuCpuThrottle = new Label();
+            TextBoxCpuCpuCyclesProtected = new TextBox();
+            ComboBoxCpuCpuCyclesProtected = new ComboBox();
+            LabelCpuCpuCyclesProtected = new Label();
             TextBoxCpuCycledown = new TextBox();
-            TextBoxCpuCycles = new TextBox();
+            TextBoxCpuCpuCycles = new TextBox();
             TextBoxCpuCycleup = new TextBox();
-            ComboBoxCpuCycles = new ComboBox();
+            ComboBoxCpuCpuCycles = new ComboBox();
             ComboBoxCpuCputype = new ComboBox();
             ComboBoxCpuCore = new ComboBox();
             LabelCpuCycledown = new Label();
             LabelCpuCycleup = new Label();
-            LabelCpuCycles = new Label();
+            LabelCpuCpuCycles = new Label();
             LabelCpuCputype = new Label();
             LabelCpuCore = new Label();
             TabPageVoodoo = new TabPage();
+            TextBoxVoodooVoodooThreads = new TextBox();
             ComboBoxVoodooVoodooMemsize = new ComboBox();
-            ComboBoxVoodooVoodooMultithreading = new ComboBox();
+            ComboBoxVoodooVoodooThreads = new ComboBox();
             ComboBoxVoodooVoodooBilinearFiltering = new ComboBox();
             ComboBoxVoodooVoodoo = new ComboBox();
             LabelVoodooVoodooBilinearFiltering = new Label();
-            LabelVoodooVoodooMultithreading = new Label();
+            LabelVoodooVoodooThreads = new Label();
             LabelVoodooVoodooMemsize = new Label();
             LabelVoodooVoodoo = new Label();
             TabPageCapture = new TabPage();
@@ -1353,43 +1359,78 @@
             // 
             // TabPageCpu
             // 
+            TabPageCpu.Controls.Add(ComboBoxCpuCpuThrottle);
+            TabPageCpu.Controls.Add(LabelCpuCpuThrottle);
+            TabPageCpu.Controls.Add(TextBoxCpuCpuCyclesProtected);
+            TabPageCpu.Controls.Add(ComboBoxCpuCpuCyclesProtected);
+            TabPageCpu.Controls.Add(LabelCpuCpuCyclesProtected);
             TabPageCpu.Controls.Add(TextBoxCpuCycledown);
-            TabPageCpu.Controls.Add(TextBoxCpuCycles);
+            TabPageCpu.Controls.Add(TextBoxCpuCpuCycles);
             TabPageCpu.Controls.Add(TextBoxCpuCycleup);
-            TabPageCpu.Controls.Add(ComboBoxCpuCycles);
+            TabPageCpu.Controls.Add(ComboBoxCpuCpuCycles);
             TabPageCpu.Controls.Add(ComboBoxCpuCputype);
             TabPageCpu.Controls.Add(ComboBoxCpuCore);
             TabPageCpu.Controls.Add(LabelCpuCycledown);
             TabPageCpu.Controls.Add(LabelCpuCycleup);
-            TabPageCpu.Controls.Add(LabelCpuCycles);
+            TabPageCpu.Controls.Add(LabelCpuCpuCycles);
             TabPageCpu.Controls.Add(LabelCpuCputype);
             TabPageCpu.Controls.Add(LabelCpuCore);
             resources.ApplyResources(TabPageCpu, "TabPageCpu");
             TabPageCpu.Name = "TabPageCpu";
             TabPageCpu.UseVisualStyleBackColor = true;
             // 
+            // ComboBoxCpuCpuThrottle
+            // 
+            ComboBoxCpuCpuThrottle.DropDownStyle = ComboBoxStyle.DropDownList;
+            ComboBoxCpuCpuThrottle.FormattingEnabled = true;
+            resources.ApplyResources(ComboBoxCpuCpuThrottle, "ComboBoxCpuCpuThrottle");
+            ComboBoxCpuCpuThrottle.Name = "ComboBoxCpuCpuThrottle";
+            // 
+            // LabelCpuCpuThrottle
+            // 
+            resources.ApplyResources(LabelCpuCpuThrottle, "LabelCpuCpuThrottle");
+            LabelCpuCpuThrottle.Name = "LabelCpuCpuThrottle";
+            // 
+            // TextBoxCpuCpuCyclesProtected
+            // 
+            resources.ApplyResources(TextBoxCpuCpuCyclesProtected, "TextBoxCpuCpuCyclesProtected");
+            TextBoxCpuCpuCyclesProtected.Name = "TextBoxCpuCpuCyclesProtected";
+            // 
+            // ComboBoxCpuCpuCyclesProtected
+            // 
+            ComboBoxCpuCpuCyclesProtected.DropDownStyle = ComboBoxStyle.DropDownList;
+            ComboBoxCpuCpuCyclesProtected.FormattingEnabled = true;
+            resources.ApplyResources(ComboBoxCpuCpuCyclesProtected, "ComboBoxCpuCpuCyclesProtected");
+            ComboBoxCpuCpuCyclesProtected.Name = "ComboBoxCpuCpuCyclesProtected";
+            ComboBoxCpuCpuCyclesProtected.SelectedIndexChanged += ComboBox_SelectedIndexChanged;
+            // 
+            // LabelCpuCpuCyclesProtected
+            // 
+            resources.ApplyResources(LabelCpuCpuCyclesProtected, "LabelCpuCpuCyclesProtected");
+            LabelCpuCpuCyclesProtected.Name = "LabelCpuCpuCyclesProtected";
+            // 
             // TextBoxCpuCycledown
             // 
             resources.ApplyResources(TextBoxCpuCycledown, "TextBoxCpuCycledown");
             TextBoxCpuCycledown.Name = "TextBoxCpuCycledown";
             // 
-            // TextBoxCpuCycles
+            // TextBoxCpuCpuCycles
             // 
-            resources.ApplyResources(TextBoxCpuCycles, "TextBoxCpuCycles");
-            TextBoxCpuCycles.Name = "TextBoxCpuCycles";
+            resources.ApplyResources(TextBoxCpuCpuCycles, "TextBoxCpuCpuCycles");
+            TextBoxCpuCpuCycles.Name = "TextBoxCpuCpuCycles";
             // 
             // TextBoxCpuCycleup
             // 
             resources.ApplyResources(TextBoxCpuCycleup, "TextBoxCpuCycleup");
             TextBoxCpuCycleup.Name = "TextBoxCpuCycleup";
             // 
-            // ComboBoxCpuCycles
+            // ComboBoxCpuCpuCycles
             // 
-            ComboBoxCpuCycles.DropDownStyle = ComboBoxStyle.DropDownList;
-            ComboBoxCpuCycles.FormattingEnabled = true;
-            resources.ApplyResources(ComboBoxCpuCycles, "ComboBoxCpuCycles");
-            ComboBoxCpuCycles.Name = "ComboBoxCpuCycles";
-            ComboBoxCpuCycles.SelectedIndexChanged += ComboBox_SelectedIndexChanged;
+            ComboBoxCpuCpuCycles.DropDownStyle = ComboBoxStyle.DropDownList;
+            ComboBoxCpuCpuCycles.FormattingEnabled = true;
+            resources.ApplyResources(ComboBoxCpuCpuCycles, "ComboBoxCpuCpuCycles");
+            ComboBoxCpuCpuCycles.Name = "ComboBoxCpuCpuCycles";
+            ComboBoxCpuCpuCycles.SelectedIndexChanged += ComboBox_SelectedIndexChanged;
             // 
             // ComboBoxCpuCputype
             // 
@@ -1415,10 +1456,10 @@
             resources.ApplyResources(LabelCpuCycleup, "LabelCpuCycleup");
             LabelCpuCycleup.Name = "LabelCpuCycleup";
             // 
-            // LabelCpuCycles
+            // LabelCpuCpuCycles
             // 
-            resources.ApplyResources(LabelCpuCycles, "LabelCpuCycles");
-            LabelCpuCycles.Name = "LabelCpuCycles";
+            resources.ApplyResources(LabelCpuCpuCycles, "LabelCpuCpuCycles");
+            LabelCpuCpuCycles.Name = "LabelCpuCpuCycles";
             // 
             // LabelCpuCputype
             // 
@@ -1432,17 +1473,23 @@
             // 
             // TabPageVoodoo
             // 
+            TabPageVoodoo.Controls.Add(TextBoxVoodooVoodooThreads);
             TabPageVoodoo.Controls.Add(ComboBoxVoodooVoodooMemsize);
-            TabPageVoodoo.Controls.Add(ComboBoxVoodooVoodooMultithreading);
+            TabPageVoodoo.Controls.Add(ComboBoxVoodooVoodooThreads);
             TabPageVoodoo.Controls.Add(ComboBoxVoodooVoodooBilinearFiltering);
             TabPageVoodoo.Controls.Add(ComboBoxVoodooVoodoo);
             TabPageVoodoo.Controls.Add(LabelVoodooVoodooBilinearFiltering);
-            TabPageVoodoo.Controls.Add(LabelVoodooVoodooMultithreading);
+            TabPageVoodoo.Controls.Add(LabelVoodooVoodooThreads);
             TabPageVoodoo.Controls.Add(LabelVoodooVoodooMemsize);
             TabPageVoodoo.Controls.Add(LabelVoodooVoodoo);
             resources.ApplyResources(TabPageVoodoo, "TabPageVoodoo");
             TabPageVoodoo.Name = "TabPageVoodoo";
             TabPageVoodoo.UseVisualStyleBackColor = true;
+            // 
+            // TextBoxVoodooVoodooThreads
+            // 
+            resources.ApplyResources(TextBoxVoodooVoodooThreads, "TextBoxVoodooVoodooThreads");
+            TextBoxVoodooVoodooThreads.Name = "TextBoxVoodooVoodooThreads";
             // 
             // ComboBoxVoodooVoodooMemsize
             // 
@@ -1451,12 +1498,13 @@
             resources.ApplyResources(ComboBoxVoodooVoodooMemsize, "ComboBoxVoodooVoodooMemsize");
             ComboBoxVoodooVoodooMemsize.Name = "ComboBoxVoodooVoodooMemsize";
             // 
-            // ComboBoxVoodooVoodooMultithreading
+            // ComboBoxVoodooVoodooThreads
             // 
-            ComboBoxVoodooVoodooMultithreading.DropDownStyle = ComboBoxStyle.DropDownList;
-            ComboBoxVoodooVoodooMultithreading.FormattingEnabled = true;
-            resources.ApplyResources(ComboBoxVoodooVoodooMultithreading, "ComboBoxVoodooVoodooMultithreading");
-            ComboBoxVoodooVoodooMultithreading.Name = "ComboBoxVoodooVoodooMultithreading";
+            ComboBoxVoodooVoodooThreads.DropDownStyle = ComboBoxStyle.DropDownList;
+            ComboBoxVoodooVoodooThreads.FormattingEnabled = true;
+            resources.ApplyResources(ComboBoxVoodooVoodooThreads, "ComboBoxVoodooVoodooThreads");
+            ComboBoxVoodooVoodooThreads.Name = "ComboBoxVoodooVoodooThreads";
+            ComboBoxVoodooVoodooThreads.SelectedIndexChanged += ComboBox_SelectedIndexChanged;
             // 
             // ComboBoxVoodooVoodooBilinearFiltering
             // 
@@ -1477,10 +1525,10 @@
             resources.ApplyResources(LabelVoodooVoodooBilinearFiltering, "LabelVoodooVoodooBilinearFiltering");
             LabelVoodooVoodooBilinearFiltering.Name = "LabelVoodooVoodooBilinearFiltering";
             // 
-            // LabelVoodooVoodooMultithreading
+            // LabelVoodooVoodooThreads
             // 
-            resources.ApplyResources(LabelVoodooVoodooMultithreading, "LabelVoodooVoodooMultithreading");
-            LabelVoodooVoodooMultithreading.Name = "LabelVoodooVoodooMultithreading";
+            resources.ApplyResources(LabelVoodooVoodooThreads, "LabelVoodooVoodooThreads");
+            LabelVoodooVoodooThreads.Name = "LabelVoodooVoodooThreads";
             // 
             // LabelVoodooVoodooMemsize
             // 
@@ -3399,8 +3447,8 @@
             // 
             // TextBoxAutoexec
             // 
-            TextBoxAutoexec.ContextMenuStrip = ContextMenuStripAutoexec;
             resources.ApplyResources(TextBoxAutoexec, "TextBoxAutoexec");
+            TextBoxAutoexec.ContextMenuStrip = ContextMenuStripAutoexec;
             TextBoxAutoexec.Name = "TextBoxAutoexec";
             // 
             // ContextMenuStripAutoexec
@@ -3981,7 +4029,7 @@
         private Label LabelCompositeComposite;
         private Label LabelCpuCycledown;
         private Label LabelCpuCycleup;
-        private Label LabelCpuCycles;
+        private Label LabelCpuCpuCycles;
         private Label LabelCpuCputype;
         private Label LabelCpuCore;
         private Label LabelCompositeConvergence;
@@ -3989,17 +4037,17 @@
         private ComboBox ComboBoxVoodooVoodooBilinearFiltering;
         private ComboBox ComboBoxVoodooVoodoo;
         private Label LabelVoodooVoodooBilinearFiltering;
-        private Label LabelVoodooVoodooMultithreading;
+        private Label LabelVoodooVoodooThreads;
         private Label LabelVoodooVoodooMemsize;
         private Label LabelVoodooVoodoo;
         private Label LabelCaptureDefaultImageCaptureFormats;
         private Label LabelCaptureCaptureDir;
-        private ComboBox ComboBoxVoodooVoodooMultithreading;
+        private ComboBox ComboBoxVoodooVoodooThreads;
         private ComboBox ComboBoxVoodooVoodooMemsize;
-        private ComboBox ComboBoxCpuCycles;
+        private ComboBox ComboBoxCpuCpuCycles;
         private ComboBox ComboBoxCpuCputype;
         private ComboBox ComboBoxCpuCore;
-        private TextBox TextBoxCpuCycles;
+        private TextBox TextBoxCpuCpuCycles;
         private TextBox TextBoxCpuCycleup;
         private TextBox TextBoxCpuCycledown;
         private TextBox TextBoxCompositeHue;
@@ -4333,5 +4381,11 @@
         private ToolStripMenuItem ContextMenuItemLaunchWithParameters;
         private ToolStripLabel ToolStripLabel;
         private ToolStripSeparator toolStripSeparator5;
+        private TextBox TextBoxCpuCpuCyclesProtected;
+        private ComboBox ComboBoxCpuCpuCyclesProtected;
+        private Label LabelCpuCpuCyclesProtected;
+        private ComboBox ComboBoxCpuCpuThrottle;
+        private Label LabelCpuCpuThrottle;
+        private TextBox TextBoxVoodooVoodooThreads;
     }
 }

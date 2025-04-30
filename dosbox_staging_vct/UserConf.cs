@@ -7,21 +7,39 @@ namespace dosbox_staging_vct
 {
     internal class UserConf
     {
-        #region Archivo de configuración para DosBox Staging 0.81.0
+        #region Archivo de configuración para DosBox Staging 0.82.1
         /*
-        # This is the configuration file for dosbox-staging (0.81.0).
+        # This is the configuration file for dosbox-staging (0.82.1).
         # Lines starting with a '#' character are comments.
         */
         #endregion
 
         #region [sdl]
         /*
-        [sdl]
+[sdl]
+        #              output: Rendering backend to use for graphics output ('opengl' by default).
+        #                      Only the 'opengl' backend has shader support and is thus the preferred option.
+        #                      The 'texture' backend is only provided as a last resort fallback for buggy or
+        #                      non-existent OpenGL drivers (this is extremely rare).
+        #                        opengl:     OpenGL backend with shader support (default).
+        #                        texture:    SDL's texture backend with bilinear interpolation.
+        #                        texturenb:  SDL's texture backend with nearest-neighbour interpolation
+        #                                    (no bilinear).
+        #                      Possible values: opengl, texture, texturenb.
+        #                      Deprecated values: openglnb, openglpp, surface, texturepp.
+        #
+        #    texture_renderer: Render driver to use in 'texture' output mode ('auto' by default).
+        #                      Use 'texture_renderer = auto' for an automatic choice.
+        #                      Possible values: auto, direct3d, direct3d11, direct3d12, opengl, opengles2, software.
+        #
+        #             display: Number of display to use; values depend on OS and user settings (0 by default).
+        #
         #          fullscreen: Start directly in fullscreen (disabled by default).
         #                      Run INTRO and see Special Keys for window control hotkeys.
-        #             display: Number of display to use; values depend on OS and user settings (0 by default).
+        #
         #      fullresolution: What resolution to use for fullscreen: 'original', 'desktop'
         #                      or a fixed size, e.g. 1024x768 ('desktop' by default).
+        #
         #    windowresolution: Set intial window size for windowed mode. You can still resize the window
         #                      after startup.
         #                        default:   Select the best option based on your environment and other
@@ -30,13 +48,53 @@ namespace dosbox_staging_vct
         #                                   Size the window relative to the desktop.
         #                        WxH:       Specify window size in WxH format in logical units
         #                                   (e.g., 1024x768).
+        #
         #     window_position: Set initial window position for windowed mode:
         #                        auto:      Let the window manager decide the position (default).
         #                        X,Y:       Set window position in X,Y format (e.g., 250,100).
         #                                   0,0 is the top-left corner of the screen.
+        #
         #  window_decorations: Enable window decorations in windowed mode (enabled by default).
+        #
+        #     window_titlebar: Space separated list of information to be displayed in the window's titlebar
+        #                      ('program=name dosbox=auto cycles=on mouse=full' by default). If a parameter
+        #                      is not specified, its default value is used.
+        #                      Possible information to display are:
+        #                        animation=<value>:  If set to 'on' (default), animate the audio/video
+        #                                            recording mark. Set to 'off' to disable animation; this
+        #                                            is useful if your screen font produces weird results.
+        #                        program=<value>:    Display the name of the running program.
+        #                                            <value> can be one of:
+        #                                              none/off:  Do not display program name.
+        #                                              name:      Program name, with file extension (default).
+        #                                              path:      Name, extension, and full absolute path.
+        #                                              segment:   Display program memory segment name.
+        #                                              'Title':   Custom name. Alternatively, you can use
+        #                                                         "Title", (Title), <Title> or [Title] form.
+        #                                            Note: With some software (like Windows 3.1x in enhanced
+        #                                            mode) it is impossible to recognize the full program
+        #                                            name or path; in such cases 'segment' is used instead.
+        #                        dosbox=<value>:     Display 'DOSBox Staging' in the title bar.
+        #                                            <value> can be one of:
+        #                                              always:   Always display 'DOSBox Staging'.
+        #                                              auto:     Only display it if no program is running or
+        #                                                        'program=none' is set (default).
+        #                        version=<value>:    Display DOSBox version information.
+        #                                            <value> can be one of:
+        #                                               none/off:  Do not display DOSBox version (default).
+        #                                               simple:    Simple version information.
+        #                                               detailed:  Include Git hash, if available.
+        #                        cycles=<value>:     If set to 'on' (default), show CPU cycles setting.
+        #                                            Set to 'off' to disable cycles setting display.
+        #                        mouse=<value>:      Mouse capturing hint verbosity level:
+        #                                              none/off:  Do not display any mouse hints.
+        #                                              short:     Only display if mouse is captured.
+        #                                              full:      Display verbose information on how to
+        #                                                         capture or release the cursor (default).
+        #
         #        transparency: Set the transparency of the DOSBox Staging screen (0 by default).
         #                      From 0 (no transparency) to 90 (high transparency).
+        #
         #           host_rate: Set the host's refresh rate:
         #                        auto:      Use SDI rates, or VRR rates when in fullscreen on a high-refresh
         #                                   rate display (default).
@@ -46,6 +104,7 @@ namespace dosbox_staging_vct
         #                                   displays).
         #                        N:         Specify custom refresh rate in Hz (decimal values are allowed;
         #                                   23.000 is the allowed minimum).
+        #
         #               vsync: Set the host video driver's vertical synchronization (vsync) mode:
         #                        auto:      Limit vsync to beneficial cases, such as when using an
         #                                   interpolating VRR display in fullscreen (default).
@@ -61,59 +120,60 @@ namespace dosbox_staging_vct
         #                                   the risk of tearing in some games.
         #                        yield:     Let the host's video driver control video synchronization.
         #                      Possible values: auto, on, adaptive, off, yield.
+        #
         #          vsync_skip: Number of microseconds to allow rendering to block before skipping the
         #                      next frame. For example, a value of 7000 is roughly half the frame time
         #                      at 70 Hz. 0 disables this and will always render (default).
+        #
         #   presentation_mode: Select the frame presentation mode:
         #                        auto:  Intelligently time and drop frames to prevent emulation stalls,
         #                               based on host and DOS frame rates (default).
         #                        cfr:   Always present DOS frames at a constant frame rate.
         #                        vfr:   Always present changed DOS frames at a variable frame rate.
         #                      Possible values: auto, cfr, vfr.
-        #              output: Video system to use for output ('opengl' by default).
-        #                      'texture' and 'opengl' use bilinear interpolation, 'texturenb' and
-        #                      'openglnb' use nearest-neighbour (no-bilinear). Some shaders require
-        #                      bilinear interpolation, making that the safest choice.
-        #                      Possible values: texture, texturenb, opengl, openglnb.
-        #                      Deprecated values: openglpp, surface, texturepp.
-        #    texture_renderer: Render driver to use in 'texture' output mode ('auto' by default).
-        #                      Use 'texture_renderer = auto' for an automatic choice.
-        #                      Possible values: auto, direct3d, direct3d11, direct3d12, opengl, opengles2, software.
+        #
         #         waitonerror: Keep the console open if an error has occurred (enabled by default).
+        #
         #            priority: Priority levels to apply when active and inactive, respectively.
         #                      ('auto auto' by default)
         #                      'auto' lets the host operating system manage the priority.
         #                      Possible values: auto, lowest, lower, normal, higher, highest.
+        #
         #  mute_when_inactive: Mute the sound when the window is inactive (disabled by default).
+        #
         # pause_when_inactive: Pause emulation when the window is inactive (disabled by default).
+        #
         #          mapperfile: Path to the mapper file ('mapper-sdl2-XYZ.map' by default, where XYZ is the
         #                      current version). Pre-configured maps are bundled in 'resources/mapperfiles'.
         #                      These can be loaded by name, e.g., with 'mapperfile = xbox/xenon2.map'.
         #                      Note: The '--resetmapper' command line option only deletes the default mapper
         #                            file.
+        #
         #         screensaver: Use 'allow' or 'block' to override the SDL_VIDEO_ALLOW_SCREENSAVER environment
         #                      variable which usually blocks the OS screensaver while the emulator is
         #                      running ('auto' by default).
         #                      Possible values: auto, allow, block.
+        #
 
-        fullscreen          = false
+        output              = opengl
+        texture_renderer    = auto
         display             = 0
+        fullscreen          = false
         fullresolution      = desktop
         windowresolution    = default
         window_position     = auto
         window_decorations  = true
+        window_titlebar     = program=name dosbox=auto cycles=on mouse=full
         transparency        = 0
         host_rate           = auto
         vsync               = auto
         vsync_skip          = 0
         presentation_mode   = auto
-        output              = opengl
-        texture_renderer    = auto
         waitonerror         = true
         priority            = auto auto
         mute_when_inactive  = false
         pause_when_inactive = false
-        mapperfile          = mapper-sdl2-0.81.0.map
+        mapperfile          = mapper-sdl2-0.82.1.map
         screensaver         = auto
         */
         #endregion
@@ -468,62 +528,157 @@ namespace dosbox_staging_vct
         #region [cpu]
         /*
         [cpu]
-        #      core: CPU core used in emulation ('auto' by default). 'auto' will switch to dynamic
-        #            if available and appropriate.
-        #            Possible values: auto, dynamic, normal, simple.
-        #   cputype: CPU type used in emulation ('auto' by default). 'auto' is the fastest choice.
-        #            Possible values: auto, 386, 386_slow, 486_slow, pentium_slow, 386_prefetch.
-        #    cycles: Number of instructions DOSBox tries to emulate per millisecond
-        #            ('auto' by default). Setting this value too high may result in sound drop-outs
-        #            and lags.
-        #              auto:            Try to guess what a game needs. It usually works, but can
-        #                               fail with certain games.
-        #              fixed <number>:  Set a fixed number of cycles. This is what you usually
-        #                               need if 'auto' fails (e.g. 'fixed 4000').
-        #              max:             Allocate as much cycles as your computer is able to handle.
-        #            Possible values: auto, fixed, max.
-        #   cycleup: Number of cycles added with the increase cycles hotkey (10 by default).
-        #            Setting it lower than 100 will be a percentage.
-        # cycledown: Number of cycles subtracted with the decrease cycles hotkey (20 by default).
-        #            Setting it lower than 100 will be a percentage.
+        #                 core: Type of CPU emulation core to use ('auto' by default).
+        #                         auto:     'normal' core for real mode programs, 'dynamic' core for protected
+        #                                   mode programs (default). Most programs will run correctly with this
+        #                                   setting.
+        #                         normal:   The DOS program is interpreted instruction by instruction. This
+        #                                   yields the most accurate timings, but puts 3-5 times more load on
+        #                                   the host CPU compared to the 'dynamic' core. Therefore, it's
+        #                                   generally only recommended for real mode programs that don't need
+        #                                   a fast emulated CPU or are timing-sensitive. The 'normal' core is
+        #                                   also necessary for programs that self-modify their code.
+        #                         simple:   The 'normal' core optimised for old real mode programs; it might
+        #                                   give you slightly better compatibility with older games. Auto-
+        #                                   switches to the 'normal' core in protected mode.
+        #                         dynamic:  The instructions of the DOS program are translated to host CPU
+        #                                   instructions in blocks and are then executed directly. This puts
+        #                                   3-5 times less load on the host CPU compared to the 'normal' core,
+        #                                   but the timings might be less accurate. The 'dynamic' core is a
+        #                                   necessity for demanding DOS programs (e.g., 3D SVGA games).
+        #                                   Programs that self-modify their code might misbehave or crash on
+        #                                   the 'dynamic' core; use the 'normal' core for such programs.
+        #                       Possible values: auto, dynamic, normal, simple.
+        #
+        #              cputype: CPU type to emulate ('auto' by default).
+        #                       You should only change this if the program doesn't run correctly on 'auto'.
+        #                         auto:          The fastest and most compatible setting (default).
+        #                                        Technically, this is '386_fast' plus 486 CPUID, 486 CR
+        #                                        register behaviour, and extra 486 instructions.
+        #                         386:           386 CPUID and 386 specific page access level calculation.
+        #                         386_fast:      Same as '386' but with loose page privilege checks which is
+        #                                        much faster.
+        #                         386_prefetch:  Same as '386_fast' plus accurate CPU prefetch queue emulation.
+        #                                        Requires 'core = normal'. This setting is necessary for
+        #                                        programs that self-modify their code or employ anti-debugging
+        #                                        tricks. Games that require '386_prefetch' include Contra, FIFA
+        #                                        International Soccer (1994), Terminator 1, and X-Men: Madness
+        #                                        in The Murderworld.
+        #                         486:           486 CPUID, 486+ specific page access level calculation, 486 CR
+        #                                        register behaviour, and extra 486 instructions.
+        #                         pentium:       Same as '486' but with Pentium CPUID, Pentium CR register
+        #                                        behaviour, and RDTSC instruction support. Recommended for
+        #                                        Windows 3.x games (e.g., Betrayal in Antara).
+        #                         pentium_mmx:   Same as 'pentium' plus MMX instruction set support. Very few
+        #                                        games use MMX instructions; it's mostly only useful for
+        #                                        demoscene productions.
+        #                       Possible values: auto, 386, 386_fast, 386_prefetch, 486, pentium, pentium_mmx.
+        #                       Deprecated values: 386_slow, 486_prefetch, 486_slow, pentium_slow.
+        #
+        #           cpu_cycles: Speed of the emulated CPU ('3000' by default). If 'cpu_cycles_protected' is on
+        #                       'auto', this sets the cycles for both real and protected mode programs.
+        #                         <number>:  Emulate a fixed number of cycles per millisecond (roughly
+        #                                    equivalent to MIPS). Valid range is from 50 to 2000000.
+        #                         max:       Emulate as many cycles as your host CPU can handle on a single
+        #                                    core. The number of cycles per millisecond can vary; this might
+        #                                    cause issues in some DOS programs.
+        #                       Notes:
+        #                         - Setting the CPU speed to 'max' or to high fixed values may result in sound
+        #                           drop-outs and general lagginess.
+        #                         - Set the lowest fixed cycles value that runs the game at an acceptable speed
+        #                           for the best results.
+        #                         - Ballpark cycles values for common CPUs. DOSBox does not do cycle-accurate
+        #                           CPU emulation, so treat these as starting points, then fine-tune per game.
+        #                             8088 (4.77 MHz)     300
+        #                             286-8               700
+        #                             286-12             1500
+        #                             386SX-20           3000
+        #                             386DX-33           6000
+        #                             386DX-40           8000
+        #                             486DX-33          12000
+        #                             486DX/2-66        25000
+        #                             Pentium 90        50000
+        #                             Pentium MMX-166  100000
+        #                             Pentium II 300   200000
+        #
+        # cpu_cycles_protected: Speed of the emulated CPU for protected mode programs only
+        #                       ('60000' by default).
+        #                         auto:      Use the `cpu_cycles' setting.
+        #                         <number>:  Emulate a fixed number of cycles per millisecond (roughly
+        #                                    equivalent to MIPS). Valid range is from 50 to 2000000.
+        #                         max:       Emulate as many cycles as your host CPU can handle on a single
+        #                                    core. The number of cycles per millisecond can vary; this might
+        #                                    cause issues in some DOS programs.
+        #                       Note: See 'cpu_cycles' setting for further info.
+        #
+        #         cpu_throttle: Throttle down the number of emulated CPU cycles dynamically if your host CPU
+        #                       cannot keep up (disabled by default).
+        #                       Only affects fixed cycles settings. When enabled, the number of cycles per
+        #                       millisecond can vary; this might cause issues in some DOS programs.
+        #
+        #              cycleup: Number of cycles to add with the 'Inc Cycles' hotkey (10 by default).
+        #                       Values lower than 100 are treated as a percentage increase.
+        #
+        #            cycledown: Number of cycles to subtract with the 'Dec Cycles' hotkey (20 by default).
+        #                       Values lower than 100 are treated as a percentage decrease.
+        #
 
-        core      = auto
-        cputype   = auto
-        cycles    = auto
-        cycleup   = 10
-        cycledown = 20
+        core                 = auto
+        cputype              = auto
+        cpu_cycles           = 3000
+        cpu_cycles_protected = 60000
+        cpu_throttle         = false
+        cycleup              = 10
+        cycledown            = 20
          */
         #endregion
         public string? CPU_core { get; set; }
         public string? CPU_cputype { get; set; }
-        public string? CPU_cycles { get; set; }
+        public string? CPU_cpu_cycles { get; set; }
+        public string? CPU_cpu_cycles_protected { get; set; }
+        public string? CPU_cpu_throttle { get; set; }
         public string? CPU_cycleup { get; set; }
         public string? CPU_cycledown { get; set; }
 
         #region [voodoo]
         /*
-        [voodoo]
-        #                    voodoo: Enable 3dfx Voodoo emulation (enabled by default).
-        #            voodoo_memsize: Set the amount of video memory for 3dfx Voodoo graphics, either 4 or 12 MB.
-        #                            The memory is used by the Frame Buffer Interface (FBI) and Texture Mapping Unit
-        #                            (TMU) as follows:
+        #                    voodoo: Enable 3dfx Voodoo emulation ('on' by default). This is authentic low-level
+        #                            emulation of the Voodoo card without any OpenGL passthrough, so it requires a
+        #                            powerful CPU. Most games need the DOS Glide driver called 'GLIDE2X.OVL' to be
+        #                            in the path for 3dfx mode to work. Many games include their own Glide driver
+        #                            variants, but for some you need to provide a suitable 'GLIDE2X.OVL' version.
+        #                            A small number of games integrate the Glide driver into their code, so they
+        #                            don't need 'GLIDE2X.OVL'.
+        #
+        #            voodoo_memsize: Set the amount of video memory for 3dfx Voodoo graphics. The memory is used by
+        #                            the Frame Buffer Interface (FBI) and Texture Mapping Unit (TMU) as follows:
         #                               4: 2 MB for the FBI and one TMU with 2 MB (default).
         #                              12: 4 MB for the FBI and two TMUs, each with 4 MB.
         #                            Possible values: 4, 12.
-        #     voodoo_multithreading: Use threads to improve 3dfx Voodoo performance (enabled by default).
+        #
+        #            voodoo_threads: Use threads to improve 3dfx Voodoo performance:
+        #                              auto:     Use up to 16 threads based on available CPU cores (default).
+        #                              <value>:  Set a specific number of threads between 1 and 128.
+        #                            Note: Setting this to a higher value than the number of logical CPUs your
+        #                                  hardware supports is very likely to harm performance. This has been
+        #                                  measured to scale well up to 8-16 threads, but it has not been tested
+        #                                  on a many-core CPU. If you have a Threadripper or similar CPU, please
+        #                                  let us know how it goes.
+        #
         # voodoo_bilinear_filtering: Use bilinear filtering to emulate the 3dfx Voodoo's texture smoothing effect
-        #                            (disabled by default). Only suggested if you have a fast desktop-class CPU, as
-        #                            it can impact frame rates on slower systems.
+        #                            ('on' by default). Bilinear filtering can impact frame rates on slower systems;
+        #                            try turning it off if you're not getting adequate performance.
+        #
 
         voodoo                    = true
         voodoo_memsize            = 4
-        voodoo_multithreading     = true
-        voodoo_bilinear_filtering = false 
+        voodoo_threads            = auto
+        voodoo_bilinear_filtering = true
         */
         #endregion
         public string? VOODOO_voodoo { get; set; }
         public string? VOODOO_voodoo_memsize { get; set; }
-        public string? VOODOO_voodoo_multithreading { get; set; }
+        public string? VOODOO_voodoo_threads { get; set; }
         public string? VOODOO_voodoo_bilinear_filtering { get; set; }
 
         #region [capture]
@@ -958,37 +1113,45 @@ namespace dosbox_staging_vct
         /*
         [gus]
         #        gus: Enable Gravis UltraSound emulation (disabled by default).
-        #             The default settings of base address 240, IRQ 5, and DMA 3 have been chosen
-        #             so the GUS can coexist with a Sound Blaster card. This works fine for the
-        #             majority of programs, but some games and demos expect the GUS factory
-        #             defaults of base address 220, IRQ 11, and DMA 1.
+        #             The default settings of base address 240, IRQ 5, and DMA 3 have been chosen so
+        #             the GUS can coexist with a Sound Blaster card. This works fine for the majority
+        #             of programs, but some games and demos expect the GUS factory defaults of base
+        #             address 220, IRQ 11, and DMA 1. The default IRQ 11 is also problematic with
+        #             specific versions of the DOS4GW extender that cannot handle IRQs above 7.
+        #
         #    gusbase: The IO base address of the Gravis UltraSound (240 by default).
-        #             Possible values: 240, 220, 260, 280, 2a0, 2c0, 2e0, 300.
+        #             Possible values: 210, 220, 230, 240, 250, 260.
+        #
         #     gusirq: The IRQ number of the Gravis UltraSound (5 by default).
-        #             Possible values: 3, 5, 7, 9, 10, 11, 12.
+        #             Possible values: 2, 3, 5, 7, 11, 12, 15.
+        #
         #     gusdma: The DMA channel of the Gravis UltraSound (3 by default).
-        #             Possible values: 0, 1, 3, 5, 6, 7.
-        #   ultradir: Path to UltraSound directory ('C:\ULTRASND' by default).
-        #             In this directory there should be a 'MIDI' directory that contains the patch
-        #             files for GUS playback.
+        #             Possible values: 1, 3, 5, 6, 7.
+        #
         # gus_filter: Filter for the Gravis UltraSound audio output:
-        #               off:       Don't filter the output (default).
+        #               on:        Filter the output (default).
+        #               off:       Don't filter the output.
         #               <custom>:  Custom filter definition; see 'sb_filter' for details.
+        #
+        #   ultradir: Path to UltraSound directory ('C:\ULTRASND' by default).
+        #             In this directory, there should be a 'MIDI' directory that contains the patch
+        #             files for GUS playback.
+        #
 
         gus        = false
         gusbase    = 240
         gusirq     = 5
         gusdma     = 3
+        gus_filter = on
         ultradir   = C:\ULTRASND
-        gus_filter = off
         */
         #endregion
         public string? GUS_gus { get; set; }
         public string? GUS_gusbase { get; set; }
         public string? GUS_gusirq { get; set; }
         public string? GUS_gusdma { get; set; }
-        public string? GUS_ultradir { get; set; }
         public string? GUS_gus_filter { get; set; }
+        public string? GUS_ultradir { get; set; }
 
         #region [imfc]
         /*
@@ -1061,17 +1224,19 @@ namespace dosbox_staging_vct
         /*
         [speaker]
         #           pcspeaker: PC speaker emulation model:
-        #                        discrete:  Waveform is created using discrete steps (default).
-        #                                   Works well for games that use RealSound-type effects.
-        #                        impulse:   Waveform is created using sinc impulses.
-        #                                   Recommended for square-wave games, like Commander Keen.
-        #                                   While improving accuracy, it is more CPU intensive.
-        #                        none/off:  Don't use the PC Speaker.
-        #                      Possible values: discrete, impulse, none, off.
-        #    pcspeaker_filter: Filter for the PC Speaker output:
+        #                        impulse:   A very faithful emulation of the PC speaker's output (default).
+        #                                   Works with most games, but may result in garbled sound or silence
+        #                                   in a small number of programs.
+        #                        discrete:  Legacy simplified PC speaker emulation; only use this on specific
+        #                                   titles that give you problems with the 'impulse' model.
+        #                        none/off:  Don't emulate the PC speaker.
+        #                      Possible values: impulse, discrete, none, off.
+        #
+        #    pcspeaker_filter: Filter for the PC speaker output:
         #                        on:        Filter the output (default).
         #                        off:       Don't filter the output.
         #                        <custom>:  Custom filter definition; see 'sb_filter' for details.
+        #
         #               tandy: Set the Tandy/PCjr 3 Voice sound emulation:
         #                        auto:  Automatically enable Tandy/PCjr sound for the 'tandy' and 'pcjr'
         #                               machine types only (default).
@@ -1081,39 +1246,48 @@ namespace dosbox_staging_vct
         #                               without DAC to avoid conflicts with other cards using DMA 1.
         #                        off:   Disable Tandy/PCjr sound.
         #                      Possible values: auto, on, psg, off.
+        #
         #       tandy_fadeout: Fade out the Tandy synth output after the last IO port write:
         #                        off:       Don't fade out; residual output will play forever (default).
         #                        on:        Wait 0.5s before fading out over a 0.5s period.
         #                        <custom>:  Custom fade out definition; see 'opl_fadeout' for details.
+        #
         #        tandy_filter: Filter for the Tandy synth output:
         #                        on:        Filter the output (default).
         #                        off:       Don't filter the output.
         #                        <custom>:  Custom filter definition; see 'sb_filter' for details.
+        #
         #    tandy_dac_filter: Filter for the Tandy DAC output:
         #                        on:        Filter the output (default).
         #                        off:       Don't filter the output.
         #                        <custom>:  Custom filter definition; see 'sb_filter' for details.
+        #
         #             lpt_dac: Type of DAC plugged into the parallel port:
         #                        disney:    Disney Sound Source.
         #                        covox:     Covox Speech Thing.
         #                        ston1:     Stereo-on-1 DAC, in stereo up to 30 kHz.
         #                        none/off:  Don't use a parallel port DAC (default).
         #                      Possible values: none, disney, covox, ston1, off.
+        #
         #      lpt_dac_filter: Filter for the LPT DAC audio device(s):
         #                        on:        Filter the output (default).
         #                        off:       Don't filter the output.
         #                        <custom>:  Custom filter definition; see 'sb_filter' for details.
+        #
         #            ps1audio: Enable IBM PS/1 Audio emulation (disabled by default).
+        #
         #     ps1audio_filter: Filter for the PS/1 Audio synth output:
         #                        on:        Filter the output (default).
         #                        off:       Don't filter the output.
         #                        <custom>:  Custom filter definition; see 'sb_filter' for details.
+        #
         # ps1audio_dac_filter: Filter for the PS/1 Audio DAC output:
         #                        on:        Filter the output (default).
         #                        off:       Don't filter the output.
         #                        <custom>:  Custom filter definition; see 'sb_filter' for details.
+        #
 
-        pcspeaker           = discrete
+        pcspeaker           = impulse
         pcspeaker_filter    = on
         tandy               = auto
         tandy_fadeout       = off

@@ -25,9 +25,9 @@ namespace dosbox_staging_vct
                 string helpText = System.IO.File.ReadAllText("help\\manual.txt");
                 TextBoxManual.Text = helpText;
 
-                // Load the DOSBox official Configuration file from rich text file in the rich text box
-                RichTextBoxConfFile.SetInnerMargins(10, 10, 10, 0);
-                RichTextBoxConfFile.LoadFile("help\\dosbox-staging.rtf");
+                // Load the DOSBox official Configuration file from the help folder of the application
+                string confFileText = System.IO.File.ReadAllText("help\\dosbox-staging.conf");
+                TextBoxConfFile.Text = confFileText;
 
             }
             catch (Exception ex)

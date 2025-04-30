@@ -303,14 +303,16 @@ namespace dosbox_staging_vct
                 // [cpu]
                 CPU_core = iniData["cpu"]["core"],
                 CPU_cputype = iniData["cpu"]["cputype"],
-                CPU_cycles = iniData["cpu"]["cycles"],
+                CPU_cpu_cycles = iniData["cpu"]["cpu_cycles"],
+                CPU_cpu_cycles_protected = iniData["cpu"]["cpu_cycles_protected"],
+                CPU_cpu_throttle = iniData["cpu"]["cpu_throttle"],
                 CPU_cycleup = iniData["cpu"]["cycleup"],
                 CPU_cycledown = iniData["cpu"]["cycledown"],
 
                 // [voodoo]
                 VOODOO_voodoo = iniData["voodoo"]["voodoo"],
                 VOODOO_voodoo_memsize = iniData["voodoo"]["voodoo_memsize"],
-                VOODOO_voodoo_multithreading = iniData["voodoo"]["voodoo_multithreading"],
+                VOODOO_voodoo_threads = iniData["voodoo"]["voodoo_threads"],
                 VOODOO_voodoo_bilinear_filtering = iniData["voodoo"]["voodoo_bilinear_filtering"],
 
                 // [capture]
@@ -538,14 +540,16 @@ namespace dosbox_staging_vct
                 // [cpu]
                 CPU_core = iniData["cpu"]["core"],
                 CPU_cputype = iniData["cpu"]["cputype"],
-                CPU_cycles = iniData["cpu"]["cycles"],
+                CPU_cpu_cycles = iniData["cpu"]["cpu_cycles"],
+                CPU_cpu_cycles_protected = iniData["cpu"]["cpu_cycles_protected"],
+                CPU_cpu_throttle = iniData["cpu"]["cpu_throttle"],
                 CPU_cycleup = iniData["cpu"]["cycleup"],
                 CPU_cycledown = iniData["cpu"]["cycledown"],
 
                 // [voodoo]
                 VOODOO_voodoo = iniData["voodoo"]["voodoo"],
                 VOODOO_voodoo_memsize = iniData["voodoo"]["voodoo_memsize"],
-                VOODOO_voodoo_multithreading = iniData["voodoo"]["voodoo_multithreading"],
+                VOODOO_voodoo_threads = iniData["voodoo"]["voodoo_threads"],
                 VOODOO_voodoo_bilinear_filtering = iniData["voodoo"]["voodoo_bilinear_filtering"],
 
                 // [capture]
@@ -1040,14 +1044,16 @@ namespace dosbox_staging_vct
             // [cpu]
             LoadOption(globalConf.CPU_core, userConf.CPU_core, ComboBoxCpuCore, null, LabelCpuCore);
             LoadOption(globalConf.CPU_cputype, userConf.CPU_cputype, ComboBoxCpuCputype, null, LabelCpuCputype);
-            LoadOption(globalConf.CPU_cycles, userConf.CPU_cycles, ComboBoxCpuCycles, TextBoxCpuCycles, LabelCpuCycles);
+            LoadOption(globalConf.CPU_cpu_cycles, userConf.CPU_cpu_cycles, ComboBoxCpuCpuCycles, TextBoxCpuCpuCycles, LabelCpuCpuCycles);
+            LoadOption(globalConf.CPU_cpu_cycles_protected, userConf.CPU_cpu_cycles_protected, ComboBoxCpuCpuCyclesProtected, TextBoxCpuCpuCyclesProtected, LabelCpuCpuCyclesProtected);
+            LoadOption(globalConf.CPU_cpu_throttle, userConf.CPU_cpu_throttle, ComboBoxCpuCpuThrottle, null, LabelCpuCpuThrottle);
             LoadOption(globalConf.CPU_cycleup, userConf.CPU_cycleup, null, TextBoxCpuCycleup, LabelCpuCycleup);
             LoadOption(globalConf.CPU_cycledown, userConf.CPU_cycledown, null, TextBoxCpuCycledown, LabelCpuCycledown);
 
             // [voodoo]
             LoadOption(globalConf.VOODOO_voodoo, userConf.VOODOO_voodoo, ComboBoxVoodooVoodoo, null, LabelVoodooVoodoo);
             LoadOption(globalConf.VOODOO_voodoo_memsize, userConf.VOODOO_voodoo_memsize, ComboBoxVoodooVoodooMemsize, null, LabelVoodooVoodooMemsize);
-            LoadOption(globalConf.VOODOO_voodoo_multithreading, userConf.VOODOO_voodoo_multithreading, ComboBoxVoodooVoodooMultithreading, null, LabelVoodooVoodooMultithreading);
+            LoadOption(globalConf.VOODOO_voodoo_threads, userConf.VOODOO_voodoo_threads, ComboBoxVoodooVoodooThreads, TextBoxVoodooVoodooThreads, LabelVoodooVoodooThreads);
             LoadOption(globalConf.VOODOO_voodoo_bilinear_filtering, userConf.VOODOO_voodoo_bilinear_filtering, ComboBoxVoodooVoodooBilinearFiltering, null, LabelVoodooVoodooBilinearFiltering);
 
             // [capture]
@@ -1316,7 +1322,10 @@ namespace dosbox_staging_vct
                 "ComboBoxRenderCgaColors" => TextBoxRenderCgaColors,
                 "ComboBoxRenderGlshader" => TextBoxRenderGlshader,
                 // [cpu]
-                "ComboBoxCpuCycles" => TextBoxCpuCycles,
+                "ComboBoxCpuCpuCycles" => TextBoxCpuCpuCycles,
+                "ComboBoxCpuCpuCyclesProtected" => TextBoxCpuCpuCyclesProtected,
+                // [voodoo]
+                "ComboBoxVoodooVoodooThreads" => TextBoxVoodooVoodooThreads,
                 // [fluidsynth]
                 "ComboBoxFluidsynthFsynthChorus" => TextBoxFluidsynthFsynthChorus,
                 "ComboBoxFluidsynthFsynthReverb" => TextBoxFluidsynthFsynthReverb,
@@ -1369,7 +1378,7 @@ namespace dosbox_staging_vct
             }
         }
 
-        private static void SaveOption(ComboBox? comboBox, TextBox? textBox, Label label, string globalProperty, IniData userConfData, string section, string key)
+        private static void SaveOption(ComboBox? comboBox, TextBox? textBox, Label label, string globalProperty, IniData userConfData, string section, string key, ref bool sectionModified)
         {
             bool isUserProperty = false;
 
@@ -1391,6 +1400,7 @@ namespace dosbox_staging_vct
                         // Save the property
                         isUserProperty = true;
                         userConfData[section][key] = textBox.Text.Trim();
+                        sectionModified = true; // Mark the section as modified
                     }
                 }
             }
@@ -1413,6 +1423,7 @@ namespace dosbox_staging_vct
                         // Save the property
                         isUserProperty = true;
                         userConfData[section][key] = option.Value;
+                        sectionModified = true; // Mark the section as modified
                     }
                     // Take the value of the selected option in the TextBox
                     if (option.Text.EndsWith('>'))
@@ -1430,6 +1441,7 @@ namespace dosbox_staging_vct
                                 // Save the property
                                 isUserProperty = true;
                                 userConfData[section][key] = textBox.Text.Trim();
+                                sectionModified = true; // Mark the section as modified
                             }
                         }
                     }
@@ -1438,7 +1450,7 @@ namespace dosbox_staging_vct
             HighlightLabelApperance(label, isUserProperty);
         }
 
-        private static void SaveOptionSplitProperty(ComboBox? comboBox1, ComboBox? comboBox2, Label label1, Label label2, string globalProperty, IniData userConfData, string section, string key)
+        private static void SaveOptionSplitProperty(ComboBox? comboBox1, ComboBox? comboBox2, Label label1, Label label2, string globalProperty, IniData userConfData, string section, string key, ref bool sectionModified)
         {
             // The property is split into two parts.
             // The first part is the value of the selected option in comboBox1 and the second part is the value of the selected option in comboBox2.
@@ -1467,6 +1479,7 @@ namespace dosbox_staging_vct
                         // Save the property
                         isUserProperty = true;
                         userConfData[section][key] = option1.Value + " " + option2.Value;
+                        sectionModified = true; // Mark the section as modified
                     }
                 }
             }
@@ -1474,6 +1487,7 @@ namespace dosbox_staging_vct
             HighlightLabelApperance(label2, isUserProperty);
         }
 
+        /* ANTIGUA--------
         private void SaveConf(bool showSaveConfWarning, string userConfFilePath, string globalConfFilePath)
         {
             if (showSaveConfWarning)
@@ -1497,217 +1511,245 @@ namespace dosbox_staging_vct
                 // Get the Global conf
                 GlobalConf globalConf = GetGlobalConf(globalConfFilePath);
 
+                // Track if a section has been modified
+                bool sectionModified = false;
+
                 // [sdl]
-                SaveOption(ComboBoxSdlFullscreen, null, LabelSdlFullscreen, globalConf.SDL_fullscreen, userConfData, "sdl", "fullscreen");
-                SaveOption(ComboBoxSdlDisplay, null, LabelSdlDisplay, globalConf.SDL_display, userConfData, "sdl", "display");
-                SaveOption(ComboBoxSdlFullresolution, TextBoxSdlFullresolution, LabelSdlFullresolution, globalConf.SDL_fullresolution, userConfData, "sdl", "fullresolution");
-                SaveOption(ComboBoxSdlWindowresolution, TextBoxSdlWindowresolution, LabelSdlWindowresolution, globalConf.SDL_windowresolution, userConfData, "sdl", "windowresolution");
-                SaveOption(ComboBoxSdlWindowPosition, TextBoxSdlWindowPosition, LabelSdlWindowPosition, globalConf.SDL_window_position, userConfData, "sdl", "window_position");
-                SaveOption(ComboBoxSdlWindowDecorations, null, LabelSdlWindowDecorations, globalConf.SDL_window_decorations, userConfData, "sdl", "window_decorations");
-                SaveOption(ComboBoxSdlTransparency, null, LabelSdlTransparency, globalConf.SDL_transparency, userConfData, "sdl", "transparency");
-                SaveOption(ComboBoxSdlScreensaver, null, LabelSdlScreensaver, globalConf.SDL_screensaver, userConfData, "sdl", "screensaver");
-                SaveOption(ComboBoxSdlHostRate, TextBoxSdlHostRate, LabelSdlHostRate, globalConf.SDL_host_rate, userConfData, "sdl", "host_rate");
-                SaveOption(ComboBoxSdlVsync, null, LabelSdlVsync, globalConf.SDL_vsync, userConfData, "sdl", "vsync");
-                SaveOption(null, TextBoxSdlVsyncSkip, LabelSdlVsyncSkip, globalConf.SDL_vsync_skip, userConfData, "sdl", "vsync_skip");
-                SaveOption(ComboBoxSdlPresentationMode, null, LabelSdlPresentationMode, globalConf.SDL_presentation_mode, userConfData, "sdl", "presentation_mode");
-                SaveOption(ComboBoxSdlOutput, null, LabelSdlOutput, globalConf.SDL_output, userConfData, "sdl", "output");
-                SaveOption(ComboBoxSdlTextureRenderer, null, LabelSdlTextureRenderer, globalConf.SDL_texture_renderer, userConfData, "sdl", "texture_renderer");
-                SaveOption(ComboBoxSdlWaitonerror, null, LabelSdlWaitonerror, globalConf.SDL_waitonerror, userConfData, "sdl", "waitonerror");
-                SaveOptionSplitProperty(ComboBoxSdlPriorityActive, ComboBoxSdlPriorityInactive, LabelSdlPriorityActive, LabelSdlPriorityInactive, globalConf.SDL_priority, userConfData, "sdl", "priority");
-                SaveOption(ComboBoxSdlMuteWhenInactive, null, LabelSdlMuteWhenInactive, globalConf.SDL_mute_when_inactive, userConfData, "sdl", "mute_when_inactive");
-                SaveOption(ComboBoxSdlPauseWhenInactive, null, LabelSdlPauseWhenInactive, globalConf.SDL_pause_when_inactive, userConfData, "sdl", "pause_when_inactive");
-                SaveOption(null, TextBoxSdlMapperfile, LabelSdlMapperfile, globalConf.SDL_mapperfile, userConfData, "sdl", "mapperfile");
+                sectionModified = false;
+                SaveOption(ComboBoxSdlFullscreen, null, LabelSdlFullscreen, globalConf.SDL_fullscreen, userConfData, "sdl", "fullscreen", ref sectionModified);
+                SaveOption(ComboBoxSdlDisplay, null, LabelSdlDisplay, globalConf.SDL_display, userConfData, "sdl", "display", ref sectionModified);
+                SaveOption(ComboBoxSdlFullresolution, TextBoxSdlFullresolution, LabelSdlFullresolution, globalConf.SDL_fullresolution, userConfData, "sdl", "fullresolution", ref sectionModified);
+                SaveOption(ComboBoxSdlWindowresolution, TextBoxSdlWindowresolution, LabelSdlWindowresolution, globalConf.SDL_windowresolution, userConfData, "sdl", "windowresolution", ref sectionModified);
+                SaveOption(ComboBoxSdlWindowPosition, TextBoxSdlWindowPosition, LabelSdlWindowPosition, globalConf.SDL_window_position, userConfData, "sdl", "window_position", ref sectionModified);
+                SaveOption(ComboBoxSdlWindowDecorations, null, LabelSdlWindowDecorations, globalConf.SDL_window_decorations, userConfData, "sdl", "window_decorations", ref sectionModified);
+                SaveOption(ComboBoxSdlTransparency, null, LabelSdlTransparency, globalConf.SDL_transparency, userConfData, "sdl", "transparency", ref sectionModified);
+                SaveOption(ComboBoxSdlScreensaver, null, LabelSdlScreensaver, globalConf.SDL_screensaver, userConfData, "sdl", "screensaver", ref sectionModified);
+                SaveOption(ComboBoxSdlHostRate, TextBoxSdlHostRate, LabelSdlHostRate, globalConf.SDL_host_rate, userConfData, "sdl", "host_rate", ref sectionModified);
+                SaveOption(ComboBoxSdlVsync, null, LabelSdlVsync, globalConf.SDL_vsync, userConfData, "sdl", "vsync", ref sectionModified);
+                SaveOption(null, TextBoxSdlVsyncSkip, LabelSdlVsyncSkip, globalConf.SDL_vsync_skip, userConfData, "sdl", "vsync_skip", ref sectionModified);
+                SaveOption(ComboBoxSdlPresentationMode, null, LabelSdlPresentationMode, globalConf.SDL_presentation_mode, userConfData, "sdl", "presentation_mode", ref sectionModified);
+                SaveOption(ComboBoxSdlOutput, null, LabelSdlOutput, globalConf.SDL_output, userConfData, "sdl", "output", ref sectionModified);
+                SaveOption(ComboBoxSdlTextureRenderer, null, LabelSdlTextureRenderer, globalConf.SDL_texture_renderer, userConfData, "sdl", "texture_renderer", ref sectionModified);
+                SaveOption(ComboBoxSdlWaitonerror, null, LabelSdlWaitonerror, globalConf.SDL_waitonerror, userConfData, "sdl", "waitonerror", ref sectionModified);
+                SaveOptionSplitProperty(ComboBoxSdlPriorityActive, ComboBoxSdlPriorityInactive, LabelSdlPriorityActive, LabelSdlPriorityInactive, globalConf.SDL_priority, userConfData, "sdl", "priority", ref sectionModified);
+                SaveOption(ComboBoxSdlMuteWhenInactive, null, LabelSdlMuteWhenInactive, globalConf.SDL_mute_when_inactive, userConfData, "sdl", "mute_when_inactive", ref sectionModified);
+                SaveOption(ComboBoxSdlPauseWhenInactive, null, LabelSdlPauseWhenInactive, globalConf.SDL_pause_when_inactive, userConfData, "sdl", "pause_when_inactive", ref sectionModified);
+                SaveOption(null, TextBoxSdlMapperfile, LabelSdlMapperfile, globalConf.SDL_mapperfile, userConfData, "sdl", "mapperfile", ref sectionModified);
 
                 // [dosbox]
-                SaveOption(ComboBoxDosboxLanguage, null, LabelDosboxLanguage, globalConf.DOSBOX_language, userConfData, "dosbox", "language");
-                SaveOption(ComboBoxDosboxMachine, null, LabelDosboxMachine, globalConf.DOSBOX_machine, userConfData, "dosbox", "machine");
-                SaveOption(ComboBoxDosboxMemsize, null, LabelDosboxMemsize, globalConf.DOSBOX_memsize, userConfData, "dosbox", "memsize");
-                SaveOption(ComboBoxDosboxVmemsize, null, LabelDosboxVmemsize, globalConf.DOSBOX_vmemsize, userConfData, "dosbox", "vmemsize");
-                SaveOption(ComboBoxDosboxVmemDelay, TextBoxDosboxVmemDelay, LabelDosboxVmemDelay, globalConf.DOSBOX_vmem_delay, userConfData, "dosbox", "vmem_delay");
-                SaveOption(ComboBoxDosboxDosRate, TextBoxDosboxDosRate, LabelDosboxDosRate, globalConf.DOSBOX_dos_rate, userConfData, "dosbox", "dos_rate");
-                SaveOption(ComboBoxDosboxMcbFaultStrategy, null, LabelDosboxMcbFaultStrategy, globalConf.DOSBOX_mcb_fault_strategy, userConfData, "dosbox", "mcb_fault_strategy");
-                SaveOption(ComboBoxDosboxVesaModes, null, LabelDosboxVesaModes, globalConf.DOSBOX_vesa_modes, userConfData, "dosbox", "vesa_modes");
-                SaveOption(ComboBoxDosboxVga8dotFont, null, LabelDosboxVga8dotFont, globalConf.DOSBOX_vga_8dot_font, userConfData, "dosbox", "vga_8dot_font");
-                SaveOption(ComboBoxDosboxVgaRenderPerScanline, null, LabelDosboxVgaRenderPerScanline, globalConf.DOSBOX_vga_render_per_scanline, userConfData, "dosbox", "vga_render_per_scanline");
-                SaveOption(ComboBoxDosboxSpeedMods, null, LabelDosboxSpeedMods, globalConf.DOSBOX_speed_mods, userConfData, "dosbox", "speed_mods");
-                SaveOption(ComboBoxDosboxAutoexecSection, null, LabelDosboxAutoexecSection, globalConf.DOSBOX_autoexec_section, userConfData, "dosbox", "autoexec_section");
-                SaveOption(ComboBoxDosboxAutomount, null, LabelDosboxAutomount, globalConf.DOSBOX_automount, userConfData, "dosbox", "automount");
-                SaveOption(ComboBoxDosboxStartupVerbosity, null, LabelDosboxStartupVerbosity, globalConf.DOSBOX_startup_verbosity, userConfData, "dosbox", "startup_verbosity");
-                SaveOption(ComboBoxDosboxAllowWriteProtectedFiles, null, LabelDosboxAllowWriteProtectedFiles, globalConf.DOSBOX_allow_write_protected_files, userConfData, "dosbox", "allow_write_protected_files");
-                SaveOption(ComboBoxDosboxShellConfigShortcuts, null, LabelDosboxShellConfigShortcuts, globalConf.DOSBOX_shell_config_shortcuts, userConfData, "dosbox", "shell_config_shortcuts");
+                sectionModified = false;
+                SaveOption(ComboBoxDosboxLanguage, null, LabelDosboxLanguage, globalConf.DOSBOX_language, userConfData, "dosbox", "language", ref sectionModified);
+                SaveOption(ComboBoxDosboxMachine, null, LabelDosboxMachine, globalConf.DOSBOX_machine, userConfData, "dosbox", "machine", ref sectionModified);
+                SaveOption(ComboBoxDosboxMemsize, null, LabelDosboxMemsize, globalConf.DOSBOX_memsize, userConfData, "dosbox", "memsize", ref sectionModified);
+                SaveOption(ComboBoxDosboxVmemsize, null, LabelDosboxVmemsize, globalConf.DOSBOX_vmemsize, userConfData, "dosbox", "vmemsize", ref sectionModified);
+                SaveOption(ComboBoxDosboxVmemDelay, TextBoxDosboxVmemDelay, LabelDosboxVmemDelay, globalConf.DOSBOX_vmem_delay, userConfData, "dosbox", "vmem_delay", ref sectionModified);
+                SaveOption(ComboBoxDosboxDosRate, TextBoxDosboxDosRate, LabelDosboxDosRate, globalConf.DOSBOX_dos_rate, userConfData, "dosbox", "dos_rate", ref sectionModified);
+                SaveOption(ComboBoxDosboxMcbFaultStrategy, null, LabelDosboxMcbFaultStrategy, globalConf.DOSBOX_mcb_fault_strategy, userConfData, "dosbox", "mcb_fault_strategy", ref sectionModified);
+                SaveOption(ComboBoxDosboxVesaModes, null, LabelDosboxVesaModes, globalConf.DOSBOX_vesa_modes, userConfData, "dosbox", "vesa_modes", ref sectionModified);
+                SaveOption(ComboBoxDosboxVga8dotFont, null, LabelDosboxVga8dotFont, globalConf.DOSBOX_vga_8dot_font, userConfData, "dosbox", "vga_8dot_font", ref sectionModified);
+                SaveOption(ComboBoxDosboxVgaRenderPerScanline, null, LabelDosboxVgaRenderPerScanline, globalConf.DOSBOX_vga_render_per_scanline, userConfData, "dosbox", "vga_render_per_scanline", ref sectionModified);
+                SaveOption(ComboBoxDosboxSpeedMods, null, LabelDosboxSpeedMods, globalConf.DOSBOX_speed_mods, userConfData, "dosbox", "speed_mods", ref sectionModified);
+                SaveOption(ComboBoxDosboxAutoexecSection, null, LabelDosboxAutoexecSection, globalConf.DOSBOX_autoexec_section, userConfData, "dosbox", "autoexec_section", ref sectionModified);
+                SaveOption(ComboBoxDosboxAutomount, null, LabelDosboxAutomount, globalConf.DOSBOX_automount, userConfData, "dosbox", "automount", ref sectionModified);
+                SaveOption(ComboBoxDosboxStartupVerbosity, null, LabelDosboxStartupVerbosity, globalConf.DOSBOX_startup_verbosity, userConfData, "dosbox", "startup_verbosity", ref sectionModified);
+                SaveOption(ComboBoxDosboxAllowWriteProtectedFiles, null, LabelDosboxAllowWriteProtectedFiles, globalConf.DOSBOX_allow_write_protected_files, userConfData, "dosbox", "allow_write_protected_files", ref sectionModified);
+                SaveOption(ComboBoxDosboxShellConfigShortcuts, null, LabelDosboxShellConfigShortcuts, globalConf.DOSBOX_shell_config_shortcuts, userConfData, "dosbox", "shell_config_shortcuts", ref sectionModified);
 
                 // [render]
-                SaveOption(ComboBoxRenderAspect, null, LabelRenderAspect, globalConf.RENDER_aspect, userConfData, "render", "aspect");
-                SaveOption(ComboBoxRenderIntegerScaling, null, LabelRenderIntegerScaling, globalConf.RENDER_integer_scaling, userConfData, "render", "integer_scaling");
-                SaveOption(ComboBoxRenderViewport, TextBoxRenderViewport, LabelRenderViewport, globalConf.RENDER_viewport, userConfData, "render", "viewport");
-                SaveOption(ComboBoxRenderMonochromePalette, null, LabelRenderMonochromePalette, globalConf.RENDER_monochrome_palette, userConfData, "render", "monochrome_palette");
-                SaveOption(ComboBoxRenderCgaColors, TextBoxRenderCgaColors, LabelRenderCgaColors, globalConf.RENDER_cga_colors, userConfData, "render", "cga_colors");
-                SaveOption(ComboBoxRenderGlshader, TextBoxRenderGlshader, LabelRenderGlshader, globalConf.RENDER_glshader, userConfData, "render", "glshader");
+                sectionModified = false;
+                SaveOption(ComboBoxRenderAspect, null, LabelRenderAspect, globalConf.RENDER_aspect, userConfData, "render", "aspect", ref sectionModified);
+                SaveOption(ComboBoxRenderIntegerScaling, null, LabelRenderIntegerScaling, globalConf.RENDER_integer_scaling, userConfData, "render", "integer_scaling", ref sectionModified);
+                SaveOption(ComboBoxRenderViewport, TextBoxRenderViewport, LabelRenderViewport, globalConf.RENDER_viewport, userConfData, "render", "viewport", ref sectionModified);
+                SaveOption(ComboBoxRenderMonochromePalette, null, LabelRenderMonochromePalette, globalConf.RENDER_monochrome_palette, userConfData, "render", "monochrome_palette", ref sectionModified);
+                SaveOption(ComboBoxRenderCgaColors, TextBoxRenderCgaColors, LabelRenderCgaColors, globalConf.RENDER_cga_colors, userConfData, "render", "cga_colors", ref sectionModified);
+                SaveOption(ComboBoxRenderGlshader, TextBoxRenderGlshader, LabelRenderGlshader, globalConf.RENDER_glshader, userConfData, "render", "glshader", ref sectionModified);
 
                 // [composite]
-                SaveOption(ComboBoxCompositeComposite, null, LabelCompositeComposite, globalConf.COMPOSITE_composite, userConfData, "composite", "composite");
-                SaveOption(ComboBoxCompositeEra, null, LabelCompositeEra, globalConf.COMPOSITE_era, userConfData, "composite", "era");
-                SaveOption(null, TextBoxCompositeHue, LabelCompositeHue, globalConf.COMPOSITE_hue, userConfData, "composite", "hue");
-                SaveOption(null, TextBoxCompositeSaturation, LabelCompositeSaturation, globalConf.COMPOSITE_saturation, userConfData, "composite", "saturation");
-                SaveOption(null, TextBoxCompositeContrast, LabelCompositeContrast, globalConf.COMPOSITE_contrast, userConfData, "composite", "contrast");
-                SaveOption(null, TextBoxCompositeBrightness, LabelCompositeBrightness, globalConf.COMPOSITE_brightness, userConfData, "composite", "brightness");
-                SaveOption(null, TextBoxCompositeConvergence, LabelCompositeConvergence, globalConf.COMPOSITE_convergence, userConfData, "composite", "convergence");
+                sectionModified = false;
+                SaveOption(ComboBoxCompositeComposite, null, LabelCompositeComposite, globalConf.COMPOSITE_composite, userConfData, "composite", "composite", ref sectionModified);
+                SaveOption(ComboBoxCompositeEra, null, LabelCompositeEra, globalConf.COMPOSITE_era, userConfData, "composite", "era", ref sectionModified);
+                SaveOption(null, TextBoxCompositeHue, LabelCompositeHue, globalConf.COMPOSITE_hue, userConfData, "composite", "hue", ref sectionModified);
+                SaveOption(null, TextBoxCompositeSaturation, LabelCompositeSaturation, globalConf.COMPOSITE_saturation, userConfData, "composite", "saturation", ref sectionModified);
+                SaveOption(null, TextBoxCompositeContrast, LabelCompositeContrast, globalConf.COMPOSITE_contrast, userConfData, "composite", "contrast", ref sectionModified);
+                SaveOption(null, TextBoxCompositeBrightness, LabelCompositeBrightness, globalConf.COMPOSITE_brightness, userConfData, "composite", "brightness", ref sectionModified);
+                SaveOption(null, TextBoxCompositeConvergence, LabelCompositeConvergence, globalConf.COMPOSITE_convergence, userConfData, "composite", "convergence", ref sectionModified);
 
                 // [cpu]
-                SaveOption(ComboBoxCpuCore, null, LabelCpuCore, globalConf.CPU_core, userConfData, "cpu", "core");
-                SaveOption(ComboBoxCpuCputype, null, LabelCpuCputype, globalConf.CPU_cputype, userConfData, "cpu", "cputype");
-                SaveOption(ComboBoxCpuCycles, TextBoxCpuCycles, LabelCpuCycles, globalConf.CPU_cycles, userConfData, "cpu", "cycles");
-                SaveOption(null, TextBoxCpuCycleup, LabelCpuCycleup, globalConf.CPU_cycleup, userConfData, "cpu", "cycleup");
-                SaveOption(null, TextBoxCpuCycledown, LabelCpuCycledown, globalConf.CPU_cycledown, userConfData, "cpu", "cycledown");
+                sectionModified = false;
+                SaveOption(ComboBoxCpuCore, null, LabelCpuCore, globalConf.CPU_core, userConfData, "cpu", "core", ref sectionModified);
+                SaveOption(ComboBoxCpuCputype, null, LabelCpuCputype, globalConf.CPU_cputype, userConfData, "cpu", "cputype", ref sectionModified);
+                SaveOption(ComboBoxCpuCpuCycles, TextBoxCpuCpuCycles, LabelCpuCpuCycles, globalConf.CPU_cpu_cycles, userConfData, "cpu", "cpu_cycles", ref sectionModified);
+                SaveOption(ComboBoxCpuCpuCyclesProtected, TextBoxCpuCpuCyclesProtected, LabelCpuCpuCyclesProtected, globalConf.CPU_cpu_cycles_protected, userConfData, "cpu", "cpu_cycles_protected", ref sectionModified);
+                SaveOption(ComboBoxCpuCpuThrottle, null, LabelCpuCpuThrottle, globalConf.CPU_cpu_throttle, userConfData, "cpu", "cpu_throttle", ref sectionModified);
+                SaveOption(null, TextBoxCpuCycleup, LabelCpuCycleup, globalConf.CPU_cycleup, userConfData, "cpu", "cycleup", ref sectionModified);
+                SaveOption(null, TextBoxCpuCycledown, LabelCpuCycledown, globalConf.CPU_cycledown, userConfData, "cpu", "cycledown", ref sectionModified);
 
                 // [Voodoo]
-                SaveOption(ComboBoxVoodooVoodoo, null, LabelVoodooVoodoo, globalConf.VOODOO_voodoo, userConfData, "voodoo", "voodoo");
-                SaveOption(ComboBoxVoodooVoodooMemsize, null, LabelVoodooVoodooMemsize, globalConf.VOODOO_voodoo_memsize, userConfData, "voodoo", "voodoo_memsize");
-                SaveOption(ComboBoxVoodooVoodooMultithreading, null, LabelVoodooVoodooMultithreading, globalConf.VOODOO_voodoo_multithreading, userConfData, "voodoo", "voodoo_multithreading");
-                SaveOption(ComboBoxVoodooVoodooBilinearFiltering, null, LabelVoodooVoodooBilinearFiltering, globalConf.VOODOO_voodoo_bilinear_filtering, userConfData, "voodoo", "voodoo_bilinear_filtering");
+                sectionModified = false;
+                SaveOption(ComboBoxVoodooVoodoo, null, LabelVoodooVoodoo, globalConf.VOODOO_voodoo, userConfData, "voodoo", "voodoo", ref sectionModified);
+                SaveOption(ComboBoxVoodooVoodooMemsize, null, LabelVoodooVoodooMemsize, globalConf.VOODOO_voodoo_memsize, userConfData, "voodoo", "voodoo_memsize", ref sectionModified);
+                SaveOption(ComboBoxVoodooVoodooThreads, TextBoxVoodooVoodooThreads, LabelVoodooVoodooThreads, globalConf.VOODOO_voodoo_threads, userConfData, "voodoo", "voodoo_threads", ref sectionModified);
+                SaveOption(ComboBoxVoodooVoodooBilinearFiltering, null, LabelVoodooVoodooBilinearFiltering, globalConf.VOODOO_voodoo_bilinear_filtering, userConfData, "voodoo", "voodoo_bilinear_filtering", ref sectionModified);
 
                 // [capture]
-                SaveOption(null, TextBoxCaptureCaptureDir, LabelCaptureCaptureDir, globalConf.CAPTURE_capture_dir, userConfData, "capture", "capture_dir");
-                SaveOption(ComboBoxCaptureDefaultImageCaptureFormats, null, LabelCaptureDefaultImageCaptureFormats, globalConf.CAPTURE_default_image_capture_formats, userConfData, "capture", "default_image_capture_formats");
+                sectionModified = false;
+                SaveOption(null, TextBoxCaptureCaptureDir, LabelCaptureCaptureDir, globalConf.CAPTURE_capture_dir, userConfData, "capture", "capture_dir", ref sectionModified);
+                SaveOption(ComboBoxCaptureDefaultImageCaptureFormats, null, LabelCaptureDefaultImageCaptureFormats, globalConf.CAPTURE_default_image_capture_formats, userConfData, "capture", "default_image_capture_formats", ref sectionModified);
 
                 // [mouse]
-                SaveOption(ComboBoxMouseMouseCapture, null, LabelMouseMouseCapture, globalConf.MOUSE_mouse_capture, userConfData, "mouse", "mouse_capture");
-                SaveOption(ComboBoxMouseMouseMiddleRelease, null, LabelMouseMouseMiddleRelease, globalConf.MOUSE_mouse_middle_release, userConfData, "mouse", "mouse_middle_release");
-                SaveOption(ComboBoxMouseMouseMultiDisplayAware, null, LabelMouseMouseMultiDisplayAware, globalConf.MOUSE_mouse_multi_display_aware, userConfData, "mouse", "mouse_multi_display_aware");
-                SaveOption(ComboBoxMouseMouseRawInput, null, LabelMouseMouseRawInput, globalConf.MOUSE_mouse_raw_input, userConfData, "mouse", "mouse_raw_input");
-                SaveOption(null, TextBoxMouseMouseSensitivity, LabelMouseMouseSensitivity, globalConf.MOUSE_mouse_sensitivity, userConfData, "mouse", "mouse_sensitivity");
-                SaveOption(ComboBoxMouseDosMouseDriver, null, LabelMouseDosMouseDriver, globalConf.MOUSE_dos_mouse_driver, userConfData, "mouse", "dos_mouse_driver");
-                SaveOption(ComboBoxMouseDosMouseImmediate, null, LabelMouseDosMouseImmediate, globalConf.MOUSE_dos_mouse_immediate, userConfData, "mouse", "dos_mouse_immediate");
-                SaveOption(ComboBoxMousePs2MouseModel, null, LabelMousePs2MouseModel, globalConf.MOUSE_ps2_mouse_model, userConfData, "mouse", "ps2_mouse_model");
-                SaveOption(ComboBoxMouseComMouseModel, null, LabelMouseComMouseModel, globalConf.MOUSE_com_mouse_model, userConfData, "mouse", "com_mouse_model");
-                SaveOption(ComboBoxMouseVmwareMouse, null, LabelMouseVmwareMouse, globalConf.MOUSE_vmware_mouse, userConfData, "mouse", "vmware_mouse");
-                SaveOption(ComboBoxMouseVirtualboxMouse, null, LabelMouseVirtualboxMouse, globalConf.MOUSE_virtualbox_mouse, userConfData, "mouse", "virtualbox_mouse");
+                sectionModified = false;
+                SaveOption(ComboBoxMouseMouseCapture, null, LabelMouseMouseCapture, globalConf.MOUSE_mouse_capture, userConfData, "mouse", "mouse_capture", ref sectionModified);
+                SaveOption(ComboBoxMouseMouseMiddleRelease, null, LabelMouseMouseMiddleRelease, globalConf.MOUSE_mouse_middle_release, userConfData, "mouse", "mouse_middle_release", ref sectionModified);
+                SaveOption(ComboBoxMouseMouseMultiDisplayAware, null, LabelMouseMouseMultiDisplayAware, globalConf.MOUSE_mouse_multi_display_aware, userConfData, "mouse", "mouse_multi_display_aware", ref sectionModified);
+                SaveOption(ComboBoxMouseMouseRawInput, null, LabelMouseMouseRawInput, globalConf.MOUSE_mouse_raw_input, userConfData, "mouse", "mouse_raw_input", ref sectionModified);
+                SaveOption(null, TextBoxMouseMouseSensitivity, LabelMouseMouseSensitivity, globalConf.MOUSE_mouse_sensitivity, userConfData, "mouse", "mouse_sensitivity", ref sectionModified);
+                SaveOption(ComboBoxMouseDosMouseDriver, null, LabelMouseDosMouseDriver, globalConf.MOUSE_dos_mouse_driver, userConfData, "mouse", "dos_mouse_driver", ref sectionModified);
+                SaveOption(ComboBoxMouseDosMouseImmediate, null, LabelMouseDosMouseImmediate, globalConf.MOUSE_dos_mouse_immediate, userConfData, "mouse", "dos_mouse_immediate", ref sectionModified);
+                SaveOption(ComboBoxMousePs2MouseModel, null, LabelMousePs2MouseModel, globalConf.MOUSE_ps2_mouse_model, userConfData, "mouse", "ps2_mouse_model", ref sectionModified);
+                SaveOption(ComboBoxMouseComMouseModel, null, LabelMouseComMouseModel, globalConf.MOUSE_com_mouse_model, userConfData, "mouse", "com_mouse_model", ref sectionModified);
+                SaveOption(ComboBoxMouseVmwareMouse, null, LabelMouseVmwareMouse, globalConf.MOUSE_vmware_mouse, userConfData, "mouse", "vmware_mouse", ref sectionModified);
+                SaveOption(ComboBoxMouseVirtualboxMouse, null, LabelMouseVirtualboxMouse, globalConf.MOUSE_virtualbox_mouse, userConfData, "mouse", "virtualbox_mouse", ref sectionModified);
 
                 // [mixer]
-                SaveOption(ComboBoxMixerNosound, null, LabelMixerNosound, globalConf.MIXER_nosound, userConfData, "mixer", "nosound");
-                SaveOption(ComboBoxMixerRate, null, LabelMixerRate, globalConf.MIXER_rate, userConfData, "mixer", "rate");
-                SaveOption(ComboBoxMixerBlocksize, null, LabelMixerBlocksize, globalConf.MIXER_blocksize, userConfData, "mixer", "blocksize");
-                SaveOption(null, TextBoxMixerPrebuffer, LabelMixerPrebuffer, globalConf.MIXER_prebuffer, userConfData, "mixer", "prebuffer");
-                SaveOption(ComboBoxMixerNegotiate, null, LabelMixerNegotiate, globalConf.MIXER_negotiate, userConfData, "mixer", "negotiate");
-                SaveOption(ComboBoxMixerCompressor, null, LabelMixerCompressor, globalConf.MIXER_compressor, userConfData, "mixer", "compressor");
-                SaveOption(ComboBoxMixerCrossfeed, null, LabelMixerCrossfeed, globalConf.MIXER_crossfeed, userConfData, "mixer", "crossfeed");
-                SaveOption(ComboBoxMixerReverb, null, LabelMixerReverb, globalConf.MIXER_reverb, userConfData, "mixer", "reverb");
-                SaveOption(ComboBoxMixerChorus, null, LabelMixerChorus, globalConf.MIXER_chorus, userConfData, "mixer", "chorus");
+                sectionModified = false;
+                SaveOption(ComboBoxMixerNosound, null, LabelMixerNosound, globalConf.MIXER_nosound, userConfData, "mixer", "nosound", ref sectionModified);
+                SaveOption(ComboBoxMixerRate, null, LabelMixerRate, globalConf.MIXER_rate, userConfData, "mixer", "rate", ref sectionModified);
+                SaveOption(ComboBoxMixerBlocksize, null, LabelMixerBlocksize, globalConf.MIXER_blocksize, userConfData, "mixer", "blocksize", ref sectionModified);
+                SaveOption(null, TextBoxMixerPrebuffer, LabelMixerPrebuffer, globalConf.MIXER_prebuffer, userConfData, "mixer", "prebuffer", ref sectionModified);
+                SaveOption(ComboBoxMixerNegotiate, null, LabelMixerNegotiate, globalConf.MIXER_negotiate, userConfData, "mixer", "negotiate", ref sectionModified);
+                SaveOption(ComboBoxMixerCompressor, null, LabelMixerCompressor, globalConf.MIXER_compressor, userConfData, "mixer", "compressor", ref sectionModified);
+                SaveOption(ComboBoxMixerCrossfeed, null, LabelMixerCrossfeed, globalConf.MIXER_crossfeed, userConfData, "mixer", "crossfeed", ref sectionModified);
+                SaveOption(ComboBoxMixerReverb, null, LabelMixerReverb, globalConf.MIXER_reverb, userConfData, "mixer", "reverb", ref sectionModified);
+                SaveOption(ComboBoxMixerChorus, null, LabelMixerChorus, globalConf.MIXER_chorus, userConfData, "mixer", "chorus", ref sectionModified);
 
                 // [midi]
-                SaveOption(ComboBoxMidiMididevice, null, LabelMidiMididevice, globalConf.MIDI_mididevice, userConfData, "midi", "mididevice");
-                SaveOption(null, TextBoxMidiMidiconfig, LabelMidiMidiconfig, globalConf.MIDI_midiconfig, userConfData, "midi", "midiconfig");
-                SaveOption(ComboBoxMidiMpu401, null, LabelMidiMpu401, globalConf.MIDI_mpu401, userConfData, "midi", "mpu401");
-                SaveOption(ComboBoxMidiRawMidiOutput, null, LabelMidiRawMidiOutput, globalConf.MIDI_raw_midi_output, userConfData, "midi", "raw_midi_output");
+                sectionModified = false;
+                SaveOption(ComboBoxMidiMididevice, null, LabelMidiMididevice, globalConf.MIDI_mididevice, userConfData, "midi", "mididevice", ref sectionModified);
+                SaveOption(null, TextBoxMidiMidiconfig, LabelMidiMidiconfig, globalConf.MIDI_midiconfig, userConfData, "midi", "midiconfig", ref sectionModified);
+                SaveOption(ComboBoxMidiMpu401, null, LabelMidiMpu401, globalConf.MIDI_mpu401, userConfData, "midi", "mpu401", ref sectionModified);
+                SaveOption(ComboBoxMidiRawMidiOutput, null, LabelMidiRawMidiOutput, globalConf.MIDI_raw_midi_output, userConfData, "midi", "raw_midi_output", ref sectionModified);
 
                 // [fluidsynth]
-                SaveOption(null, TextBoxFluidsynthSoundfont, LabelFluidsynthSoundfont, globalConf.FLUIDSYNTH_soundfont, userConfData, "fluidsynth", "soundfont");
-                SaveOption(ComboBoxFluidsynthFsynthChorus, TextBoxFluidsynthFsynthChorus, LabelFluidsynthFsynthChorus, globalConf.FLUIDSYNTH_fsynth_chorus, userConfData, "fluidsynth", "fsynth_chorus");
-                SaveOption(ComboBoxFluidsynthFsynthReverb, TextBoxFluidsynthFsynthReverb, LabelFluidsynthFsynthReverb, globalConf.FLUIDSYNTH_fsynth_reverb, userConfData, "fluidsynth", "fsynth_reverb");
-                SaveOption(ComboBoxFluidsynthFsynthFilter, TextBoxFluidsynthFsynthFilter, LabelFluidsynthFsynthFilter, globalConf.FLUIDSYNTH_fsynth_filter, userConfData, "fluidsynth", "fsynth_filter");
+                sectionModified = false;
+                SaveOption(null, TextBoxFluidsynthSoundfont, LabelFluidsynthSoundfont, globalConf.FLUIDSYNTH_soundfont, userConfData, "fluidsynth", "soundfont", ref sectionModified);
+                SaveOption(ComboBoxFluidsynthFsynthChorus, TextBoxFluidsynthFsynthChorus, LabelFluidsynthFsynthChorus, globalConf.FLUIDSYNTH_fsynth_chorus, userConfData, "fluidsynth", "fsynth_chorus", ref sectionModified);
+                SaveOption(ComboBoxFluidsynthFsynthReverb, TextBoxFluidsynthFsynthReverb, LabelFluidsynthFsynthReverb, globalConf.FLUIDSYNTH_fsynth_reverb, userConfData, "fluidsynth", "fsynth_reverb", ref sectionModified);
+                SaveOption(ComboBoxFluidsynthFsynthFilter, TextBoxFluidsynthFsynthFilter, LabelFluidsynthFsynthFilter, globalConf.FLUIDSYNTH_fsynth_filter, userConfData, "fluidsynth", "fsynth_filter", ref sectionModified);
 
                 // [mt32]
-                SaveOption(ComboBoxMt32Model, null, LabelMt32Model, globalConf.MT32_model, userConfData, "mt32", "model");
-                SaveOption(null, TextBoxMt32Romdir, LabelMt32Romdir, globalConf.MT32_romdir, userConfData, "mt32", "romdir");
-                SaveOption(ComboBoxMt32Mt32Filter, TextBoxMt32Mt32Filter, LabelMt32Mt32Filter, globalConf.MT32_mt32_filter, userConfData, "mt32", "mt32_filter");
+                sectionModified = false;
+                SaveOption(ComboBoxMt32Model, null, LabelMt32Model, globalConf.MT32_model, userConfData, "mt32", "model", ref sectionModified);
+                SaveOption(null, TextBoxMt32Romdir, LabelMt32Romdir, globalConf.MT32_romdir, userConfData, "mt32", "romdir", ref sectionModified);
+                SaveOption(ComboBoxMt32Mt32Filter, TextBoxMt32Mt32Filter, LabelMt32Mt32Filter, globalConf.MT32_mt32_filter, userConfData, "mt32", "mt32_filter", ref sectionModified);
 
                 // [sblaster]
-                SaveOption(ComboBoxSblasterSbtype, null, LabelSblasterSbtype, globalConf.SBLASTER_sbtype, userConfData, "sblaster", "sbtype");
-                SaveOption(ComboBoxSblasterSbbase, null, LabelSblasterSbbase, globalConf.SBLASTER_sbbase, userConfData, "sblaster", "sbbase");
-                SaveOption(ComboBoxSblasterIrq, null, LabelSblasterIrq, globalConf.SBLASTER_irq, userConfData, "sblaster", "irq");
-                SaveOption(ComboBoxSblasterDma, null, LabelSblasterDma, globalConf.SBLASTER_dma, userConfData, "sblaster", "dma");
-                SaveOption(ComboBoxSblasterHdma, null, LabelSblasterHdma, globalConf.SBLASTER_hdma, userConfData, "sblaster", "hdma");
-                SaveOption(ComboBoxSblasterSbmixer, null, LabelSblasterSbmixer, globalConf.SBLASTER_sbmixer, userConfData, "sblaster", "sbmixer");
-                SaveOption(null, TextBoxSblasterSbwarmup, LabelSblasterSbwarmup, globalConf.SBLASTER_sbwarmup, userConfData, "sblaster", "sbwarmup");
-                SaveOption(ComboBoxSblasterOplmode, null, LabelSblasterOplmode, globalConf.SBLASTER_oplmode, userConfData, "sblaster", "oplmode");
-                SaveOption(ComboBoxSblasterOplFadeout, TextBoxSblasterOplFadeout, LabelSblasterOplFadeout, globalConf.SBLASTER_opl_fadeout, userConfData, "sblaster", "opl_fadeout");
-                SaveOption(ComboBoxSblasterSbFilter, TextBoxSblasterSbFilter, LabelSblasterSbFilter, globalConf.SBLASTER_sb_filter, userConfData, "sblaster", "sb_filter");
-                SaveOption(ComboBoxSblasterSbFilterAlwaysOn, null, LabelSblasterSbFilterAlwaysOn, globalConf.SBLASTER_sb_filter_always_on, userConfData, "sblaster", "sb_filter_always_on");
-                SaveOption(ComboBoxSblasterOplFilter, TextBoxSblasterOplFilter, LabelSblasterOplFilter, globalConf.SBLASTER_opl_filter, userConfData, "sblaster", "opl_filter");
-                SaveOption(ComboBoxSblasterCmsFilter, TextBoxSblasterCmsFilter, LabelSblasterCmsFilter, globalConf.SBLASTER_cms_filter, userConfData, "sblaster", "cms_filter");
+                sectionModified = false;
+                SaveOption(ComboBoxSblasterSbtype, null, LabelSblasterSbtype, globalConf.SBLASTER_sbtype, userConfData, "sblaster", "sbtype", ref sectionModified);
+                SaveOption(ComboBoxSblasterSbbase, null, LabelSblasterSbbase, globalConf.SBLASTER_sbbase, userConfData, "sblaster", "sbbase", ref sectionModified);
+                SaveOption(ComboBoxSblasterIrq, null, LabelSblasterIrq, globalConf.SBLASTER_irq, userConfData, "sblaster", "irq", ref sectionModified);
+                SaveOption(ComboBoxSblasterDma, null, LabelSblasterDma, globalConf.SBLASTER_dma, userConfData, "sblaster", "dma", ref sectionModified);
+                SaveOption(ComboBoxSblasterHdma, null, LabelSblasterHdma, globalConf.SBLASTER_hdma, userConfData, "sblaster", "hdma", ref sectionModified);
+                SaveOption(ComboBoxSblasterSbmixer, null, LabelSblasterSbmixer, globalConf.SBLASTER_sbmixer, userConfData, "sblaster", "sbmixer", ref sectionModified);
+                SaveOption(null, TextBoxSblasterSbwarmup, LabelSblasterSbwarmup, globalConf.SBLASTER_sbwarmup, userConfData, "sblaster", "sbwarmup", ref sectionModified);
+                SaveOption(ComboBoxSblasterOplmode, null, LabelSblasterOplmode, globalConf.SBLASTER_oplmode, userConfData, "sblaster", "oplmode", ref sectionModified);
+                SaveOption(ComboBoxSblasterOplFadeout, TextBoxSblasterOplFadeout, LabelSblasterOplFadeout, globalConf.SBLASTER_opl_fadeout, userConfData, "sblaster", "opl_fadeout", ref sectionModified);
+                SaveOption(ComboBoxSblasterSbFilter, TextBoxSblasterSbFilter, LabelSblasterSbFilter, globalConf.SBLASTER_sb_filter, userConfData, "sblaster", "sb_filter", ref sectionModified);
+                SaveOption(ComboBoxSblasterSbFilterAlwaysOn, null, LabelSblasterSbFilterAlwaysOn, globalConf.SBLASTER_sb_filter_always_on, userConfData, "sblaster", "sb_filter_always_on", ref sectionModified);
+                SaveOption(ComboBoxSblasterOplFilter, TextBoxSblasterOplFilter, LabelSblasterOplFilter, globalConf.SBLASTER_opl_filter, userConfData, "sblaster", "opl_filter", ref sectionModified);
+                SaveOption(ComboBoxSblasterCmsFilter, TextBoxSblasterCmsFilter, LabelSblasterCmsFilter, globalConf.SBLASTER_cms_filter, userConfData, "sblaster", "cms_filter", ref sectionModified);
 
                 // [gus]
-                SaveOption(ComboBoxGusGus, null, LabelGusGus, globalConf.GUS_gus, userConfData, "gus", "gus");
-                SaveOption(ComboBoxGusGusbase, null, LabelGusGusbase, globalConf.GUS_gusbase, userConfData, "gus", "gusbase");
-                SaveOption(ComboBoxGusGusirq, null, LabelGusGusirq, globalConf.GUS_gusirq, userConfData, "gus", "gusirq");
-                SaveOption(ComboBoxGusGusdma, null, LabelGusGusdma, globalConf.GUS_gusdma, userConfData, "gus", "gusdma");
-                SaveOption(null, TextBoxGusUltradir, LabelGusUltradir, globalConf.GUS_ultradir, userConfData, "gus", "ultradir");
-                SaveOption(ComboBoxGusGusFilter, TextBoxGusGusFilter, LabelGusGusFilter, globalConf.GUS_gus_filter, userConfData, "gus", "gus_filter");
+                sectionModified = false;
+                SaveOption(ComboBoxGusGus, null, LabelGusGus, globalConf.GUS_gus, userConfData, "gus", "gus", ref sectionModified);
+                SaveOption(ComboBoxGusGusbase, null, LabelGusGusbase, globalConf.GUS_gusbase, userConfData, "gus", "gusbase", ref sectionModified);
+                SaveOption(ComboBoxGusGusirq, null, LabelGusGusirq, globalConf.GUS_gusirq, userConfData, "gus", "gusirq", ref sectionModified);
+                SaveOption(ComboBoxGusGusdma, null, LabelGusGusdma, globalConf.GUS_gusdma, userConfData, "gus", "gusdma", ref sectionModified);
+                SaveOption(null, TextBoxGusUltradir, LabelGusUltradir, globalConf.GUS_ultradir, userConfData, "gus", "ultradir", ref sectionModified);
+                SaveOption(ComboBoxGusGusFilter, TextBoxGusGusFilter, LabelGusGusFilter, globalConf.GUS_gus_filter, userConfData, "gus", "gus_filter", ref sectionModified);
 
                 // [imfc]
-                SaveOption(ComboBoxImfcImfc, null, LabelImfcImfc, globalConf.IMFC_imfc, userConfData, "imfc", "imfc");
-                SaveOption(ComboBoxImfcImfcBase, null, LabelImfcImfcBase, globalConf.IMFC_imfc_base, userConfData, "imfc", "imfc_base");
-                SaveOption(ComboBoxImfcImfcIrq, null, LabelImfcImfcIrq, globalConf.IMFC_imfc_irq, userConfData, "imfc", "imfc_irq");
-                SaveOption(ComboBoxImfcImfcFilter, TextBoxImfcImfcFilter, LabelImfcImfcFilter, globalConf.IMFC_imfc_filter, userConfData, "imfc", "imfc_filter");
+                sectionModified = false;
+                SaveOption(ComboBoxImfcImfc, null, LabelImfcImfc, globalConf.IMFC_imfc, userConfData, "imfc", "imfc", ref sectionModified);
+                SaveOption(ComboBoxImfcImfcBase, null, LabelImfcImfcBase, globalConf.IMFC_imfc_base, userConfData, "imfc", "imfc_base", ref sectionModified);
+                SaveOption(ComboBoxImfcImfcIrq, null, LabelImfcImfcIrq, globalConf.IMFC_imfc_irq, userConfData, "imfc", "imfc_irq", ref sectionModified);
+                SaveOption(ComboBoxImfcImfcFilter, TextBoxImfcImfcFilter, LabelImfcImfcFilter, globalConf.IMFC_imfc_filter, userConfData, "imfc", "imfc_filter", ref sectionModified);
 
                 // [innovation]
-                SaveOption(ComboBoxInnovationSidmodel, null, LabelInnovationSidmodel, globalConf.INNOVATION_sidmodel, userConfData, "innovation", "sidmodel");
-                SaveOption(ComboBoxInnovationSidclock, null, LabelInnovationSidclock, globalConf.INNOVATION_sidclock, userConfData, "innovation", "sidclock");
-                SaveOption(ComboBoxInnovationSidport, null, LabelInnovationSidport, globalConf.INNOVATION_sidport, userConfData, "innovation", "sidport");
-                SaveOption(null, TextBoxInnovation6581filter, LabelInnovation6581filter, globalConf.INNOVATION_6581filter, userConfData, "innovation", "6581filter");
-                SaveOption(null, TextBoxInnovation8580filter, LabelInnovation8580filter, globalConf.INNOVATION_8580filter, userConfData, "innovation", "8580filter");
-                SaveOption(ComboBoxInnovationInnovationFilter, TextBoxInnovationInnovationFilter, LabelInnovationInnovationFilter, globalConf.INNOVATION_innovation_filter, userConfData, "innovation", "innovation_filter");
+                sectionModified = false;
+                SaveOption(ComboBoxInnovationSidmodel, null, LabelInnovationSidmodel, globalConf.INNOVATION_sidmodel, userConfData, "innovation", "sidmodel", ref sectionModified);
+                SaveOption(ComboBoxInnovationSidclock, null, LabelInnovationSidclock, globalConf.INNOVATION_sidclock, userConfData, "innovation", "sidclock", ref sectionModified);
+                SaveOption(ComboBoxInnovationSidport, null, LabelInnovationSidport, globalConf.INNOVATION_sidport, userConfData, "innovation", "sidport", ref sectionModified);
+                SaveOption(null, TextBoxInnovation6581filter, LabelInnovation6581filter, globalConf.INNOVATION_6581filter, userConfData, "innovation", "6581filter", ref sectionModified);
+                SaveOption(null, TextBoxInnovation8580filter, LabelInnovation8580filter, globalConf.INNOVATION_8580filter, userConfData, "innovation", "8580filter", ref sectionModified);
+                SaveOption(ComboBoxInnovationInnovationFilter, TextBoxInnovationInnovationFilter, LabelInnovationInnovationFilter, globalConf.INNOVATION_innovation_filter, userConfData, "innovation", "innovation_filter", ref sectionModified);
 
                 // [speaker]
-                SaveOption(ComboBoxSpeakerPcspeaker, null, LabelSpeakerPcspeaker, globalConf.SPEAKER_pcspeaker, userConfData, "speaker", "pcspeaker");
-                SaveOption(ComboBoxSpeakerPcspeakerFilter, TextBoxSpeakerPcspeakerFilter, LabelSpeakerPcspeakerFilter, globalConf.SPEAKER_pcspeaker_filter, userConfData, "speaker", "pcspeaker_filter");
-                SaveOption(ComboBoxSpeakerTandy, null, LabelSpeakerTandy, globalConf.SPEAKER_tandy, userConfData, "speaker", "tandy");
-                SaveOption(ComboBoxSpeakerTandyFadeout, TextBoxSpeakerTandyFadeout, LabelSpeakerTandyFadeout, globalConf.SPEAKER_tandy_fadeout, userConfData, "speaker", "tandy_fadeout");
-                SaveOption(ComboBoxSpeakerTandyFilter, TextBoxSpeakerTandyFilter, LabelSpeakerTandyFilter, globalConf.SPEAKER_tandy_filter, userConfData, "speaker", "tandy_filter");
-                SaveOption(ComboBoxSpeakerTandyDacFilter, TextBoxSpeakerTandyDacFilter, LabelSpeakerTandyDacFilter, globalConf.SPEAKER_tandy_dac_filter, userConfData, "speaker", "tandy_dac_filter");
-                SaveOption(ComboBoxSpeakerLptDac, null, LabelSpeakerLptDac, globalConf.SPEAKER_lpt_dac, userConfData, "speaker", "lpt_dac");
-                SaveOption(ComboBoxSpeakerLptDacFilter, TextBoxSpeakerLptDacFilter, LabelSpeakerLptDacFilter, globalConf.SPEAKER_lpt_dac_filter, userConfData, "speaker", "lpt_dac_filter");
-                SaveOption(ComboBoxSpeakerPs1audio, null, LabelSpeakerPs1audio, globalConf.SPEAKER_ps1audio, userConfData, "speaker", "ps1audio");
-                SaveOption(ComboBoxSpeakerPs1audioFilter, TextBoxSpeakerPs1audioFilter, LabelSpeakerPs1audioFilter, globalConf.SPEAKER_ps1audio_filter, userConfData, "speaker", "ps1audio_filter");
-                SaveOption(ComboBoxSpeakerPs1audioDacFilter, TextBoxSpeakerPs1audioDacFilter, LabelSpeakerPs1audioDacFilter, globalConf.SPEAKER_ps1audio_dac_filter, userConfData, "speaker", "ps1audio_dac_filter");
+                sectionModified = false;
+                SaveOption(ComboBoxSpeakerPcspeaker, null, LabelSpeakerPcspeaker, globalConf.SPEAKER_pcspeaker, userConfData, "speaker", "pcspeaker", ref sectionModified);
+                SaveOption(ComboBoxSpeakerPcspeakerFilter, TextBoxSpeakerPcspeakerFilter, LabelSpeakerPcspeakerFilter, globalConf.SPEAKER_pcspeaker_filter, userConfData, "speaker", "pcspeaker_filter", ref sectionModified);
+                SaveOption(ComboBoxSpeakerTandy, null, LabelSpeakerTandy, globalConf.SPEAKER_tandy, userConfData, "speaker", "tandy", ref sectionModified);
+                SaveOption(ComboBoxSpeakerTandyFadeout, TextBoxSpeakerTandyFadeout, LabelSpeakerTandyFadeout, globalConf.SPEAKER_tandy_fadeout, userConfData, "speaker", "tandy_fadeout", ref sectionModified);
+                SaveOption(ComboBoxSpeakerTandyFilter, TextBoxSpeakerTandyFilter, LabelSpeakerTandyFilter, globalConf.SPEAKER_tandy_filter, userConfData, "speaker", "tandy_filter", ref sectionModified);
+                SaveOption(ComboBoxSpeakerTandyDacFilter, TextBoxSpeakerTandyDacFilter, LabelSpeakerTandyDacFilter, globalConf.SPEAKER_tandy_dac_filter, userConfData, "speaker", "tandy_dac_filter", ref sectionModified);
+                SaveOption(ComboBoxSpeakerLptDac, null, LabelSpeakerLptDac, globalConf.SPEAKER_lpt_dac, userConfData, "speaker", "lpt_dac", ref sectionModified);
+                SaveOption(ComboBoxSpeakerLptDacFilter, TextBoxSpeakerLptDacFilter, LabelSpeakerLptDacFilter, globalConf.SPEAKER_lpt_dac_filter, userConfData, "speaker", "lpt_dac_filter", ref sectionModified);
+                SaveOption(ComboBoxSpeakerPs1audio, null, LabelSpeakerPs1audio, globalConf.SPEAKER_ps1audio, userConfData, "speaker", "ps1audio", ref sectionModified);
+                SaveOption(ComboBoxSpeakerPs1audioFilter, TextBoxSpeakerPs1audioFilter, LabelSpeakerPs1audioFilter, globalConf.SPEAKER_ps1audio_filter, userConfData, "speaker", "ps1audio_filter", ref sectionModified);
+                SaveOption(ComboBoxSpeakerPs1audioDacFilter, TextBoxSpeakerPs1audioDacFilter, LabelSpeakerPs1audioDacFilter, globalConf.SPEAKER_ps1audio_dac_filter, userConfData, "speaker", "ps1audio_dac_filter", ref sectionModified);
 
                 // [reelmagic]
-                SaveOption(ComboBoxReelmagicReelmagic, null, LabelReelmagicReelmagic, globalConf.REELMAGIC_reelmagic, userConfData, "reelmagic", "reelmagic");
-                SaveOption(ComboBoxReelmagicReelmagicKey, TextBoxReelmagicReelmagicKey, LabelReelmagicReelmagicKey, globalConf.REELMAGIC_reelmagic_key, userConfData, "reelmagic", "reelmagic_key");
-                SaveOption(ComboBoxReelmagicReelmagicFcode, null, LabelReelmagicReelmagicFcode, globalConf.REELMAGIC_reelmagic_fcode, userConfData, "reelmagic", "reelmagic_fcode");
+                sectionModified = false;
+                SaveOption(ComboBoxReelmagicReelmagic, null, LabelReelmagicReelmagic, globalConf.REELMAGIC_reelmagic, userConfData, "reelmagic", "reelmagic", ref sectionModified);
+                SaveOption(ComboBoxReelmagicReelmagicKey, TextBoxReelmagicReelmagicKey, LabelReelmagicReelmagicKey, globalConf.REELMAGIC_reelmagic_key, userConfData, "reelmagic", "reelmagic_key", ref sectionModified);
+                SaveOption(ComboBoxReelmagicReelmagicFcode, null, LabelReelmagicReelmagicFcode, globalConf.REELMAGIC_reelmagic_fcode, userConfData, "reelmagic", "reelmagic_fcode", ref sectionModified);
 
                 // [joystick]
-                SaveOption(ComboBoxJoystickJoysticktype, null, LabelJoystickJoysticktype, globalConf.JOYSTICK_joysticktype, userConfData, "joystick", "joysticktype");
-                SaveOption(ComboBoxJoystickTimed, null, LabelJoystickTimed, globalConf.JOYSTICK_timed, userConfData, "joystick", "timed");
-                SaveOption(ComboBoxJoystickAutofire, null, LabelJoystickAutofire, globalConf.JOYSTICK_autofire, userConfData, "joystick", "autofire");
-                SaveOption(ComboBoxJoystickSwap34, null, LabelJoystickSwap34, globalConf.JOYSTICK_swap34, userConfData, "joystick", "swap34");
-                SaveOption(ComboBoxJoystickButtonwrap, null, LabelJoystickButtonwrap, globalConf.JOYSTICK_buttonwrap, userConfData, "joystick", "buttonwrap");
-                SaveOption(ComboBoxJoystickCircularinput, null, LabelJoystickCircularinput, globalConf.JOYSTICK_circularinput, userConfData, "joystick", "circularinput");
-                SaveOption(null, TextBoxJoystickDeadzone, LabelJoystickDeadzone, globalConf.JOYSTICK_deadzone, userConfData, "joystick", "deadzone");
-                SaveOption(ComboBoxJoystickUseJoyCalibrationHotkeys, null, LabelJoystickUseJoyCalibrationHotkeys, globalConf.JOYSTICK_use_joy_calibration_hotkeys, userConfData, "joystick", "use_joy_calibration_hotkeys");
-                SaveOption(ComboBoxJoystickJoyXCalibration, null, LabelJoystickJoyXCalibration, globalConf.JOYSTICK_joy_x_calibration, userConfData, "joystick", "joy_x_calibration");
-                SaveOption(ComboBoxJoystickJoyYCalibration, null, LabelJoystickJoyYCalibration, globalConf.JOYSTICK_joy_y_calibration, userConfData, "joystick", "joy_y_calibration");
+                sectionModified = false;
+                SaveOption(ComboBoxJoystickJoysticktype, null, LabelJoystickJoysticktype, globalConf.JOYSTICK_joysticktype, userConfData, "joystick", "joysticktype", ref sectionModified);
+                SaveOption(ComboBoxJoystickTimed, null, LabelJoystickTimed, globalConf.JOYSTICK_timed, userConfData, "joystick", "timed", ref sectionModified);
+                SaveOption(ComboBoxJoystickAutofire, null, LabelJoystickAutofire, globalConf.JOYSTICK_autofire, userConfData, "joystick", "autofire", ref sectionModified);
+                SaveOption(ComboBoxJoystickSwap34, null, LabelJoystickSwap34, globalConf.JOYSTICK_swap34, userConfData, "joystick", "swap34", ref sectionModified);
+                SaveOption(ComboBoxJoystickButtonwrap, null, LabelJoystickButtonwrap, globalConf.JOYSTICK_buttonwrap, userConfData, "joystick", "buttonwrap", ref sectionModified);
+                SaveOption(ComboBoxJoystickCircularinput, null, LabelJoystickCircularinput, globalConf.JOYSTICK_circularinput, userConfData, "joystick", "circularinput", ref sectionModified);
+                SaveOption(null, TextBoxJoystickDeadzone, LabelJoystickDeadzone, globalConf.JOYSTICK_deadzone, userConfData, "joystick", "deadzone", ref sectionModified);
+                SaveOption(ComboBoxJoystickUseJoyCalibrationHotkeys, null, LabelJoystickUseJoyCalibrationHotkeys, globalConf.JOYSTICK_use_joy_calibration_hotkeys, userConfData, "joystick", "use_joy_calibration_hotkeys", ref sectionModified);
+                SaveOption(ComboBoxJoystickJoyXCalibration, null, LabelJoystickJoyXCalibration, globalConf.JOYSTICK_joy_x_calibration, userConfData, "joystick", "joy_x_calibration", ref sectionModified);
+                SaveOption(ComboBoxJoystickJoyYCalibration, null, LabelJoystickJoyYCalibration, globalConf.JOYSTICK_joy_y_calibration, userConfData, "joystick", "joy_y_calibration", ref sectionModified);
 
                 // [serial]
-                SaveOption(ComboBoxSerialSerial1, TextBoxSerialSerial1, LabelSerialSerial1, globalConf.SERIAL_serial1, userConfData, "serial", "serial1");
-                SaveOption(ComboBoxSerialSerial2, TextBoxSerialSerial2, LabelSerialSerial2, globalConf.SERIAL_serial2, userConfData, "serial", "serial2");
-                SaveOption(ComboBoxSerialSerial3, TextBoxSerialSerial3, LabelSerialSerial3, globalConf.SERIAL_serial3, userConfData, "serial", "serial3");
-                SaveOption(ComboBoxSerialSerial4, TextBoxSerialSerial4, LabelSerialSerial4, globalConf.SERIAL_serial4, userConfData, "serial", "serial4");
-                SaveOption(null, TextBoxSerialPhonebookfile, LabelSerialPhonebookfile, globalConf.SERIAL_phonebookfile, userConfData, "serial", "phonebookfile");
+                sectionModified = false;
+                SaveOption(ComboBoxSerialSerial1, TextBoxSerialSerial1, LabelSerialSerial1, globalConf.SERIAL_serial1, userConfData, "serial", "serial1", ref sectionModified);
+                SaveOption(ComboBoxSerialSerial2, TextBoxSerialSerial2, LabelSerialSerial2, globalConf.SERIAL_serial2, userConfData, "serial", "serial2", ref sectionModified);
+                SaveOption(ComboBoxSerialSerial3, TextBoxSerialSerial3, LabelSerialSerial3, globalConf.SERIAL_serial3, userConfData, "serial", "serial3", ref sectionModified);
+                SaveOption(ComboBoxSerialSerial4, TextBoxSerialSerial4, LabelSerialSerial4, globalConf.SERIAL_serial4, userConfData, "serial", "serial4", ref sectionModified);
+                SaveOption(null, TextBoxSerialPhonebookfile, LabelSerialPhonebookfile, globalConf.SERIAL_phonebookfile, userConfData, "serial", "phonebookfile", ref sectionModified);
 
                 // [dos]
-                SaveOption(ComboBoxDosXms, null, LabelDosXms, globalConf.DOS_xms, userConfData, "dos", "xms");
-                SaveOption(ComboBoxDosEms, null, LabelDosEms, globalConf.DOS_ems, userConfData, "dos", "ems");
-                SaveOption(ComboBoxDosUmb, null, LabelDosUmb, globalConf.DOS_umb, userConfData, "dos", "umb");
-                SaveOption(ComboBoxDosVer, TextBoxDosVer, LabelDosVer, globalConf.DOS_ver, userConfData, "dos", "ver");
-                SaveOption(ComboBoxDosLocalePeriod, null, LabelDosLocalePeriod, globalConf.DOS_locale_period, userConfData, "dos", "locale_period");
-                SaveOption(ComboBoxDosCountry, TextBoxDosCountry, LabelDosCountry, globalConf.DOS_country, userConfData, "dos", "country");
-                SaveOption(ComboBoxDosKeyboardlayout, TextBoxDosKeyboardlayout, LabelDosKeyboardlayout, globalConf.DOS_keyboardlayout, userConfData, "dos", "keyboardlayout");
-                SaveOption(ComboBoxDosExpandShellVariable, null, LabelDosExpandShellVariable, globalConf.DOS_expand_shell_variable, userConfData, "dos", "expand_shell_variable");
-                SaveOption(null, TextBoxDosShellHistoryFile, LabelDosShellHistoryFile, globalConf.DOS_shell_history_file, userConfData, "dos", "shell_history_file");
-                SaveOption(null, TextBoxDosSetverTableFile, LabelDosSetverTableFile, globalConf.DOS_setver_table_file, userConfData, "dos", "setver_table_file");
-                SaveOption(ComboBoxDosPcjrMemoryConfig, null, LabelDosPcjrMemoryConfig, globalConf.DOS_pcjr_memory_config, userConfData, "dos", "pcjr_memory_config");
+                sectionModified = false;
+                SaveOption(ComboBoxDosXms, null, LabelDosXms, globalConf.DOS_xms, userConfData, "dos", "xms", ref sectionModified);
+                SaveOption(ComboBoxDosEms, null, LabelDosEms, globalConf.DOS_ems, userConfData, "dos", "ems", ref sectionModified);
+                SaveOption(ComboBoxDosUmb, null, LabelDosUmb, globalConf.DOS_umb, userConfData, "dos", "umb", ref sectionModified);
+                SaveOption(ComboBoxDosVer, TextBoxDosVer, LabelDosVer, globalConf.DOS_ver, userConfData, "dos", "ver", ref sectionModified);
+                SaveOption(ComboBoxDosLocalePeriod, null, LabelDosLocalePeriod, globalConf.DOS_locale_period, userConfData, "dos", "locale_period", ref sectionModified);
+                SaveOption(ComboBoxDosCountry, TextBoxDosCountry, LabelDosCountry, globalConf.DOS_country, userConfData, "dos", "country", ref sectionModified);
+                SaveOption(ComboBoxDosKeyboardlayout, TextBoxDosKeyboardlayout, LabelDosKeyboardlayout, globalConf.DOS_keyboardlayout, userConfData, "dos", "keyboardlayout", ref sectionModified);
+                SaveOption(ComboBoxDosExpandShellVariable, null, LabelDosExpandShellVariable, globalConf.DOS_expand_shell_variable, userConfData, "dos", "expand_shell_variable", ref sectionModified);
+                SaveOption(null, TextBoxDosShellHistoryFile, LabelDosShellHistoryFile, globalConf.DOS_shell_history_file, userConfData, "dos", "shell_history_file", ref sectionModified);
+                SaveOption(null, TextBoxDosSetverTableFile, LabelDosSetverTableFile, globalConf.DOS_setver_table_file, userConfData, "dos", "setver_table_file", ref sectionModified);
+                SaveOption(ComboBoxDosPcjrMemoryConfig, null, LabelDosPcjrMemoryConfig, globalConf.DOS_pcjr_memory_config, userConfData, "dos", "pcjr_memory_config", ref sectionModified);
 
                 // [ipx]
-                SaveOption(ComboBoxIpxIpx, null, LabelIpxIpx, globalConf.IPX_ipx, userConfData, "ipx", "ipx");
+                sectionModified = false;
+                SaveOption(ComboBoxIpxIpx, null, LabelIpxIpx, globalConf.IPX_ipx, userConfData, "ipx", "ipx", ref sectionModified);
 
                 // [ethernet]
-                SaveOption(ComboBoxEthernetNe2000, null, LabelEthernetNe2000, globalConf.ETHERNET_ne2000, userConfData, "ethernet", "ne2000");
-                SaveOption(ComboBoxEthernetNicbase, null, LabelEthernetNicbase, globalConf.ETHERNET_nicbase, userConfData, "ethernet", "nicbase");
-                SaveOption(ComboBoxEthernetNicirq, null, LabelEthernetNicirq, globalConf.ETHERNET_nicirq, userConfData, "ethernet", "nicirq");
-                SaveOption(null, TextBoxEthernetMacaddr, LabelEthernetMacaddr, globalConf.ETHERNET_macaddr, userConfData, "ethernet", "macaddr");
-                SaveOption(null, TextBoxEthernetTcpPortForwards, LabelEthernetTcpPortForwards, globalConf.ETHERNET_tcp_port_forwards, userConfData, "ethernet", "tcp_port_forwards");
-                SaveOption(null, TextBoxEthernetUdpPortForwards, LabelEthernetUdpPortForwards, globalConf.ETHERNET_udp_port_forwards, userConfData, "ethernet", "udp_port_forwards");
+                sectionModified = false;
+                SaveOption(ComboBoxEthernetNe2000, null, LabelEthernetNe2000, globalConf.ETHERNET_ne2000, userConfData, "ethernet", "ne2000", ref sectionModified);
+                SaveOption(ComboBoxEthernetNicbase, null, LabelEthernetNicbase, globalConf.ETHERNET_nicbase, userConfData, "ethernet", "nicbase", ref sectionModified);
+                SaveOption(ComboBoxEthernetNicirq, null, LabelEthernetNicirq, globalConf.ETHERNET_nicirq, userConfData, "ethernet", "nicirq", ref sectionModified);
+                SaveOption(null, TextBoxEthernetMacaddr, LabelEthernetMacaddr, globalConf.ETHERNET_macaddr, userConfData, "ethernet", "macaddr", ref sectionModified);
+                SaveOption(null, TextBoxEthernetTcpPortForwards, LabelEthernetTcpPortForwards, globalConf.ETHERNET_tcp_port_forwards, userConfData, "ethernet", "tcp_port_forwards", ref sectionModified);
+                SaveOption(null, TextBoxEthernetUdpPortForwards, LabelEthernetUdpPortForwards, globalConf.ETHERNET_udp_port_forwards, userConfData, "ethernet", "udp_port_forwards", ref sectionModified);
 
                 // [autoexec]
                 // It is neccecary to handle this section manually
@@ -1715,6 +1757,327 @@ namespace dosbox_staging_vct
 
                 // Save data to the user.conf file
                 parser.WriteFile(userConfFilePath, userConfData);
+            }
+        }
+        */
+
+        private void SaveConf(bool showSaveConfWarning, string userConfFilePath, string globalConfFilePath)
+        {
+            if (showSaveConfWarning)
+            {
+                DialogResult dialogResult = MessageBox.Show("Do you want to save the changes to the user.conf file?", "Save Changes", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.No)
+                {
+                    return;
+                }
+            }
+
+            if (!TextBoxHasErrors())
+            {
+                var parser = new FileIniDataParser();
+                parser.Parser.Configuration.CommentString = "#";
+                parser.Parser.Configuration.SkipInvalidLines = true;
+
+                // Leer el archivo de configuración del usuario
+                IniData userConfData = parser.ReadFile(userConfFilePath);
+                GlobalConf globalConf = GetGlobalConf(globalConfFilePath);
+
+                // Procesar cada sección
+                ProcessSection("sdl", userConfData, globalConf);
+                ProcessSection("dosbox", userConfData, globalConf);
+                ProcessSection("render", userConfData, globalConf);
+                ProcessSection("composite", userConfData, globalConf);
+                ProcessSection("cpu", userConfData, globalConf);
+                ProcessSection("voodoo", userConfData, globalConf);
+                ProcessSection("capture", userConfData, globalConf);
+                ProcessSection("mouse", userConfData, globalConf);
+                ProcessSection("mixer", userConfData, globalConf);
+                ProcessSection("midi", userConfData, globalConf);
+                ProcessSection("fluidsynth", userConfData, globalConf);
+                ProcessSection("mt32", userConfData, globalConf);
+                ProcessSection("sblaster", userConfData, globalConf);
+                ProcessSection("gus", userConfData, globalConf);
+                ProcessSection("imfc", userConfData, globalConf);
+                ProcessSection("innovation", userConfData, globalConf);
+                ProcessSection("speaker", userConfData, globalConf);
+                ProcessSection("reelmagic", userConfData, globalConf);
+                ProcessSection("joystick", userConfData, globalConf);
+                ProcessSection("serial", userConfData, globalConf);
+                ProcessSection("dos", userConfData, globalConf);
+                ProcessSection("ipx", userConfData, globalConf);
+                ProcessSection("ethernet", userConfData, globalConf);
+
+                // Eliminar secciones vacías
+                var emptySections = userConfData.Sections
+                    .Where(section => section.Keys.Count == 0)
+                    .Select(section => section.SectionName)
+                    .ToList();
+
+                foreach (var sectionName in emptySections)
+                {
+                    userConfData.Sections.RemoveSection(sectionName);
+                }
+
+                // Guardar el archivo actualizado
+                parser.WriteFile(userConfFilePath, userConfData);
+            }
+        }
+
+        private void ProcessSection(string sectionName, IniData userConfData, GlobalConf globalConf)
+        {
+            bool sectionModified = false;
+
+            // Procesar las opciones de la sección según el nombre de la sección
+            switch (sectionName)
+            {
+                case "sdl":
+                    SaveOption(ComboBoxSdlFullscreen, null, LabelSdlFullscreen, globalConf.SDL_fullscreen, userConfData, sectionName, "fullscreen", ref sectionModified);
+                    SaveOption(ComboBoxSdlDisplay, null, LabelSdlDisplay, globalConf.SDL_display, userConfData, sectionName, "display", ref sectionModified);
+                    SaveOption(ComboBoxSdlFullresolution, TextBoxSdlFullresolution, LabelSdlFullresolution, globalConf.SDL_fullresolution, userConfData, sectionName, "fullresolution", ref sectionModified);
+                    SaveOption(ComboBoxSdlWindowresolution, TextBoxSdlWindowresolution, LabelSdlWindowresolution, globalConf.SDL_windowresolution, userConfData, sectionName, "windowresolution", ref sectionModified);
+                    SaveOption(ComboBoxSdlWindowPosition, TextBoxSdlWindowPosition, LabelSdlWindowPosition, globalConf.SDL_window_position, userConfData, sectionName, "window_position", ref sectionModified);
+                    SaveOption(ComboBoxSdlWindowDecorations, null, LabelSdlWindowDecorations, globalConf.SDL_window_decorations, userConfData, sectionName, "window_decorations", ref sectionModified);
+                    SaveOption(ComboBoxSdlTransparency, null, LabelSdlTransparency, globalConf.SDL_transparency, userConfData, sectionName, "transparency", ref sectionModified);
+                    SaveOption(ComboBoxSdlScreensaver, null, LabelSdlScreensaver, globalConf.SDL_screensaver, userConfData, sectionName, "screensaver", ref sectionModified);
+                    SaveOption(ComboBoxSdlHostRate, TextBoxSdlHostRate, LabelSdlHostRate, globalConf.SDL_host_rate, userConfData, sectionName, "host_rate", ref sectionModified);
+                    SaveOption(ComboBoxSdlVsync, null, LabelSdlVsync, globalConf.SDL_vsync, userConfData, sectionName, "vsync", ref sectionModified);
+                    SaveOption(null, TextBoxSdlVsyncSkip, LabelSdlVsyncSkip, globalConf.SDL_vsync_skip, userConfData, sectionName, "vsync_skip", ref sectionModified);
+                    SaveOption(ComboBoxSdlPresentationMode, null, LabelSdlPresentationMode, globalConf.SDL_presentation_mode, userConfData, sectionName, "presentation_mode", ref sectionModified);
+                    SaveOption(ComboBoxSdlOutput, null, LabelSdlOutput, globalConf.SDL_output, userConfData, sectionName, "output", ref sectionModified);
+                    SaveOption(ComboBoxSdlTextureRenderer, null, LabelSdlTextureRenderer, globalConf.SDL_texture_renderer, userConfData, sectionName, "texture_renderer", ref sectionModified);
+                    SaveOption(ComboBoxSdlWaitonerror, null, LabelSdlWaitonerror, globalConf.SDL_waitonerror, userConfData, sectionName, "waitonerror", ref sectionModified);
+                    SaveOptionSplitProperty(ComboBoxSdlPriorityActive, ComboBoxSdlPriorityInactive, LabelSdlPriorityActive, LabelSdlPriorityInactive, globalConf.SDL_priority, userConfData, sectionName, "priority", ref sectionModified);
+                    SaveOption(ComboBoxSdlMuteWhenInactive, null, LabelSdlMuteWhenInactive, globalConf.SDL_mute_when_inactive, userConfData, sectionName, "mute_when_inactive", ref sectionModified);
+                    SaveOption(ComboBoxSdlPauseWhenInactive, null, LabelSdlPauseWhenInactive, globalConf.SDL_pause_when_inactive, userConfData, sectionName, "pause_when_inactive", ref sectionModified);
+                    SaveOption(null, TextBoxSdlMapperfile, LabelSdlMapperfile, globalConf.SDL_mapperfile, userConfData, sectionName, "mapperfile", ref sectionModified);
+                    break;
+
+                case "dosbox":
+                    SaveOption(ComboBoxDosboxLanguage, null, LabelDosboxLanguage, globalConf.DOSBOX_language, userConfData, sectionName, "language", ref sectionModified);
+                    SaveOption(ComboBoxDosboxMachine, null, LabelDosboxMachine, globalConf.DOSBOX_machine, userConfData, sectionName, "machine", ref sectionModified);
+                    SaveOption(ComboBoxDosboxMemsize, null, LabelDosboxMemsize, globalConf.DOSBOX_memsize, userConfData, sectionName, "memsize", ref sectionModified);
+                    SaveOption(ComboBoxDosboxVmemsize, null, LabelDosboxVmemsize, globalConf.DOSBOX_vmemsize, userConfData, sectionName, "vmemsize", ref sectionModified);
+                    SaveOption(ComboBoxDosboxVmemDelay, TextBoxDosboxVmemDelay, LabelDosboxVmemDelay, globalConf.DOSBOX_vmem_delay, userConfData, sectionName, "vmem_delay", ref sectionModified);
+                    SaveOption(ComboBoxDosboxDosRate, TextBoxDosboxDosRate, LabelDosboxDosRate, globalConf.DOSBOX_dos_rate, userConfData, sectionName, "dos_rate", ref sectionModified);
+                    SaveOption(ComboBoxDosboxMcbFaultStrategy, null, LabelDosboxMcbFaultStrategy, globalConf.DOSBOX_mcb_fault_strategy, userConfData, sectionName, "mcb_fault_strategy", ref sectionModified);
+                    SaveOption(ComboBoxDosboxVesaModes, null, LabelDosboxVesaModes, globalConf.DOSBOX_vesa_modes, userConfData, sectionName, "vesa_modes", ref sectionModified);
+                    SaveOption(ComboBoxDosboxVga8dotFont, null, LabelDosboxVga8dotFont, globalConf.DOSBOX_vga_8dot_font, userConfData, sectionName, "vga_8dot_font", ref sectionModified);
+                    SaveOption(ComboBoxDosboxVgaRenderPerScanline, null, LabelDosboxVgaRenderPerScanline, globalConf.DOSBOX_vga_render_per_scanline, userConfData, sectionName, "vga_render_per_scanline", ref sectionModified);
+                    SaveOption(ComboBoxDosboxSpeedMods, null, LabelDosboxSpeedMods, globalConf.DOSBOX_speed_mods, userConfData, sectionName, "speed_mods", ref sectionModified);
+                    SaveOption(ComboBoxDosboxAutoexecSection, null, LabelDosboxAutoexecSection, globalConf.DOSBOX_autoexec_section, userConfData, sectionName, "autoexec_section", ref sectionModified);
+                    SaveOption(ComboBoxDosboxAutomount, null, LabelDosboxAutomount, globalConf.DOSBOX_automount, userConfData, sectionName, "automount", ref sectionModified);
+                    SaveOption(ComboBoxDosboxStartupVerbosity, null, LabelDosboxStartupVerbosity, globalConf.DOSBOX_startup_verbosity, userConfData, sectionName, "startup_verbosity", ref sectionModified);
+                    SaveOption(ComboBoxDosboxAllowWriteProtectedFiles, null, LabelDosboxAllowWriteProtectedFiles, globalConf.DOSBOX_allow_write_protected_files, userConfData, sectionName, "allow_write_protected_files", ref sectionModified);
+                    SaveOption(ComboBoxDosboxShellConfigShortcuts, null, LabelDosboxShellConfigShortcuts, globalConf.DOSBOX_shell_config_shortcuts, userConfData, sectionName, "shell_config_shortcuts", ref sectionModified);
+                    break;
+
+                case "render":
+                    SaveOption(ComboBoxRenderAspect, null, LabelRenderAspect, globalConf.RENDER_aspect, userConfData, "render", "aspect", ref sectionModified);
+                    SaveOption(ComboBoxRenderIntegerScaling, null, LabelRenderIntegerScaling, globalConf.RENDER_integer_scaling, userConfData, "render", "integer_scaling", ref sectionModified);
+                    SaveOption(ComboBoxRenderViewport, TextBoxRenderViewport, LabelRenderViewport, globalConf.RENDER_viewport, userConfData, "render", "viewport", ref sectionModified);
+                    SaveOption(ComboBoxRenderMonochromePalette, null, LabelRenderMonochromePalette, globalConf.RENDER_monochrome_palette, userConfData, "render", "monochrome_palette", ref sectionModified);
+                    SaveOption(ComboBoxRenderCgaColors, TextBoxRenderCgaColors, LabelRenderCgaColors, globalConf.RENDER_cga_colors, userConfData, "render", "cga_colors", ref sectionModified);
+                    SaveOption(ComboBoxRenderGlshader, TextBoxRenderGlshader, LabelRenderGlshader, globalConf.RENDER_glshader, userConfData, "render", "glshader", ref sectionModified);
+                    break;
+
+                case "composite":
+                    SaveOption(ComboBoxCompositeComposite, null, LabelCompositeComposite, globalConf.COMPOSITE_composite, userConfData, "composite", "composite", ref sectionModified);
+                    SaveOption(ComboBoxCompositeEra, null, LabelCompositeEra, globalConf.COMPOSITE_era, userConfData, "composite", "era", ref sectionModified);
+                    SaveOption(null, TextBoxCompositeHue, LabelCompositeHue, globalConf.COMPOSITE_hue, userConfData, "composite", "hue", ref sectionModified);
+                    SaveOption(null, TextBoxCompositeSaturation, LabelCompositeSaturation, globalConf.COMPOSITE_saturation, userConfData, "composite", "saturation", ref sectionModified);
+                    SaveOption(null, TextBoxCompositeContrast, LabelCompositeContrast, globalConf.COMPOSITE_contrast, userConfData, "composite", "contrast", ref sectionModified);
+                    SaveOption(null, TextBoxCompositeBrightness, LabelCompositeBrightness, globalConf.COMPOSITE_brightness, userConfData, "composite", "brightness", ref sectionModified);
+                    SaveOption(null, TextBoxCompositeConvergence, LabelCompositeConvergence, globalConf.COMPOSITE_convergence, userConfData, "composite", "convergence", ref sectionModified);
+                    break;
+                    
+                case "cpu":
+                    SaveOption(ComboBoxCpuCore, null, LabelCpuCore, globalConf.CPU_core, userConfData, "cpu", "core", ref sectionModified);
+                    SaveOption(ComboBoxCpuCputype, null, LabelCpuCputype, globalConf.CPU_cputype, userConfData, "cpu", "cputype", ref sectionModified);
+                    SaveOption(ComboBoxCpuCpuCycles, TextBoxCpuCpuCycles, LabelCpuCpuCycles, globalConf.CPU_cpu_cycles, userConfData, "cpu", "cpu_cycles", ref sectionModified);
+                    SaveOption(ComboBoxCpuCpuCyclesProtected, TextBoxCpuCpuCyclesProtected, LabelCpuCpuCyclesProtected, globalConf.CPU_cpu_cycles_protected, userConfData, "cpu", "cpu_cycles_protected", ref sectionModified);
+                    SaveOption(ComboBoxCpuCpuThrottle, null, LabelCpuCpuThrottle, globalConf.CPU_cpu_throttle, userConfData, "cpu", "cpu_throttle", ref sectionModified);
+                    SaveOption(null, TextBoxCpuCycleup, LabelCpuCycleup, globalConf.CPU_cycleup, userConfData, "cpu", "cycleup", ref sectionModified);
+                    SaveOption(null, TextBoxCpuCycledown, LabelCpuCycledown, globalConf.CPU_cycledown, userConfData, "cpu", "cycledown", ref sectionModified);
+                    break;
+
+                case "voodoo":
+                    SaveOption(ComboBoxVoodooVoodoo, null, LabelVoodooVoodoo, globalConf.VOODOO_voodoo, userConfData, "voodoo", "voodoo", ref sectionModified);
+                    SaveOption(ComboBoxVoodooVoodooMemsize, null, LabelVoodooVoodooMemsize, globalConf.VOODOO_voodoo_memsize, userConfData, "voodoo", "voodoo_memsize", ref sectionModified);
+                    SaveOption(ComboBoxVoodooVoodooThreads, TextBoxVoodooVoodooThreads, LabelVoodooVoodooThreads, globalConf.VOODOO_voodoo_threads, userConfData, "voodoo", "voodoo_threads", ref sectionModified);
+                    SaveOption(ComboBoxVoodooVoodooBilinearFiltering, null, LabelVoodooVoodooBilinearFiltering, globalConf.VOODOO_voodoo_bilinear_filtering, userConfData, "voodoo", "voodoo_bilinear_filtering", ref sectionModified);
+                    break;
+
+                case "capture":
+                    SaveOption(null, TextBoxCaptureCaptureDir, LabelCaptureCaptureDir, globalConf.CAPTURE_capture_dir, userConfData, "capture", "capture_dir", ref sectionModified);
+                    SaveOption(ComboBoxCaptureDefaultImageCaptureFormats, null, LabelCaptureDefaultImageCaptureFormats, globalConf.CAPTURE_default_image_capture_formats, userConfData, "capture", "default_image_capture_formats", ref sectionModified);
+                    break;
+
+                case "mouse":
+                    SaveOption(ComboBoxMouseMouseCapture, null, LabelMouseMouseCapture, globalConf.MOUSE_mouse_capture, userConfData, "mouse", "mouse_capture", ref sectionModified);
+                    SaveOption(ComboBoxMouseMouseMiddleRelease, null, LabelMouseMouseMiddleRelease, globalConf.MOUSE_mouse_middle_release, userConfData, "mouse", "mouse_middle_release", ref sectionModified);
+                    SaveOption(ComboBoxMouseMouseMultiDisplayAware, null, LabelMouseMouseMultiDisplayAware, globalConf.MOUSE_mouse_multi_display_aware, userConfData, "mouse", "mouse_multi_display_aware", ref sectionModified);
+                    SaveOption(ComboBoxMouseMouseRawInput, null, LabelMouseMouseRawInput, globalConf.MOUSE_mouse_raw_input, userConfData, "mouse", "mouse_raw_input", ref sectionModified);
+                    SaveOption(null, TextBoxMouseMouseSensitivity, LabelMouseMouseSensitivity, globalConf.MOUSE_mouse_sensitivity, userConfData, "mouse", "mouse_sensitivity", ref sectionModified);
+                    SaveOption(ComboBoxMouseDosMouseDriver, null, LabelMouseDosMouseDriver, globalConf.MOUSE_dos_mouse_driver, userConfData, "mouse", "dos_mouse_driver", ref sectionModified);
+                    SaveOption(ComboBoxMouseDosMouseImmediate, null, LabelMouseDosMouseImmediate, globalConf.MOUSE_dos_mouse_immediate, userConfData, "mouse", "dos_mouse_immediate", ref sectionModified);
+                    SaveOption(ComboBoxMousePs2MouseModel, null, LabelMousePs2MouseModel, globalConf.MOUSE_ps2_mouse_model, userConfData, "mouse", "ps2_mouse_model", ref sectionModified);
+                    SaveOption(ComboBoxMouseComMouseModel, null, LabelMouseComMouseModel, globalConf.MOUSE_com_mouse_model, userConfData, "mouse", "com_mouse_model", ref sectionModified);
+                    SaveOption(ComboBoxMouseVmwareMouse, null, LabelMouseVmwareMouse, globalConf.MOUSE_vmware_mouse, userConfData, "mouse", "vmware_mouse", ref sectionModified);
+                    SaveOption(ComboBoxMouseVirtualboxMouse, null, LabelMouseVirtualboxMouse, globalConf.MOUSE_virtualbox_mouse, userConfData, "mouse", "virtualbox_mouse", ref sectionModified);
+                    break;
+
+                case "mixer":
+                    SaveOption(ComboBoxMixerNosound, null, LabelMixerNosound, globalConf.MIXER_nosound, userConfData, "mixer", "nosound", ref sectionModified);
+                    SaveOption(ComboBoxMixerRate, null, LabelMixerRate, globalConf.MIXER_rate, userConfData, "mixer", "rate", ref sectionModified);
+                    SaveOption(ComboBoxMixerBlocksize, null, LabelMixerBlocksize, globalConf.MIXER_blocksize, userConfData, "mixer", "blocksize", ref sectionModified);
+                    SaveOption(null, TextBoxMixerPrebuffer, LabelMixerPrebuffer, globalConf.MIXER_prebuffer, userConfData, "mixer", "prebuffer", ref sectionModified);
+                    SaveOption(ComboBoxMixerNegotiate, null, LabelMixerNegotiate, globalConf.MIXER_negotiate, userConfData, "mixer", "negotiate", ref sectionModified);
+                    SaveOption(ComboBoxMixerCompressor, null, LabelMixerCompressor, globalConf.MIXER_compressor, userConfData, "mixer", "compressor", ref sectionModified);
+                    SaveOption(ComboBoxMixerCrossfeed, null, LabelMixerCrossfeed, globalConf.MIXER_crossfeed, userConfData, "mixer", "crossfeed", ref sectionModified);
+                    SaveOption(ComboBoxMixerReverb, null, LabelMixerReverb, globalConf.MIXER_reverb, userConfData, "mixer", "reverb", ref sectionModified);
+                    SaveOption(ComboBoxMixerChorus, null, LabelMixerChorus, globalConf.MIXER_chorus, userConfData, "mixer", "chorus", ref sectionModified);
+                    break;
+
+                case "midi":
+                    SaveOption(ComboBoxMidiMididevice, null, LabelMidiMididevice, globalConf.MIDI_mididevice, userConfData, "midi", "mididevice", ref sectionModified);
+                    SaveOption(null, TextBoxMidiMidiconfig, LabelMidiMidiconfig, globalConf.MIDI_midiconfig, userConfData, "midi", "midiconfig", ref sectionModified);
+                    SaveOption(ComboBoxMidiMpu401, null, LabelMidiMpu401, globalConf.MIDI_mpu401, userConfData, "midi", "mpu401", ref sectionModified);
+                    SaveOption(ComboBoxMidiRawMidiOutput, null, LabelMidiRawMidiOutput, globalConf.MIDI_raw_midi_output, userConfData, "midi", "raw_midi_output", ref sectionModified);
+                    break;
+
+                case "fluidsynth":
+                    SaveOption(null, TextBoxFluidsynthSoundfont, LabelFluidsynthSoundfont, globalConf.FLUIDSYNTH_soundfont, userConfData, "fluidsynth", "soundfont", ref sectionModified);
+                    SaveOption(ComboBoxFluidsynthFsynthChorus, TextBoxFluidsynthFsynthChorus, LabelFluidsynthFsynthChorus, globalConf.FLUIDSYNTH_fsynth_chorus, userConfData, "fluidsynth", "fsynth_chorus", ref sectionModified);
+                    SaveOption(ComboBoxFluidsynthFsynthReverb, TextBoxFluidsynthFsynthReverb, LabelFluidsynthFsynthReverb, globalConf.FLUIDSYNTH_fsynth_reverb, userConfData, "fluidsynth", "fsynth_reverb", ref sectionModified);
+                    SaveOption(ComboBoxFluidsynthFsynthFilter, TextBoxFluidsynthFsynthFilter, LabelFluidsynthFsynthFilter, globalConf.FLUIDSYNTH_fsynth_filter, userConfData, "fluidsynth", "fsynth_filter", ref sectionModified);
+                    break;
+
+                case "mt32":
+                    SaveOption(ComboBoxMt32Model, null, LabelMt32Model, globalConf.MT32_model, userConfData, "mt32", "model", ref sectionModified);
+                    SaveOption(null, TextBoxMt32Romdir, LabelMt32Romdir, globalConf.MT32_romdir, userConfData, "mt32", "romdir", ref sectionModified);
+                    SaveOption(ComboBoxMt32Mt32Filter, TextBoxMt32Mt32Filter, LabelMt32Mt32Filter, globalConf.MT32_mt32_filter, userConfData, "mt32", "mt32_filter", ref sectionModified);
+                    break;
+
+                case "sblaster":
+                    SaveOption(ComboBoxSblasterSbtype, null, LabelSblasterSbtype, globalConf.SBLASTER_sbtype, userConfData, "sblaster", "sbtype", ref sectionModified);
+                    SaveOption(ComboBoxSblasterSbbase, null, LabelSblasterSbbase, globalConf.SBLASTER_sbbase, userConfData, "sblaster", "sbbase", ref sectionModified);
+                    SaveOption(ComboBoxSblasterIrq, null, LabelSblasterIrq, globalConf.SBLASTER_irq, userConfData, "sblaster", "irq", ref sectionModified);
+                    SaveOption(ComboBoxSblasterDma, null, LabelSblasterDma, globalConf.SBLASTER_dma, userConfData, "sblaster", "dma", ref sectionModified);
+                    SaveOption(ComboBoxSblasterHdma, null, LabelSblasterHdma, globalConf.SBLASTER_hdma, userConfData, "sblaster", "hdma", ref sectionModified);
+                    SaveOption(ComboBoxSblasterSbmixer, null, LabelSblasterSbmixer, globalConf.SBLASTER_sbmixer, userConfData, "sblaster", "sbmixer", ref sectionModified);
+                    SaveOption(null, TextBoxSblasterSbwarmup, LabelSblasterSbwarmup, globalConf.SBLASTER_sbwarmup, userConfData, "sblaster", "sbwarmup", ref sectionModified);
+                    SaveOption(ComboBoxSblasterOplmode, null, LabelSblasterOplmode, globalConf.SBLASTER_oplmode, userConfData, "sblaster", "oplmode", ref sectionModified);
+                    SaveOption(ComboBoxSblasterOplFadeout, TextBoxSblasterOplFadeout, LabelSblasterOplFadeout, globalConf.SBLASTER_opl_fadeout, userConfData, "sblaster", "opl_fadeout", ref sectionModified);
+                    SaveOption(ComboBoxSblasterSbFilter, TextBoxSblasterSbFilter, LabelSblasterSbFilter, globalConf.SBLASTER_sb_filter, userConfData, "sblaster", "sb_filter", ref sectionModified);
+                    SaveOption(ComboBoxSblasterSbFilterAlwaysOn, null, LabelSblasterSbFilterAlwaysOn, globalConf.SBLASTER_sb_filter_always_on, userConfData, "sblaster", "sb_filter_always_on", ref sectionModified);
+                    SaveOption(ComboBoxSblasterOplFilter, TextBoxSblasterOplFilter, LabelSblasterOplFilter, globalConf.SBLASTER_opl_filter, userConfData, "sblaster", "opl_filter", ref sectionModified);
+                    SaveOption(ComboBoxSblasterCmsFilter, TextBoxSblasterCmsFilter, LabelSblasterCmsFilter, globalConf.SBLASTER_cms_filter, userConfData, "sblaster", "cms_filter", ref sectionModified);
+                    break;
+
+                case "gus":
+                    SaveOption(ComboBoxGusGus, null, LabelGusGus, globalConf.GUS_gus, userConfData, "gus", "gus", ref sectionModified);
+                    SaveOption(ComboBoxGusGusbase, null, LabelGusGusbase, globalConf.GUS_gusbase, userConfData, "gus", "gusbase", ref sectionModified);
+                    SaveOption(ComboBoxGusGusirq, null, LabelGusGusirq, globalConf.GUS_gusirq, userConfData, "gus", "gusirq", ref sectionModified);
+                    SaveOption(ComboBoxGusGusdma, null, LabelGusGusdma, globalConf.GUS_gusdma, userConfData, "gus", "gusdma", ref sectionModified);
+                    SaveOption(null, TextBoxGusUltradir, LabelGusUltradir, globalConf.GUS_ultradir, userConfData, "gus", "ultradir", ref sectionModified);
+                    SaveOption(ComboBoxGusGusFilter, TextBoxGusGusFilter, LabelGusGusFilter, globalConf.GUS_gus_filter, userConfData, "gus", "gus_filter", ref sectionModified);
+                    break;
+
+                case "imfc":
+                    SaveOption(ComboBoxImfcImfc, null, LabelImfcImfc, globalConf.IMFC_imfc, userConfData, "imfc", "imfc", ref sectionModified);
+                    SaveOption(ComboBoxImfcImfcBase, null, LabelImfcImfcBase, globalConf.IMFC_imfc_base, userConfData, "imfc", "imfc_base", ref sectionModified);
+                    SaveOption(ComboBoxImfcImfcIrq, null, LabelImfcImfcIrq, globalConf.IMFC_imfc_irq, userConfData, "imfc", "imfc_irq", ref sectionModified);
+                    SaveOption(ComboBoxImfcImfcFilter, TextBoxImfcImfcFilter, LabelImfcImfcFilter, globalConf.IMFC_imfc_filter, userConfData, "imfc", "imfc_filter", ref sectionModified);
+                    break;
+
+                case "innovation":
+                    SaveOption(ComboBoxInnovationSidmodel, null, LabelInnovationSidmodel, globalConf.INNOVATION_sidmodel, userConfData, "innovation", "sidmodel", ref sectionModified);
+                    SaveOption(ComboBoxInnovationSidclock, null, LabelInnovationSidclock, globalConf.INNOVATION_sidclock, userConfData, "innovation", "sidclock", ref sectionModified);
+                    SaveOption(ComboBoxInnovationSidport, null, LabelInnovationSidport, globalConf.INNOVATION_sidport, userConfData, "innovation", "sidport", ref sectionModified);
+                    SaveOption(null, TextBoxInnovation6581filter, LabelInnovation6581filter, globalConf.INNOVATION_6581filter, userConfData, "innovation", "6581filter", ref sectionModified);
+                    SaveOption(null, TextBoxInnovation8580filter, LabelInnovation8580filter, globalConf.INNOVATION_8580filter, userConfData, "innovation", "8580filter", ref sectionModified);
+                    SaveOption(ComboBoxInnovationInnovationFilter, TextBoxInnovationInnovationFilter, LabelInnovationInnovationFilter, globalConf.INNOVATION_innovation_filter, userConfData, "innovation", "innovation_filter", ref sectionModified);
+                    break;
+
+                case "speaker":
+                    SaveOption(ComboBoxSpeakerPcspeaker, null, LabelSpeakerPcspeaker, globalConf.SPEAKER_pcspeaker, userConfData, "speaker", "pcspeaker", ref sectionModified);
+                    SaveOption(ComboBoxSpeakerPcspeakerFilter, TextBoxSpeakerPcspeakerFilter, LabelSpeakerPcspeakerFilter, globalConf.SPEAKER_pcspeaker_filter, userConfData, "speaker", "pcspeaker_filter", ref sectionModified);
+                    SaveOption(ComboBoxSpeakerTandy, null, LabelSpeakerTandy, globalConf.SPEAKER_tandy, userConfData, "speaker", "tandy", ref sectionModified);
+                    SaveOption(ComboBoxSpeakerTandyFadeout, TextBoxSpeakerTandyFadeout, LabelSpeakerTandyFadeout, globalConf.SPEAKER_tandy_fadeout, userConfData, "speaker", "tandy_fadeout", ref sectionModified);
+                    SaveOption(ComboBoxSpeakerTandyFilter, TextBoxSpeakerTandyFilter, LabelSpeakerTandyFilter, globalConf.SPEAKER_tandy_filter, userConfData, "speaker", "tandy_filter", ref sectionModified);
+                    SaveOption(ComboBoxSpeakerTandyDacFilter, TextBoxSpeakerTandyDacFilter, LabelSpeakerTandyDacFilter, globalConf.SPEAKER_tandy_dac_filter, userConfData, "speaker", "tandy_dac_filter", ref sectionModified);
+                    SaveOption(ComboBoxSpeakerLptDac, null, LabelSpeakerLptDac, globalConf.SPEAKER_lpt_dac, userConfData, "speaker", "lpt_dac", ref sectionModified);
+                    SaveOption(ComboBoxSpeakerLptDacFilter, TextBoxSpeakerLptDacFilter, LabelSpeakerLptDacFilter, globalConf.SPEAKER_lpt_dac_filter, userConfData, "speaker", "lpt_dac_filter", ref sectionModified);
+                    SaveOption(ComboBoxSpeakerPs1audio, null, LabelSpeakerPs1audio, globalConf.SPEAKER_ps1audio, userConfData, "speaker", "ps1audio", ref sectionModified);
+                    SaveOption(ComboBoxSpeakerPs1audioFilter, TextBoxSpeakerPs1audioFilter, LabelSpeakerPs1audioFilter, globalConf.SPEAKER_ps1audio_filter, userConfData, "speaker", "ps1audio_filter", ref sectionModified);
+                    SaveOption(ComboBoxSpeakerPs1audioDacFilter, TextBoxSpeakerPs1audioDacFilter, LabelSpeakerPs1audioDacFilter, globalConf.SPEAKER_ps1audio_dac_filter, userConfData, "speaker", "ps1audio_dac_filter", ref sectionModified);
+                    break;
+
+                case "reelmagic":
+                    SaveOption(ComboBoxReelmagicReelmagic, null, LabelReelmagicReelmagic, globalConf.REELMAGIC_reelmagic, userConfData, "reelmagic", "reelmagic", ref sectionModified);
+                    SaveOption(ComboBoxReelmagicReelmagicKey, TextBoxReelmagicReelmagicKey, LabelReelmagicReelmagicKey, globalConf.REELMAGIC_reelmagic_key, userConfData, "reelmagic", "reelmagic_key", ref sectionModified);
+                    SaveOption(ComboBoxReelmagicReelmagicFcode, null, LabelReelmagicReelmagicFcode, globalConf.REELMAGIC_reelmagic_fcode, userConfData, "reelmagic", "reelmagic_fcode", ref sectionModified);
+                    break;
+
+                case "joystick":
+                    SaveOption(ComboBoxJoystickJoysticktype, null, LabelJoystickJoysticktype, globalConf.JOYSTICK_joysticktype, userConfData, "joystick", "joysticktype", ref sectionModified);
+                    SaveOption(ComboBoxJoystickTimed, null, LabelJoystickTimed, globalConf.JOYSTICK_timed, userConfData, "joystick", "timed", ref sectionModified);
+                    SaveOption(ComboBoxJoystickAutofire, null, LabelJoystickAutofire, globalConf.JOYSTICK_autofire, userConfData, "joystick", "autofire", ref sectionModified);
+                    SaveOption(ComboBoxJoystickSwap34, null, LabelJoystickSwap34, globalConf.JOYSTICK_swap34, userConfData, "joystick", "swap34", ref sectionModified);
+                    SaveOption(ComboBoxJoystickButtonwrap, null, LabelJoystickButtonwrap, globalConf.JOYSTICK_buttonwrap, userConfData, "joystick", "buttonwrap", ref sectionModified);
+                    SaveOption(ComboBoxJoystickCircularinput, null, LabelJoystickCircularinput, globalConf.JOYSTICK_circularinput, userConfData, "joystick", "circularinput", ref sectionModified);
+                    SaveOption(null, TextBoxJoystickDeadzone, LabelJoystickDeadzone, globalConf.JOYSTICK_deadzone, userConfData, "joystick", "deadzone", ref sectionModified);
+                    SaveOption(ComboBoxJoystickUseJoyCalibrationHotkeys, null, LabelJoystickUseJoyCalibrationHotkeys, globalConf.JOYSTICK_use_joy_calibration_hotkeys, userConfData, "joystick", "use_joy_calibration_hotkeys", ref sectionModified);
+                    SaveOption(ComboBoxJoystickJoyXCalibration, null, LabelJoystickJoyXCalibration, globalConf.JOYSTICK_joy_x_calibration, userConfData, "joystick", "joy_x_calibration", ref sectionModified);
+                    SaveOption(ComboBoxJoystickJoyYCalibration, null, LabelJoystickJoyYCalibration, globalConf.JOYSTICK_joy_y_calibration, userConfData, "joystick", "joy_y_calibration", ref sectionModified);
+                    break;
+                    
+                case "serial":
+                    SaveOption(ComboBoxSerialSerial1, TextBoxSerialSerial1, LabelSerialSerial1, globalConf.SERIAL_serial1, userConfData, "serial", "serial1", ref sectionModified);
+                    SaveOption(ComboBoxSerialSerial2, TextBoxSerialSerial2, LabelSerialSerial2, globalConf.SERIAL_serial2, userConfData, "serial", "serial2", ref sectionModified);
+                    SaveOption(ComboBoxSerialSerial3, TextBoxSerialSerial3, LabelSerialSerial3, globalConf.SERIAL_serial3, userConfData, "serial", "serial3", ref sectionModified);
+                    SaveOption(ComboBoxSerialSerial4, TextBoxSerialSerial4, LabelSerialSerial4, globalConf.SERIAL_serial4, userConfData, "serial", "serial4", ref sectionModified);
+                    SaveOption(null, TextBoxSerialPhonebookfile, LabelSerialPhonebookfile, globalConf.SERIAL_phonebookfile, userConfData, "serial", "phonebookfile", ref sectionModified);
+                    break;
+
+                case "dos":
+                    SaveOption(ComboBoxDosXms, null, LabelDosXms, globalConf.DOS_xms, userConfData, "dos", "xms", ref sectionModified);
+                    SaveOption(ComboBoxDosEms, null, LabelDosEms, globalConf.DOS_ems, userConfData, "dos", "ems", ref sectionModified);
+                    SaveOption(ComboBoxDosUmb, null, LabelDosUmb, globalConf.DOS_umb, userConfData, "dos", "umb", ref sectionModified);
+                    SaveOption(ComboBoxDosVer, TextBoxDosVer, LabelDosVer, globalConf.DOS_ver, userConfData, "dos", "ver", ref sectionModified);
+                    SaveOption(ComboBoxDosLocalePeriod, null, LabelDosLocalePeriod, globalConf.DOS_locale_period, userConfData, "dos", "locale_period", ref sectionModified);
+                    SaveOption(ComboBoxDosCountry, TextBoxDosCountry, LabelDosCountry, globalConf.DOS_country, userConfData, "dos", "country", ref sectionModified);
+                    SaveOption(ComboBoxDosKeyboardlayout, TextBoxDosKeyboardlayout, LabelDosKeyboardlayout, globalConf.DOS_keyboardlayout, userConfData, "dos", "keyboardlayout", ref sectionModified);
+                    SaveOption(ComboBoxDosExpandShellVariable, null, LabelDosExpandShellVariable, globalConf.DOS_expand_shell_variable, userConfData, "dos", "expand_shell_variable", ref sectionModified);
+                    SaveOption(null, TextBoxDosShellHistoryFile, LabelDosShellHistoryFile, globalConf.DOS_shell_history_file, userConfData, "dos", "shell_history_file", ref sectionModified);
+                    SaveOption(null, TextBoxDosSetverTableFile, LabelDosSetverTableFile, globalConf.DOS_setver_table_file, userConfData, "dos", "setver_table_file", ref sectionModified);
+                    SaveOption(ComboBoxDosPcjrMemoryConfig, null, LabelDosPcjrMemoryConfig, globalConf.DOS_pcjr_memory_config, userConfData, "dos", "pcjr_memory_config", ref sectionModified);
+                    break;
+                    
+                case "ipx":
+                    SaveOption(ComboBoxIpxIpx, null, LabelIpxIpx, globalConf.IPX_ipx, userConfData, "ipx", "ipx", ref sectionModified);
+                    break;
+
+                case "ethernet":
+                    SaveOption(ComboBoxEthernetNe2000, null, LabelEthernetNe2000, globalConf.ETHERNET_ne2000, userConfData, "ethernet", "ne2000", ref sectionModified);
+                    SaveOption(ComboBoxEthernetNicbase, null, LabelEthernetNicbase, globalConf.ETHERNET_nicbase, userConfData, "ethernet", "nicbase", ref sectionModified);
+                    SaveOption(ComboBoxEthernetNicirq, null, LabelEthernetNicirq, globalConf.ETHERNET_nicirq, userConfData, "ethernet", "nicirq", ref sectionModified);
+                    SaveOption(null, TextBoxEthernetMacaddr, LabelEthernetMacaddr, globalConf.ETHERNET_macaddr, userConfData, "ethernet", "macaddr", ref sectionModified);
+                    SaveOption(null, TextBoxEthernetTcpPortForwards, LabelEthernetTcpPortForwards, globalConf.ETHERNET_tcp_port_forwards, userConfData, "ethernet", "tcp_port_forwards", ref sectionModified);
+                    SaveOption(null, TextBoxEthernetUdpPortForwards, LabelEthernetUdpPortForwards, globalConf.ETHERNET_udp_port_forwards, userConfData, "ethernet", "udp_port_forwards", ref sectionModified);
+                    break;
+
+                // [autoexec]
+                // It is neccecary to handle this section manually
+
+                default:
+                    throw new ArgumentException($"Sección desconocida: {sectionName}");
+            }
+
+            // If the section was not modified, delete it
+            if (!sectionModified && userConfData.Sections.ContainsSection(sectionName))
+            {
+                userConfData.Sections.RemoveSection(sectionName);
             }
         }
 
@@ -2521,6 +2884,11 @@ namespace dosbox_staging_vct
 
             // Draw the border of the selected item (optional)
             e.DrawFocusRectangle();
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
 
 
