@@ -98,7 +98,7 @@ namespace dosbox_staging_vct
                 // Verify if the text in the TextBox is 'Filter'
                 if (searchText == "filter")
                 {
-                    // Si es igual, considera que no hay filtro aplicado
+                    // If it is equal, consider that there is no filter applied
                     searchText = string.Empty;
                 }
 
@@ -1201,7 +1201,6 @@ namespace dosbox_staging_vct
 
             // [autoexec]
             // It is neccecary to handle this section manually
-            //LoadOption(globalConf.AUTOEXEC_autoexec, userConf.AUTOEXEC_autoexec, null, TextBoxAutoexec, LabelAutoexec);
         }
 
         private static void LoadOption(string globalProperty, string? userProperty, ComboBox? comboBox, TextBox? textBox, Label label)
@@ -1504,11 +1503,11 @@ namespace dosbox_staging_vct
                 parser.Parser.Configuration.CommentString = "#";
                 parser.Parser.Configuration.SkipInvalidLines = true;
 
-                // Leer el archivo de configuración del usuario
+                // Read the user configuration file
                 IniData userConfData = parser.ReadFile(userConfFilePath);
                 GlobalConf globalConf = GetGlobalConf(globalConfFilePath);
 
-                // Procesar cada sección
+                // Process every section
                 ProcessSection("sdl", userConfData, globalConf);
                 ProcessSection("dosbox", userConfData, globalConf);
                 ProcessSection("render", userConfData, globalConf);
@@ -1533,7 +1532,7 @@ namespace dosbox_staging_vct
                 ProcessSection("ipx", userConfData, globalConf);
                 ProcessSection("ethernet", userConfData, globalConf);
 
-                // Eliminar secciones vacías
+                // Delete empty sections
                 var emptySections = userConfData.Sections
                     .Where(section => section.Keys.Count == 0)
                     .Select(section => section.SectionName)
@@ -1544,7 +1543,7 @@ namespace dosbox_staging_vct
                     userConfData.Sections.RemoveSection(sectionName);
                 }
 
-                // Guardar el archivo actualizado
+                // Save the updated file
                 parser.WriteFile(userConfFilePath, userConfData);
             }
         }
@@ -1553,7 +1552,7 @@ namespace dosbox_staging_vct
         {
             bool sectionModified = false;
 
-            // Procesar las opciones de la sección según el nombre de la sección
+            // Process the options of the section according to the name of the section
             switch (sectionName)
             {
                 case "sdl":
@@ -2616,83 +2615,5 @@ namespace dosbox_staging_vct
         {
 
         }
-
-
-        /*
-        private bool TextBoxHasErrors()
-        {
-            // Regular expressions to validate the input
-            Regex regexResolution = new(@"^([1-9]\d*)x([1-9]\d*)$"); // No decimals allowed
-            Regex regexPosition = new(@"^([1-9]\d*)x([1-9]\d*)$"); // No decimals allowed
-            Regex regexNumberGreaterEqual23 = new(@"^(2[3-9]|[3-9]\d+)(\.\d{1,3})?$"); // Decimals allowed
-            Regex regexNumberGreaterEqual0 = new Regex(@"^0$|^[1-9]\d*$"); // No decimals allowed
-
-            // [sdl]
-            TextBox textBox = TextBoxSdlFullresolution;
-            if (textBox.Enabled)
-            {
-                string userInput = textBox.Text.Trim();
-                if (!regexResolution.IsMatch(userInput))
-                {
-                    MessageBox.Show("Incorrect resolution format.");
-                    textBox.Focus();
-                    return true;
-                }
-            }
-
-            textBox = TextBoxSdlWindowresolution;
-            if (textBox.Enabled)
-            {
-                string userInput = textBox.Text.Trim();
-                if (!regexResolution.IsMatch(userInput))
-                {
-                    MessageBox.Show("Incorrect resolution format.");
-                    textBox.Focus();
-                    return true;
-                }
-            }
-
-            textBox = TextBoxSdlWindowPosition;
-            if (textBox.Enabled)
-            {
-                string userInput = textBox.Text.Trim();
-                if (!regexPosition.IsMatch(userInput))
-                {
-                    MessageBox.Show("Incorrect position format.");
-                    textBox.Focus();
-                    return true;
-                }
-            }
-
-            textBox = TextBoxSdlHostRate;
-            if (textBox.Enabled)
-            {
-                string userInput = textBox.Text.Trim();
-                if (!regexNumberGreaterEqual23.IsMatch(userInput))
-                {
-                    MessageBox.Show("The value must be greater than 23.");
-                    textBox.Focus();
-                    return true;
-                }
-            }
-
-            textBox = TextBoxSdlVsyncSkip;
-            if (textBox.Enabled)
-            {
-                string userInput = textBox.Text.Trim();
-                if (!regexNumberGreaterEqual0.IsMatch(userInput))
-                {
-                    MessageBox.Show("The value must be greater than or equal to 0. No decimals allowed.");
-                    textBox.Focus();
-                    return true;
-                }
-            }
-
-            // [dosbox]
-            textBox = TextBoxDosboxDosRate;
-
-            return false;
-        }
-        */
     }
 }
