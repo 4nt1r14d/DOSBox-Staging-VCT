@@ -2021,10 +2021,6 @@
     {
       "Text": "opengl",
       "Value": "opengl"
-    },
-    {
-      "Text": "openglnb",
-      "Value": "openglnb"
     }
   ],
   "ComboBoxSdlPauseWhenInactive": [
